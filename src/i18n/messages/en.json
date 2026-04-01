@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "title": "PACE RISE | Sports Technology – Track Pacing Systems",
+    "description": "PACE RISE leads innovation in track & field through Wavelight LED pacing systems. Real-time race management and QR bib systems deliver a new race experience."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "news": "News",
+    "contact": "Contact",
+    "records": "Race Records"
+  },
+  "hero": {
+    "tagline": "LIGHT THE PACE",
+    "title_line1": "The New Race,",
+    "title_line2": "Led by Light",
+    "description": "Revolutionizing every moment on the track with Wavelight LED pacing systems. From elite athletes to recreational runners, light leads your pace.",
+    "cta_records": "View Race Records",
+    "cta_about": "Learn More"
+  },
+  "home": {
+    "services_title": "What We Do",
+    "services_subtitle": "Core Services of PACE RISE",
+    "service_wavelight": "Wavelight System",
+    "service_wavelight_desc": "LED pacing lights run along the track, visually guiding athletes to their target pace. World-class technology proven at the Diamond League.",
+    "service_records": "Real-time Race Management",
+    "service_records_desc": "Our Node.js-based real-time recording system lets participants instantly view and share their race results.",
+    "service_qrbib": "QR Bib System",
+    "service_qrbib_desc": "QR codes embedded in race bibs link directly to personal result pages. Spectators and families can cheer in real time.",
+    "instagram_title": "PACE RISE Updates",
+    "instagram_subtitle": "Latest from @pace.rise on Instagram"
+  },
+  "about": {
+    "title": "About PACE RISE",
+    "subtitle": "The people who innovate on the track",
+    "mission_title": "Our Mission",
+    "mission_desc": "PACE RISE expands the possibilities of track & field through technology. Centered around Wavelight pacing system operations, we lead the digital transformation of event management.",
+    "tech_title": "Technology",
+    "tech_wavelight": "Wavelight LED Pacing",
+    "tech_wavelight_desc": "LED lights installed along the track move at the configured pace, delivering an intuitive race experience for both athletes and spectators.",
+    "tech_realtime": "Real-time Results System",
+    "tech_realtime_desc": "Our in-house Node.js-based results platform enables instant web access to participant records.",
+    "tech_qr": "QR Bib Integration",
+    "tech_qr_desc": "Scanning the QR code on a race bib instantly links to the runner's personal results page.",
+    "history_title": "History",
+    "clients_title": "Our Partners"
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "Latest updates and stories from PACE RISE",
+    "read_more": "Read More",
+    "published": "Published",
+    "back_to_list": "Back to News",
+    "no_posts": "No news articles yet.",
+    "share": "Share",
+    "related": "Related News"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Event management, Wavelight system inquiries, and more — feel free to ask.",
+    "name": "Name",
+    "name_placeholder": "John Doe",
+    "email": "Email",
+    "email_placeholder": "example@email.com",
+    "organization": "Organization",
+    "organization_placeholder": "Event committee, stadium, etc.",
+    "type": "Inquiry Type",
+    "type_wavelight": "Wavelight System Inquiry",
+    "type_event": "Event Management Inquiry",
+    "type_partnership": "Partnership / Collaboration",
+    "type_other": "Other",
+    "message": "Message",
+    "message_placeholder": "Please describe your inquiry in detail.",
+    "submit": "Send",
+    "sending": "Sending...",
+    "success_title": "Sent Successfully!",
+    "success_message": "Your inquiry has been received. We'll get back to you shortly.",
+    "error_title": "Failed to Send",
+    "error_message": "Sorry, please try again later or contact us directly via email.",
+    "direct_email": "Send Email Directly",
+    "info_title": "Contact Information",
+    "info_email": "Email",
+    "info_instagram": "Instagram",
+    "info_website": "Website"
+  },
+  "footer": {
+    "description": "Innovation on the track — PACE RISE is with you.",
+    "quick_links": "Quick Links",
+    "social": "Social Media",
+    "contact_us": "Contact",
+    "copyright": "© {year} PACE RISE. All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred.",
+    "language": "Language"
+  }
+}
