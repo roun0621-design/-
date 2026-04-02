@@ -1,6 +1,6 @@
 "use client";
 // ──────────────────────────────────────────
-// Instagram Feed Grid – 4-Column Auto-fetching
+// Instagram Feed Grid – Minimal White Theme
 // ──────────────────────────────────────────
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -32,23 +32,23 @@ export default function InstagramFeed() {
   }, []);
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-[var(--pr-black)] to-[#050a12]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-28 md:py-36 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-14">
           <motion.div
-            className="inline-flex items-center gap-2 text-[var(--pr-accent)] mb-3"
+            className="inline-flex items-center gap-2 text-pr-brand mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Camera size={20} />
-            <span className="font-display text-sm tracking-[0.3em]">
+            <Camera size={18} strokeWidth={1.5} />
+            <span className="font-display text-[11px] tracking-[0.3em]">
               INSTAGRAM
             </span>
           </motion.div>
           <motion.h2
-            className="text-3xl md:text-4xl font-bold tracking-tight"
+            className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -57,7 +57,7 @@ export default function InstagramFeed() {
             {t("instagram_title")}
           </motion.h2>
           <motion.p
-            className="mt-2 text-[var(--pr-gray-500)]"
+            className="mt-3 text-pr-secondary font-sans"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -70,22 +70,20 @@ export default function InstagramFeed() {
         {/* 4-Column Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {loading
-            ? // Skeleton placeholders
-              [...Array(8)].map((_, i) => (
+            ? [...Array(8)].map((_, i) => (
                 <div
                   key={i}
-                  className="aspect-square rounded-xl bg-white/5 animate-pulse"
+                  className="aspect-square rounded-xl bg-gray-100 animate-pulse"
                 />
               ))
             : posts.length > 0
-            ? // Real posts
-              posts.map((post, i) => (
+            ? posts.map((post, i) => (
                 <motion.a
                   key={post.id}
                   href={post.permalink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative aspect-square rounded-xl overflow-hidden bg-white/5"
+                  className="group relative aspect-square rounded-xl overflow-hidden bg-gray-100"
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -102,33 +100,28 @@ export default function InstagramFeed() {
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-[var(--pr-black)]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <ExternalLink size={24} className="text-white" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <ExternalLink size={22} className="text-white" strokeWidth={1.5} />
                   </div>
                 </motion.a>
               ))
-            : // Placeholder: No Instagram token yet
-              [...Array(8)].map((_, i) => (
+            : [...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="aspect-square rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center"
+                  className="aspect-square rounded-xl bg-gray-50 border border-pr-border flex items-center justify-center"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <Camera
-                    size={24}
-                    className="text-[var(--pr-gray-700)]"
-                  />
+                  <Camera size={22} className="text-pr-tertiary" strokeWidth={1} />
                 </motion.div>
               ))}
         </div>
 
         {/* Follow CTA */}
         <motion.div
-          className="mt-10 text-center"
+          className="mt-12 text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -137,9 +130,9 @@ export default function InstagramFeed() {
             href="https://www.instagram.com/pace.rise"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-[var(--pr-accent)] border border-[var(--pr-accent)]/30 rounded-xl hover:bg-[var(--pr-accent)]/10 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light transition-all duration-300"
           >
-            <Camera size={16} />
+            <Camera size={15} strokeWidth={1.5} />
             @pace.rise
           </a>
         </motion.div>

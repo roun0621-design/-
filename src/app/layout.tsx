@@ -1,5 +1,6 @@
 // ──────────────────────────────────────────
 // Root Layout – Font Loading & Global Styles
+// Apple/Stripe Minimal White Theme
 // ──────────────────────────────────────────
 import type { Metadata } from "next";
 import { Audiowide, Inter, JetBrains_Mono } from "next/font/google";
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | PACE RISE",
   },
   description:
-    "PACE RISE leads innovation in track & field through Wavelight LED pacing systems and real-time race management technology.",
+    "PACE RISE는 대한민국 육상의 질적 성장과 선수 기량 향상을 최우선 과제로 삼습니다. 실시간 페이싱 라이트 시스템과 경기 운영 시스템(COS)으로 육상의 새로운 기준을 제시합니다.",
   metadataBase: new URL("https://pace-rise.com"),
   openGraph: {
     type: "website",
@@ -59,7 +60,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${audiowide.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col bg-white text-pr-primary">
+        {children}
+      </body>
     </html>
   );
 }

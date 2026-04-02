@@ -3,24 +3,21 @@
 @tailwind utilities;
 
 /* ──────────────────────────────────────────
-   PACE RISE – Design Tokens & Custom Styles
+   PACE RISE – Apple/Stripe Minimal White Theme
+   Brand Accent: #B79F58
    ────────────────────────────────────────── */
 
 :root {
-  --pr-black: #0a0a0a;
-  --pr-white: #fafafa;
-  --pr-accent: #00e5ff;
-  --pr-accent-dark: #00b8d4;
-  --pr-gray-50: #f8f9fa;
-  --pr-gray-100: #f1f3f5;
-  --pr-gray-200: #e9ecef;
-  --pr-gray-300: #dee2e6;
-  --pr-gray-400: #ced4da;
-  --pr-gray-500: #adb5bd;
-  --pr-gray-600: #868e96;
-  --pr-gray-700: #495057;
-  --pr-gray-800: #343a40;
-  --pr-gray-900: #212529;
+  --pr-white: #ffffff;
+  --pr-bg-secondary: #F5F5F7;
+  --pr-text-primary: #1D1D1F;
+  --pr-text-secondary: #86868B;
+  --pr-text-tertiary: #AEAEB2;
+  --pr-border: #E5E5E5;
+  --pr-border-light: #F0F0F0;
+  --pr-brand: #B79F58;
+  --pr-brand-light: rgba(183, 159, 88, 0.10);
+  --pr-brand-medium: rgba(183, 159, 88, 0.15);
 }
 
 @layer base {
@@ -29,10 +26,15 @@
   }
 
   body {
-    @apply bg-pr-black text-pr-white antialiased;
-    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    @apply bg-white text-pr-primary antialiased;
+    font-family: var(--font-inter), "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Heading & button English text uses Audiowide */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-audiowide), var(--font-inter), "Pretendard Variable", sans-serif;
   }
 }
 
@@ -42,46 +44,61 @@
     font-family: var(--font-audiowide), monospace;
   }
 
-  /* Wavelight glow effect */
-  .glow-accent {
-    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5),
-                 0 0 40px rgba(0, 229, 255, 0.3),
-                 0 0 80px rgba(0, 229, 255, 0.1);
+  /* Thin elegant card */
+  .card-elegant {
+    @apply bg-white rounded-2xl border border-pr-border transition-all duration-300;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
-  .glow-accent-box {
-    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3),
-                0 0 30px rgba(0, 229, 255, 0.15);
+  .card-elegant:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border-color: var(--pr-brand);
   }
 
-  /* Animated gradient border */
-  .gradient-border {
+  /* Brand accent line on hover */
+  .brand-line-bottom {
     @apply relative;
   }
 
-  .gradient-border::before {
+  .brand-line-bottom::after {
     content: "";
-    @apply absolute inset-0 rounded-[inherit] pointer-events-none;
-    padding: 1px;
-    background: linear-gradient(135deg, var(--pr-accent), transparent 50%, var(--pr-accent));
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    -webkit-mask-composite: xor;
+    @apply absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-500;
+    background: var(--pr-brand);
+    transform: scaleX(0);
+    transform-origin: center;
   }
 
-  /* CTA button hover effect */
-  .cta-button {
-    @apply relative overflow-hidden transition-all duration-300;
+  .brand-line-bottom:hover::after {
+    transform: scaleX(1);
   }
 
-  .cta-button::after {
-    content: "";
-    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), transparent);
+  /* Primary CTA button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 font-display text-sm tracking-wider text-white rounded-full transition-all duration-300;
+    background: var(--pr-brand);
   }
 
-  .cta-button:hover::after {
-    @apply opacity-100;
+  .btn-primary:hover {
+    background: #A48D4A;
+    box-shadow: 0 4px 20px rgba(183, 159, 88, 0.25);
+  }
+
+  /* Secondary CTA button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 font-display text-sm tracking-wider rounded-full transition-all duration-300;
+    color: var(--pr-text-primary);
+    border: 1px solid var(--pr-border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--pr-brand);
+    color: var(--pr-brand);
+  }
+
+  /* Section divider – thin 1px line */
+  .section-divider {
+    @apply w-full h-px;
+    background: var(--pr-border);
   }
 }
 
@@ -95,26 +112,29 @@
   }
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling – minimal */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--pr-black);
+  background: var(--pr-white);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--pr-gray-700);
+  background: #D1D1D6;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--pr-accent);
+  background: var(--pr-brand);
 }
 
 /* Selection */
 ::selection {
-  background: rgba(0, 229, 255, 0.3);
-  color: var(--pr-white);
+  background: rgba(183, 159, 88, 0.2);
+  color: var(--pr-text-primary);
 }
+
+/* Pretendard font import for Korean */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");

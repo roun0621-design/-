@@ -1,8 +1,8 @@
 "use client";
 // ──────────────────────────────────────────
-// Header – Global Navigation
+// Header – Minimal White Navigation
 // ──────────────────────────────────────────
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Menu, X, Globe } from "lucide-react";
@@ -21,6 +21,13 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const switchLocale = () => {
     const next = locale === "ko" ? "en" : "ko";
@@ -28,12 +35,18 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--pr-black)]/80 backdrop-blur-xl border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/90 backdrop-blur-xl shadow-[0_1px_0_0_#E5E5E5]"
+          : "bg-white/70 backdrop-blur-md"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-[72px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="font-display text-xl md:text-2xl tracking-wider text-[var(--pr-accent)] group-hover:glow-accent transition-all">
+            <span className="font-display text-xl md:text-[22px] tracking-wider text-pr-primary group-hover:text-pr-brand transition-colors duration-300">
               PACE RISE
             </span>
           </Link>
@@ -49,10 +62,10 @@ export default function Header() {
                 <Link
                   key={key}
                   href={href}
-                  className={`px-4 py-2 text-sm font-medium tracking-wide transition-colors rounded-lg ${
+                  className={`px-4 py-2 text-[13px] font-medium tracking-wide transition-colors duration-200 rounded-lg ${
                     isActive
-                      ? "text-[var(--pr-accent)] bg-white/5"
-                      : "text-[var(--pr-gray-400)] hover:text-white hover:bg-white/5"
+                      ? "text-pr-brand"
+                      : "text-pr-secondary hover:text-pr-primary"
                   }`}
                 >
                   {t(key)}
@@ -60,44 +73,38 @@ export default function Header() {
               );
             })}
 
-            {/* Records CTA (external) */}
-            <a
-              href="https://records.pace-rise.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-2 px-4 py-2 text-sm font-medium tracking-wide bg-[var(--pr-accent)]/10 text-[var(--pr-accent)] border border-[var(--pr-accent)]/30 rounded-lg hover:bg-[var(--pr-accent)]/20 transition-all"
-            >
-              {t("records")}
-            </a>
-
             {/* Locale Switcher */}
             <button
               onClick={switchLocale}
-              className="ml-3 flex items-center gap-1.5 px-3 py-2 text-sm text-[var(--pr-gray-400)] hover:text-white rounded-lg hover:bg-white/5 transition-colors"
+              className="ml-4 flex items-center gap-1.5 px-3 py-2 text-[13px] text-pr-secondary hover:text-pr-primary rounded-lg transition-colors duration-200"
               aria-label="Switch language"
             >
-              <Globe size={16} />
-              <span className="uppercase font-mono text-xs">
+              <Globe size={15} strokeWidth={1.5} />
+              <span className="font-display text-[11px] tracking-wider">
                 {locale === "ko" ? "EN" : "KO"}
               </span>
             </button>
           </nav>
 
-          {/* Mobile Menu Toggle */}
-          <div className="flex md:hidden items-center gap-2">
+          {/* Mobile */}
+          <div className="flex md:hidden items-center gap-1">
             <button
               onClick={switchLocale}
-              className="p-2 text-[var(--pr-gray-400)] hover:text-white"
+              className="p-2 text-pr-secondary hover:text-pr-primary"
               aria-label="Switch language"
             >
-              <Globe size={18} />
+              <Globe size={18} strokeWidth={1.5} />
             </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-[var(--pr-gray-400)] hover:text-white"
+              className="p-2 text-pr-secondary hover:text-pr-primary"
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+              {mobileOpen ? (
+                <X size={20} strokeWidth={1.5} />
+              ) : (
+                <Menu size={20} strokeWidth={1.5} />
+              )}
             </button>
           </div>
         </div>
@@ -105,8 +112,8 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-[var(--pr-black)]/95 backdrop-blur-xl border-t border-white/5">
-          <nav className="px-4 py-4 space-y-1">
+        <div className="md:hidden bg-white border-t border-pr-border">
+          <nav className="px-6 py-4 space-y-1">
             {navItems.map(({ key, href }) => {
               const isActive =
                 href === "/"
@@ -117,25 +124,16 @@ export default function Header() {
                   key={key}
                   href={href}
                   onClick={() => setMobileOpen(false)}
-                  className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+                  className={`block px-4 py-3 text-[15px] font-medium rounded-lg transition-colors ${
                     isActive
-                      ? "text-[var(--pr-accent)] bg-white/5"
-                      : "text-[var(--pr-gray-400)] hover:text-white hover:bg-white/5"
+                      ? "text-pr-brand bg-pr-brand-light"
+                      : "text-pr-secondary hover:text-pr-primary hover:bg-gray-50"
                   }`}
                 >
                   {t(key)}
                 </Link>
               );
             })}
-            <a
-              href="https://records.pace-rise.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-3 text-base font-medium text-[var(--pr-accent)] bg-[var(--pr-accent)]/10 rounded-lg"
-            >
-              {t("records")}
-            </a>
           </nav>
         </div>
       )}

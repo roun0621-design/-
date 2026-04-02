@@ -1,6 +1,6 @@
 "use client";
 // ──────────────────────────────────────────
-// News List Content – Fetches from Sanity
+// News List Content – White Theme
 // ──────────────────────────────────────────
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
@@ -13,10 +13,10 @@ import { sanityClient } from "@/lib/sanity";
 import { NEWS_LIST_QUERY } from "@/lib/queries";
 
 const categoryColors: Record<string, string> = {
-  event: "bg-blue-500/20 text-blue-400",
-  tech: "bg-emerald-500/20 text-emerald-400",
-  partnership: "bg-purple-500/20 text-purple-400",
-  media: "bg-amber-500/20 text-amber-400",
+  event: "bg-blue-50 text-blue-600",
+  tech: "bg-emerald-50 text-emerald-600",
+  partnership: "bg-purple-50 text-purple-600",
+  media: "bg-amber-50 text-amber-600",
 };
 
 export default function NewsListContent() {
@@ -42,18 +42,17 @@ export default function NewsListContent() {
   return (
     <div className="pt-20 md:pt-24">
       {/* Header */}
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050a12] to-[var(--pr-black)]" />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 md:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.p
-            className="font-display text-sm tracking-[0.3em] text-[var(--pr-accent)] mb-4"
+            className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
             NEWS
           </motion.p>
           <motion.h1
-            className="text-4xl md:text-6xl font-bold tracking-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-pr-primary"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -61,7 +60,7 @@ export default function NewsListContent() {
             {t("title")}
           </motion.h1>
           <motion.p
-            className="mt-4 text-lg text-[var(--pr-gray-400)]"
+            className="mt-4 text-lg text-pr-secondary font-sans"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -71,31 +70,21 @@ export default function NewsListContent() {
         </div>
       </section>
 
+      <div className="section-divider" />
+
       {/* Posts Grid */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-24 bg-[var(--pr-bg-secondary)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl bg-white/5 animate-pulse h-80"
-                />
+                <div key={i} className="rounded-2xl bg-white animate-pulse h-80" />
               ))}
             </div>
           ) : posts.length === 0 ? (
-            <motion.div
-              className="text-center py-20"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              <Newspaper
-                size={48}
-                className="mx-auto text-[var(--pr-gray-700)] mb-4"
-              />
-              <p className="text-[var(--pr-gray-500)] text-lg">
-                {t("no_posts")}
-              </p>
+            <motion.div className="text-center py-20" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <Newspaper size={48} className="mx-auto text-pr-tertiary mb-4" strokeWidth={1} />
+              <p className="text-pr-secondary text-lg font-sans">{t("no_posts")}</p>
             </motion.div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -108,10 +97,9 @@ export default function NewsListContent() {
                 >
                   <Link
                     href={`/news/${post.slug.current}`}
-                    className="group block gradient-border rounded-2xl overflow-hidden bg-white/[0.02] hover:bg-white/[0.05] transition-all"
+                    className="group block bg-white rounded-2xl border border-pr-border overflow-hidden hover:border-pr-brand/40 hover:shadow-lg transition-all duration-300"
                   >
-                    {/* Thumbnail */}
-                    <div className="relative aspect-[16/10] bg-white/5">
+                    <div className="relative aspect-[16/10] bg-gray-100">
                       {post.thumbnail ? (
                         <Image
                           src={post.thumbnail}
@@ -122,58 +110,34 @@ export default function NewsListContent() {
                         />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <Newspaper
-                            size={32}
-                            className="text-[var(--pr-gray-700)]"
-                          />
+                          <Newspaper size={32} className="text-pr-tertiary" strokeWidth={1} />
                         </div>
                       )}
-
-                      {/* Category Badge */}
                       {post.category && (
-                        <span
-                          className={`absolute top-3 left-3 px-3 py-1 text-xs font-medium rounded-full ${
-                            categoryColors[post.category] ||
-                            "bg-white/10 text-white"
-                          }`}
-                        >
+                        <span className={`absolute top-3 left-3 px-3 py-1 text-xs font-medium rounded-full ${categoryColors[post.category] || "bg-gray-100 text-gray-600"}`}>
                           {post.category}
                         </span>
                       )}
                     </div>
-
-                    {/* Content */}
                     <div className="p-6">
-                      <div className="flex items-center gap-2 text-xs text-[var(--pr-gray-600)] mb-3">
-                        <Calendar size={12} />
+                      <div className="flex items-center gap-2 text-xs text-pr-tertiary mb-3">
+                        <Calendar size={12} strokeWidth={1.5} />
                         <time>
                           {new Date(post.publishedAt).toLocaleDateString(
                             locale === "ko" ? "ko-KR" : "en-US",
-                            {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                            }
+                            { year: "numeric", month: "long", day: "numeric" }
                           )}
                         </time>
                       </div>
-
-                      <h3 className="text-lg font-semibold tracking-tight group-hover:text-[var(--pr-accent)] transition-colors line-clamp-2">
+                      <h3 className="text-lg font-semibold tracking-tight text-pr-primary group-hover:text-pr-brand transition-colors line-clamp-2">
                         {post.title}
                       </h3>
-
                       {post.excerpt && (
-                        <p className="mt-2 text-sm text-[var(--pr-gray-500)] line-clamp-2">
-                          {post.excerpt}
-                        </p>
+                        <p className="mt-2 text-sm text-pr-secondary line-clamp-2 font-sans">{post.excerpt}</p>
                       )}
-
-                      <div className="mt-4 flex items-center gap-1 text-sm text-[var(--pr-accent)] font-medium">
+                      <div className="mt-4 flex items-center gap-1 text-sm text-pr-brand font-display tracking-wider">
                         {t("read_more")}
-                        <ArrowRight
-                          size={14}
-                          className="group-hover:translate-x-1 transition-transform"
-                        />
+                        <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" strokeWidth={2} />
                       </div>
                     </div>
                   </Link>

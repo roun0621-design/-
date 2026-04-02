@@ -1,9 +1,10 @@
+"use client";
 // ──────────────────────────────────────────
-// Footer – Global Footer
+// Footer – Minimal White Theme
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Camera, Mail, ExternalLink } from "lucide-react";
+import { Mail, ExternalLink, Camera } from "lucide-react";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -11,62 +12,76 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--pr-black)] border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8">
+    <footer className="bg-white border-t border-pr-border">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand */}
-          <div className="md:col-span-2">
-            <span className="font-display text-2xl tracking-wider text-[var(--pr-accent)]">
+          <div className="md:col-span-5">
+            <span className="font-display text-2xl tracking-wider text-pr-primary">
               PACE RISE
             </span>
-            <p className="mt-4 text-[var(--pr-gray-500)] text-sm leading-relaxed max-w-sm">
+            <p className="mt-4 text-pr-secondary text-sm leading-relaxed max-w-sm">
               {t("description")}
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+          <div className="md:col-span-3">
+            <h4 className="font-display text-xs tracking-[0.2em] text-pr-primary uppercase mb-5">
               {t("quick_links")}
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {(["home", "about", "news", "contact"] as const).map((key) => (
                 <li key={key}>
                   <Link
                     href={key === "home" ? "/" : `/${key}`}
-                    className="text-sm text-[var(--pr-gray-500)] hover:text-[var(--pr-accent)] transition-colors"
+                    className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200"
                   >
                     {nav(key)}
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div className="md:col-span-2">
+            <h4 className="font-display text-xs tracking-[0.2em] text-pr-primary uppercase mb-5">
+              SERVICES
+            </h4>
+            <ul className="space-y-3">
               <li>
-                <a
-                  href="https://records.pace-rise.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-[var(--pr-gray-500)] hover:text-[var(--pr-accent)] transition-colors inline-flex items-center gap-1"
+                <Link
+                  href="/services/pacing-light"
+                  className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200"
                 >
-                  {nav("records")}
-                  <ExternalLink size={12} />
-                </a>
+                  PACE LIGHT
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/cos"
+                  className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200"
+                >
+                  PACE RISE : Node
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact & Social */}
-          <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+          {/* Contact */}
+          <div className="md:col-span-2">
+            <h4 className="font-display text-xs tracking-[0.2em] text-pr-primary uppercase mb-5">
               {t("contact_us")}
             </h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="mailto:pacerise.run@gmail.com"
-                  className="text-sm text-[var(--pr-gray-500)] hover:text-[var(--pr-accent)] transition-colors inline-flex items-center gap-2"
+                  className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200 inline-flex items-center gap-1.5"
                 >
-                  <Mail size={14} />
-                  pacerise.run@gmail.com
+                  <Mail size={13} strokeWidth={1.5} />
+                  Email
                 </a>
               </li>
               <li>
@@ -74,9 +89,9 @@ export default function Footer() {
                   href="https://www.instagram.com/pace.rise"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[var(--pr-gray-500)] hover:text-[var(--pr-accent)] transition-colors inline-flex items-center gap-2"
+                  className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200 inline-flex items-center gap-1.5"
                 >
-                  <Camera size={14} />
+                  <Camera size={13} strokeWidth={1.5} />
                   @pace.rise
                 </a>
               </li>
@@ -85,11 +100,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-[var(--pr-gray-600)]">
+        <div className="mt-16 pt-8 border-t border-pr-border flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-pr-tertiary">
             {t("copyright", { year: year.toString() })}
           </p>
-          <p className="text-xs text-[var(--pr-gray-700)]">
+          <p className="text-xs text-pr-tertiary tracking-wider font-display">
             pace-rise.com
           </p>
         </div>
