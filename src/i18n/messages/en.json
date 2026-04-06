@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "PACE RISE | Sports Technology – Track & Field Systems",
-    "description": "PACE RISE prioritizes the qualitative growth of Korean track & field and the improvement of athlete performance. We set new standards through real-time pacing light systems and Competition Operating Systems (COS)."
+    "description": "PACE RISE prioritizes the qualitative growth of Korean track & field and the advancement of athlete performance. We set new standards through the Wavelight LED pacing system and our Competition Operating System (COS), PACE RISE : Node."
   },
   "nav": {
     "home": "Home",
@@ -13,7 +13,7 @@
     "tagline": "SPORTS TECHNOLOGY FOR TRACK & FIELD",
     "title_line1": "Elevating Korean",
     "title_line2": "Track & Field",
-    "description": "A technological bridge connecting the precision of elite athletics with the passion of amateur sports. PACE RISE provides an environment where every user can push beyond their limits.",
+    "description": "A technological bridge connecting the precision of elite athletics with the passion of amateur sports. PACE RISE empowers every athlete — from grassroots to world-class — with tools to exceed their potential.",
     "value_rms": "Race Management System (RMS)",
     "value_tracking": "Real-time Data Tracking",
     "value_records": "Systematic Record Management",
@@ -30,8 +30,8 @@
     "services_subtitle": "Core Services of PACE RISE",
     "services_desc": "Innovating every moment in track & field with technology. From the light on the track to competition management.",
     "service_pacing_light": "Real-time Pacing Light System",
-    "service_pacing_light_label": "PACE LIGHT",
-    "service_pacing_light_desc": "LED pacing lights run along the track, visually guiding athletes to their target pace. We bring the Wave Light technology — proven at the Diamond League — to Korean tracks.",
+    "service_pacing_light_label": "WAVELIGHT SYSTEM",
+    "service_pacing_light_desc": "LED pacing lights run along the track, visually guiding athletes to their target pace. We bring the Wavelight technology — proven at the World Athletics Diamond League — to Korean tracks.",
     "service_pacing_light_feature_visual": "Distance-specific target pace settings with color-coded lap times",
     "service_pacing_light_feature_diamond": "Technology officially adopted by World Athletics Diamond League",
     "service_pacing_light_feature_all_level": "Supporting athletes of all levels from elite to amateur",
@@ -86,7 +86,7 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Competition management, pacing light systems, COS inquiries — feel free to ask.",
+    "subtitle": "Whether you're looking to adopt Wavelight systems, integrate COS into your events, or explore a partnership — we'd love to hear from you.",
     "name": "Name",
     "name_placeholder": "John Doe",
     "email": "Email",
@@ -94,10 +94,11 @@
     "organization": "Organization",
     "organization_placeholder": "Event committee, stadium, federation, etc.",
     "type": "Inquiry Type",
-    "type_pacing": "Pacing Light System Inquiry",
-    "type_cos": "COS · PACE RISE : Node Inquiry",
-    "type_event": "Event Management Inquiry",
+    "type_pacing": "WAVELIGHT SYSTEM Inquiry",
+    "type_cos": "PACE RISE : Node (COS) Inquiry",
+    "type_event": "Event Adoption & Management Inquiry",
     "type_partnership": "Partnership / Collaboration",
+    "type_demo": "Demo / Trial Request",
     "type_other": "Other",
     "message": "Message",
     "message_placeholder": "Please describe your inquiry in detail.",
@@ -114,10 +115,10 @@
     "info_website": "Website"
   },
   "pacing_light": {
-    "meta_title": "Real-time Pacing Light System · PACE LIGHT",
+    "meta_title": "Real-time Pacing Light System · WAVELIGHT SYSTEM",
     "meta_desc": "Wave Light LED pacing system visually guides every athlete on the track to their target pace.",
     "hero_title": "The Race Led by Light",
-    "hero_desc": "The Wave Light LED pacing system features LED lights installed along the track that move at a set pace, providing an intuitive race experience for both athletes and spectators.",
+    "hero_desc": "The Wavelight LED pacing system features LED lights installed along the inside rail of the track that illuminate sequentially at a set pace, providing an intuitive and immersive race experience for both athletes and spectators alike.",
     "cta_inquiry": "Inquire About Adoption",
     "cta_learn": "Learn More",
     "wavelight_title": "What is the Wave Light System?",
@@ -157,7 +158,7 @@
   "cos": {
     "meta_title": "COS · Competition Operating System · PACE RISE : Node",
     "meta_desc": "From tournament creation to finals — all competition operations in one system. 182 REST APIs, 47 real-time events, built-in WA rule engine.",
-    "hero_desc": "From tournament creation to finals advancement — all track & field competition workflows in one system. Integrated real-time record entry, automatic Q/q qualification, document output, scoreboard integration, and broadcast overlay.",
+    "hero_desc": "From tournament creation to finals advancement — every track & field competition workflow unified in a single platform. Real-time record entry, automatic Q/q qualification, official document output, electronic scoreboard integration, and live broadcast overlay — all seamlessly connected.",
     "cta_inquiry": "Inquire About Adoption",
     "cta_features": "Explore Features",
     "stat_rest_api": "REST API Endpoints",
@@ -178,7 +179,7 @@
     "op_broadcast": "Broadcast Overlay",
     "op_broadcast_desc": "OBS scoreboard overlay, lower-third captions, and broadcast graphics delivered via WebSocket in real-time. No separate graphics software needed.",
     "consumer_title": "For Viewers & Spectators",
-    "consumer_desc": "Check competition results in real-time without refreshing, accessible from anywhere.",
+    "consumer_desc": "Access live competition results from anywhere — no page refresh required. Real-time scoreboard powered by SSE and WebSocket technology.",
     "con_realtime_sse": "Real-time Results",
     "con_realtime_sse_desc": "SSE + WebSocket-based real-time record updates without page refresh. Pop-up dashboards per event for instant detailed information.",
     "con_open_page": "Public Access Page",

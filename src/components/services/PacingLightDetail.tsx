@@ -49,7 +49,7 @@ export default function PacingLightDetail() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pr-brand/20 bg-pr-brand-light mb-8">
               <Zap size={14} className="text-pr-brand" strokeWidth={2} />
-              <span className="font-display text-[11px] tracking-[0.2em] text-pr-brand">PACE LIGHT</span>
+              <span className="font-display text-[11px] tracking-[0.2em] text-pr-brand">WAVELIGHT SYSTEM</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-pr-primary leading-[1.15]">
               {t("hero_title")}

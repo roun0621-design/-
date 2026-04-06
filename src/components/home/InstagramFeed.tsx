@@ -1,13 +1,26 @@
 "use client";
 // ──────────────────────────────────────────
 // Instagram Feed Grid – Minimal White Theme
+// Enhanced placeholder grid with brand patterns
 // ──────────────────────────────────────────
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Camera, ExternalLink } from "lucide-react";
+import { Camera, ExternalLink, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import type { InstagramPost } from "@/types";
+
+/* placeholder patterns for when API is unavailable */
+const placeholderPatterns = [
+  "linear-gradient(135deg, rgba(183,159,88,0.08) 0%, rgba(183,159,88,0.02) 100%)",
+  "linear-gradient(45deg, rgba(183,159,88,0.04) 0%, rgba(183,159,88,0.10) 100%)",
+  "linear-gradient(180deg, rgba(183,159,88,0.06) 0%, rgba(183,159,88,0.03) 100%)",
+  "linear-gradient(225deg, rgba(183,159,88,0.02) 0%, rgba(183,159,88,0.08) 100%)",
+  "linear-gradient(90deg, rgba(183,159,88,0.05) 0%, rgba(183,159,88,0.09) 100%)",
+  "linear-gradient(315deg, rgba(183,159,88,0.10) 0%, rgba(183,159,88,0.04) 100%)",
+  "linear-gradient(0deg, rgba(183,159,88,0.03) 0%, rgba(183,159,88,0.07) 100%)",
+  "linear-gradient(270deg, rgba(183,159,88,0.08) 0%, rgba(183,159,88,0.02) 100%)",
+];
 
 export default function InstagramFeed() {
   const t = useTranslations("home");
@@ -23,7 +36,7 @@ export default function InstagramFeed() {
           setPosts(data.posts?.slice(0, 8) || []);
         }
       } catch {
-        // Silently fail — will show placeholder grid
+        // Silently fail — will show branded placeholder grid
       } finally {
         setLoading(false);
       }
@@ -70,14 +83,17 @@ export default function InstagramFeed() {
         {/* 4-Column Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {loading
-            ? [...Array(8)].map((_, i) => (
+            ? /* Loading skeleton with pulse animation */
+              [...Array(8)].map((_, i) => (
                 <div
                   key={i}
-                  className="aspect-square rounded-xl bg-gray-100 animate-pulse"
+                  className="aspect-square rounded-xl animate-pulse"
+                  style={{ background: placeholderPatterns[i] }}
                 />
               ))
             : posts.length > 0
-            ? posts.map((post, i) => (
+            ? /* Live Instagram posts */
+              posts.map((post, i) => (
                 <motion.a
                   key={post.id}
                   href={post.permalink}
@@ -105,17 +121,31 @@ export default function InstagramFeed() {
                   </div>
                 </motion.a>
               ))
-            : [...Array(8)].map((_, i) => (
-                <motion.div
+            : /* Branded placeholder grid — visually appealing even without API */
+              [...Array(8)].map((_, i) => (
+                <motion.a
                   key={i}
-                  className="aspect-square rounded-xl bg-gray-50 border border-pr-border flex items-center justify-center"
+                  href="https://www.instagram.com/pace.rise"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group aspect-square rounded-xl border border-pr-border flex flex-col items-center justify-center gap-2 hover:border-pr-brand/40 transition-all duration-300 cursor-pointer"
+                  style={{ background: placeholderPatterns[i] }}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <Camera size={22} className="text-pr-tertiary" strokeWidth={1} />
-                </motion.div>
+                  <Camera
+                    size={i === 0 || i === 3 || i === 5 ? 28 : 20}
+                    className="text-pr-brand/30 group-hover:text-pr-brand/60 transition-colors duration-300"
+                    strokeWidth={1}
+                  />
+                  {(i === 0 || i === 7) && (
+                    <span className="text-[10px] text-pr-tertiary group-hover:text-pr-brand font-display tracking-wider transition-colors duration-300">
+                      @pace.rise
+                    </span>
+                  )}
+                </motion.a>
               ))}
         </div>
 
@@ -130,10 +160,11 @@ export default function InstagramFeed() {
             href="https://www.instagram.com/pace.rise"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light transition-all duration-300"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light hover:border-pr-brand transition-all duration-300 group"
           >
             <Camera size={15} strokeWidth={1.5} />
             @pace.rise
+            <ArrowUpRight size={14} strokeWidth={2} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
         </motion.div>
       </div>

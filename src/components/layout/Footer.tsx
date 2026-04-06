@@ -55,7 +55,7 @@ export default function Footer() {
                   href="/services/pacing-light"
                   className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200"
                 >
-                  PACE LIGHT
+                  WAVELIGHT SYSTEM
                 </Link>
               </li>
               <li>

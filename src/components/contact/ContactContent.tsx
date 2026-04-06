@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import type { ContactFormData } from "@/types";
 
-const inquiryTypes = ["pacing", "cos", "event", "partnership", "other"] as const;
+const inquiryTypes = ["pacing", "cos", "event", "partnership", "demo", "other"] as const;
 
 export default function ContactContent() {
   const t = useTranslations("contact");

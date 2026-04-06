@@ -92,7 +92,7 @@ export default function COSDetail() {
       {/* Architecture Stats */}
       <section className="py-16 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {archStats.map(({ key, value }, i) => (
               <motion.div
                 key={key}
@@ -155,7 +155,16 @@ export default function COSDetail() {
       <section className="py-24 md:py-32 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">FOR VIEWERS</p>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand">FOR VIEWERS</p>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+                </span>
+                <span className="font-display text-[10px] tracking-wider text-red-600">LIVE</span>
+              </span>
+            </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
               {t("consumer_title")}
             </h2>
@@ -167,12 +176,23 @@ export default function COSDetail() {
             {consumerFeatures.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-8 hover:border-pr-brand/40 transition-all duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-8 hover:border-pr-brand/40 transition-all duration-300 relative"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
+                {key === "realtime_sse" && (
+                  <div className="absolute top-4 right-4">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200">
+                      <span className="relative flex h-1.5 w-1.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+                      </span>
+                      <span className="font-display text-[9px] tracking-wider text-emerald-700">NO REFRESH</span>
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-start gap-4">
                   <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand shrink-0">
                     <Icon size={20} strokeWidth={1.5} />
@@ -262,7 +282,7 @@ export default function COSDetail() {
               <ArrowRight size={16} strokeWidth={2} />
             </Link>
             <Link href="/services/pacing-light" className="btn-secondary">
-              PACE LIGHT
+              WAVELIGHT SYSTEM
               <ChevronRight size={14} strokeWidth={2} />
             </Link>
           </div>

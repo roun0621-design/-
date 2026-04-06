@@ -37,7 +37,7 @@ export interface ContactFormData {
   name: string;
   email: string;
   organization?: string;
-  type: "wavelight" | "event" | "partnership" | "other";
+  type: "pacing" | "cos" | "event" | "partnership" | "demo" | "other";
   message: string;
   locale: string;
 }
