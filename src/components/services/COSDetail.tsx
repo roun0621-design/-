@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
+import PipelineAnimation from "@/components/animations/PipelineAnimation";
 import {
   Monitor,
   ArrowRight,
@@ -84,6 +85,25 @@ export default function COSDetail() {
                 {t("cta_features")}
               </a>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* Workflow Pipeline Animation */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-3">WORKFLOW</p>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <PipelineAnimation />
           </motion.div>
         </div>
       </section>

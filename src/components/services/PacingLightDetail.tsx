@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
+import TrackAnimation from "@/components/animations/TrackAnimation";
 import {
   Zap,
   Eye,
@@ -67,6 +68,22 @@ export default function PacingLightDetail() {
                 {t("cta_learn")}
               </a>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="section-divider" />
+
+      {/* Track Animation Visual */}
+      <section className="py-16 md:py-24 bg-[var(--pr-bg-secondary)]">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <TrackAnimation />
           </motion.div>
         </div>
       </section>
