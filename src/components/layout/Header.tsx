@@ -45,8 +45,14 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-[72px]">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="font-display text-xl md:text-[22px] tracking-wider text-pr-primary group-hover:text-pr-brand transition-colors duration-300">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <img
+              src="/logo-character-gold.png"
+              alt=""
+              className="w-7 h-auto md:w-8"
+              loading="eager"
+            />
+            <span className="font-display text-lg md:text-xl tracking-wider text-pr-primary group-hover:text-pr-brand transition-colors duration-300">
               PACE RISE
             </span>
           </Link>
