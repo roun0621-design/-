@@ -5,6 +5,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Zap, Monitor, Award, Target, Users, TrendingUp } from "lucide-react";
+import { nl2br } from "@/utils/nl2br";
 
 const techItems = [
   { key: "pacing", icon: Zap },
@@ -44,12 +45,12 @@ export default function AboutPage() {
             {t("title")}
           </motion.h1>
           <motion.p
-            className="mt-6 text-lg text-pr-secondary font-sans"
+            className="mt-6 text-lg text-pr-secondary font-sans text-balance"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            {t("subtitle")}
+            {nl2br(t("subtitle"))}
           </motion.p>
         </div>
       </section>
@@ -74,7 +75,7 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="text-pr-secondary text-lg leading-relaxed font-sans">
-              {t("mission_desc")}
+              {nl2br(t("mission_desc"))}
             </p>
           </motion.div>
         </div>
@@ -104,7 +105,7 @@ export default function AboutPage() {
                   {t(`target_${key}` as any)}
                 </h3>
                 <p className="text-sm text-pr-secondary leading-relaxed font-sans">
-                  {t(`target_${key}_desc` as any)}
+                  {nl2br(t(`target_${key}_desc` as any))}
                 </p>
               </motion.div>
             ))}
@@ -139,7 +140,7 @@ export default function AboutPage() {
                   {t(`tech_${key}` as any)}
                 </h3>
                 <p className="text-sm text-pr-secondary leading-relaxed font-sans">
-                  {t(`tech_${key}_desc` as any)}
+                  {nl2br(t(`tech_${key}_desc` as any))}
                 </p>
               </motion.div>
             ))}

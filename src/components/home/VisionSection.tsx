@@ -5,6 +5,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { TrendingUp, Users, Target, Lightbulb } from "lucide-react";
+import { nl2br } from "@/utils/nl2br";
 
 const goals = [
   { key: "expand", icon: TrendingUp },
@@ -39,13 +40,13 @@ export default function VisionSection() {
             {t("vision_title")}
           </motion.h2>
           <motion.p
-            className="mt-4 text-pr-secondary max-w-2xl mx-auto text-base font-sans"
+            className="mt-4 text-pr-secondary max-w-2xl mx-auto text-base font-sans text-balance"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {t("vision_desc")}
+            {nl2br(t("vision_desc"))}
           </motion.p>
         </div>
 
@@ -68,7 +69,7 @@ export default function VisionSection() {
                 {t(`goal_${key}` as any)}
               </h3>
               <p className="text-sm text-pr-secondary leading-relaxed font-sans">
-                {t(`goal_${key}_desc` as any)}
+                {nl2br(t(`goal_${key}_desc` as any))}
               </p>
             </motion.div>
           ))}

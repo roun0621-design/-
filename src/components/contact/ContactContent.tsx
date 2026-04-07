@@ -13,6 +13,7 @@ import {
   Camera,
   Globe,
 } from "lucide-react";
+import { nl2br } from "@/utils/nl2br";
 import type { ContactFormData } from "@/types";
 
 const inquiryTypes = ["pacing", "cos", "event", "partnership", "demo", "other"] as const;
@@ -78,12 +79,12 @@ export default function ContactContent() {
             {t("title")}
           </motion.h1>
           <motion.p
-            className="mt-4 text-lg text-pr-secondary font-sans"
+            className="mt-4 text-lg text-pr-secondary font-sans text-balance"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
-            {t("subtitle")}
+            {nl2br(t("subtitle"))}
           </motion.p>
         </div>
       </section>
@@ -105,7 +106,7 @@ export default function ContactContent() {
                 <div className="bg-white rounded-2xl border border-pr-border p-10 md:p-14 text-center">
                   <CheckCircle size={48} className="mx-auto text-emerald-500 mb-4" strokeWidth={1.5} />
                   <h3 className="text-2xl font-bold text-pr-primary mb-2">{t("success_title")}</h3>
-                  <p className="text-pr-secondary font-sans">{t("success_message")}</p>
+                  <p className="text-pr-secondary font-sans">{nl2br(t("success_message"))}</p>
                   <button
                     onClick={() => setStatus("idle")}
                     className="mt-6 px-6 py-2.5 text-sm border border-pr-border rounded-full hover:border-pr-brand text-pr-secondary hover:text-pr-brand transition-colors"
@@ -123,7 +124,7 @@ export default function ContactContent() {
                       <AlertCircle size={18} className="text-red-500 shrink-0" strokeWidth={1.5} />
                       <div>
                         <p className="text-sm font-medium text-red-600">{t("error_title")}</p>
-                        <p className="text-xs text-red-500">{t("error_message")}</p>
+                        <p className="text-xs text-red-500">{nl2br(t("error_message"))}</p>
                       </div>
                     </div>
                   )}

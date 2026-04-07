@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Zap, Monitor, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { nl2br } from "@/utils/nl2br";
 
 const services = [
   {
@@ -48,13 +49,13 @@ export default function ServicesSection() {
             {t("services_subtitle")}
           </motion.h2>
           <motion.p
-            className="mt-4 text-pr-secondary max-w-xl mx-auto text-base font-sans"
+            className="mt-4 text-pr-secondary max-w-xl mx-auto text-base font-sans text-balance"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            {t("services_desc")}
+            {nl2br(t("services_desc"))}
           </motion.p>
         </div>
 
@@ -87,7 +88,7 @@ export default function ServicesSection() {
 
                   {/* Description */}
                   <p className="text-pr-secondary text-[15px] leading-relaxed mb-8 font-sans">
-                    {t(`service_${key}_desc` as any)}
+                    {nl2br(t(`service_${key}_desc` as any))}
                   </p>
 
                   {/* Feature bullets */}
@@ -96,7 +97,7 @@ export default function ServicesSection() {
                       <li key={fKey} className="flex items-start gap-3">
                         <span className="mt-2 w-1 h-1 rounded-full bg-pr-brand shrink-0" />
                         <span className="text-sm text-pr-secondary font-sans">
-                          {t(`service_${key}_${fKey}` as any)}
+                          {nl2br(t(`service_${key}_${fKey}` as any))}
                         </span>
                       </li>
                     ))}

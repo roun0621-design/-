@@ -6,6 +6,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
+import { nl2br } from "@/utils/nl2br";
 import {
   Monitor,
   ArrowRight,
@@ -71,8 +72,8 @@ export default function COSDetail() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-pr-primary leading-[1.15]">
               <span className="font-display">PACE RISE : Node</span>
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-pr-secondary max-w-2xl mx-auto leading-relaxed font-sans">
-              {t("hero_desc")}
+            <p className="mt-6 text-lg md:text-xl text-pr-secondary max-w-2xl mx-auto leading-relaxed font-sans text-balance">
+              {nl2br(t("hero_desc"))}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact" className="btn-primary">
@@ -120,7 +121,7 @@ export default function COSDetail() {
               {t("operator_title")}
             </h2>
             <p className="mt-4 text-pr-secondary max-w-xl mx-auto font-sans">
-              {t("operator_desc")}
+              {nl2br(t("operator_desc"))}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -141,7 +142,7 @@ export default function COSDetail() {
                   {t(`op_${key}` as any)}
                 </h3>
                 <p className="text-sm text-pr-secondary leading-relaxed font-sans">
-                  {t(`op_${key}_desc` as any)}
+                  {nl2br(t(`op_${key}_desc` as any))}
                 </p>
               </motion.div>
             ))}
@@ -169,7 +170,7 @@ export default function COSDetail() {
               {t("consumer_title")}
             </h2>
             <p className="mt-4 text-pr-secondary max-w-xl mx-auto font-sans">
-              {t("consumer_desc")}
+              {nl2br(t("consumer_desc"))}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -202,7 +203,7 @@ export default function COSDetail() {
                       {t(`con_${key}` as any)}
                     </h3>
                     <p className="text-sm text-pr-secondary leading-relaxed font-sans">
-                      {t(`con_${key}_desc` as any)}
+                      {nl2br(t(`con_${key}_desc` as any))}
                     </p>
                   </div>
                 </div>
@@ -244,7 +245,7 @@ export default function COSDetail() {
                       {t(`arch_${key}` as any)}
                     </h4>
                     <p className="text-sm text-pr-secondary font-sans leading-relaxed">
-                      {t(`arch_${key}_desc` as any)}
+                      {nl2br(t(`arch_${key}_desc` as any))}
                     </p>
                   </div>
                 </div>
@@ -261,7 +262,7 @@ export default function COSDetail() {
           >
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-3">BUILT-IN WA RULE ENGINE</p>
             <p className="text-pr-secondary font-sans leading-relaxed max-w-2xl mx-auto">
-              {t("wa_rules_desc")}
+              {nl2br(t("wa_rules_desc"))}
             </p>
           </motion.div>
         </div>
@@ -274,7 +275,7 @@ export default function COSDetail() {
             {t("cta_title")}
           </h2>
           <p className="text-pr-secondary mb-8 font-sans">
-            {t("cta_desc")}
+            {nl2br(t("cta_desc"))}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact" className="btn-primary">

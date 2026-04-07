@@ -30,6 +30,21 @@
     font-family: var(--font-inter), "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Korean typography: never break in the middle of a word/phrase */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-height: 1.8;
+  }
+
+  /* Balanced text wrapping for headings & short paragraphs */
+  h1, h2, h3, h4, h5, h6,
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Prettier text for descriptions & paragraphs */
+  p {
+    text-wrap: pretty;
   }
 
   /* Heading & button English text uses Audiowide */
@@ -139,19 +154,12 @@
 /* Pretendard font import for Korean */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 
-/* Mobile-optimized table & long text handling */
+/* Mobile-optimized spacing */
 @media (max-width: 640px) {
   .card-elegant {
     padding: 1.5rem;
   }
 
-  /* Prevent horizontal overflow from long text */
-  p, li, td, th {
-    word-break: keep-all;
-    overflow-wrap: break-word;
-  }
-
-  /* Tighter spacing on mobile hero titles */
   h1 {
     letter-spacing: -0.01em;
   }

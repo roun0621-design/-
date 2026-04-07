@@ -5,6 +5,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Mail, ExternalLink, Camera } from "lucide-react";
+import { nl2br } from "@/utils/nl2br";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -21,7 +22,7 @@ export default function Footer() {
               PACE RISE
             </span>
             <p className="mt-4 text-pr-secondary text-sm leading-relaxed max-w-sm">
-              {t("description")}
+              {nl2br(t("description"))}
             </p>
           </div>
 

@@ -5,6 +5,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
+import { nl2br } from "@/utils/nl2br";
 import {
   Zap,
   Eye,
@@ -54,8 +55,8 @@ export default function PacingLightDetail() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-pr-primary leading-[1.15]">
               {t("hero_title")}
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-pr-secondary max-w-2xl mx-auto leading-relaxed font-sans">
-              {t("hero_desc")}
+            <p className="mt-6 text-lg md:text-xl text-pr-secondary max-w-2xl mx-auto leading-relaxed font-sans text-balance">
+              {nl2br(t("hero_desc"))}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact" className="btn-primary">
@@ -86,10 +87,10 @@ export default function PacingLightDetail() {
                 {t("wavelight_title")}
               </h2>
               <p className="text-pr-secondary leading-relaxed font-sans mb-6">
-                {t("wavelight_desc")}
+                {nl2br(t("wavelight_desc"))}
               </p>
               <p className="text-pr-secondary leading-relaxed font-sans">
-                {t("wavelight_desc2")}
+                {nl2br(t("wavelight_desc2"))}
               </p>
             </motion.div>
             <motion.div
@@ -109,7 +110,7 @@ export default function PacingLightDetail() {
                         {t(`${key}_title` as any)}
                       </h4>
                       <p className="text-sm text-pr-secondary font-sans">
-                        {t(key as any)}
+                        {nl2br(t(key as any))}
                       </p>
                     </div>
                   </div>
@@ -148,7 +149,7 @@ export default function PacingLightDetail() {
                   {t(`feature_${key}` as any)}
                 </h3>
                 <p className="text-sm text-pr-secondary leading-relaxed font-sans">
-                  {t(`feature_${key}_desc` as any)}
+                  {nl2br(t(`feature_${key}_desc` as any))}
                 </p>
               </motion.div>
             ))}
@@ -181,7 +182,7 @@ export default function PacingLightDetail() {
                     {t(`usecase_${key}` as any)}
                   </h4>
                   <p className="text-sm text-pr-secondary font-sans">
-                    {t(`usecase_${key}_desc` as any)}
+                    {nl2br(t(`usecase_${key}_desc` as any))}
                   </p>
                 </div>
               </motion.div>
@@ -203,7 +204,7 @@ export default function PacingLightDetail() {
               {t("diamond_title")}
             </h3>
             <p className="text-pr-secondary leading-relaxed font-sans max-w-2xl mx-auto">
-              {t("diamond_desc")}
+              {nl2br(t("diamond_desc"))}
             </p>
           </motion.div>
         </div>
@@ -216,7 +217,7 @@ export default function PacingLightDetail() {
             {t("cta_title")}
           </h2>
           <p className="text-pr-secondary mb-8 font-sans">
-            {t("cta_desc")}
+            {nl2br(t("cta_desc"))}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact" className="btn-primary">

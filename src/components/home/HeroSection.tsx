@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import { nl2br } from "@/utils/nl2br";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
@@ -52,12 +53,12 @@ export default function HeroSection() {
 
         {/* Description */}
         <motion.p
-          className="mt-8 text-base md:text-lg text-pr-secondary max-w-2xl mx-auto leading-relaxed font-sans"
+          className="mt-8 text-base md:text-lg text-pr-secondary max-w-2xl mx-auto leading-relaxed font-sans text-balance"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          {t("description")}
+          {nl2br(t("description"))}
         </motion.p>
 
         {/* Sub-values */}
@@ -104,7 +105,7 @@ export default function HeroSection() {
                 {t(`${key}_label` as any)}
               </p>
               <p className="text-sm text-pr-secondary font-sans">
-                {t(key as any)}
+                {nl2br(t(key as any))}
               </p>
             </div>
           ))}
