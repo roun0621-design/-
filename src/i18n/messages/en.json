@@ -57,7 +57,7 @@
   },
   "about": {
     "title": "About PACE RISE",
-    "subtitle": "A sports technology company\nleading the qualitative growth\nof Korean track & field",
+    "subtitle": "A sportstech studio\nleading the qualitative growth\nof Korean track & field",
     "mission_title": "Our Mission",
     "mission_desc": "PACE RISE prioritizes the qualitative growth\nof Korean track & field\nand the improvement of athlete performance.\n\nAs a technological bridge connecting\nthe precision of elite athletics\nwith the passion of amateur sports,\nwe lead the digital transformation of track & field\nthrough real-time pacing light systems\nand Competition Operating System (COS) development.",
     "tech_title": "Technology",
@@ -152,7 +152,7 @@
     "usecase_diamond_league": "Diamond League / International Events",
     "usecase_diamond_league_desc": "Precision pacing\nfor world record attempts\nand maximizing elite performance.",
     "usecase_national": "National Championships",
-    "usecase_national_desc": "Elevating competition quality\nand spectator experience\nat major domestic events.",
+    "usecase_national_desc": "Technical operations for\nmajor national championships\nincluding KTFL events.",
     "usecase_youth": "Youth / Junior Events",
     "usecase_youth_desc": "Naturally teaching young athletes\ngoal-awareness and race strategy.",
     "usecase_masters": "Masters / Citizen Marathons",
@@ -217,7 +217,7 @@
     "cta_desc": "We'll propose the optimal solution\nfor your event scale\nand operational environment."
   },
   "footer": {
-    "description": "A sports technology company\nleading the qualitative growth\nof Korean track & field —\nPACE RISE is with you.",
+    "description": "A sportstech studio\nleading the qualitative growth\nof Korean track & field —\nPACE RISE is with you.",
     "quick_links": "Quick Links",
     "social": "Social Media",
     "contact_us": "Contact",

@@ -174,36 +174,30 @@ export default function PacingLightDetail() {
         </div>
       </section>
 
-      {/* Use Cases */}
-      <section className="py-24 md:py-32 bg-white">
+      {/* Use Cases – compact inline tags */}
+      <section className="py-20 md:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">USE CASES</p>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary mb-10">
               {t("usecase_title")}
             </h2>
-          </div>
-          <div className="space-y-4">
-            {useCases.map((key, i) => (
-              <motion.div
-                key={key}
-                className="flex items-start gap-4 p-6 rounded-xl border border-pr-border hover:border-pr-brand/30 transition-all duration-300"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-              >
-                <CheckCircle size={18} className="text-pr-brand mt-0.5 shrink-0" strokeWidth={1.5} />
-                <div>
-                  <h4 className="font-semibold text-pr-primary text-sm mb-1">
-                    {t(`usecase_${key}` as any)}
-                  </h4>
-                  <p className="text-sm text-pr-secondary font-sans">
-                    {nl2br(t(`usecase_${key}_desc` as any))}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            <motion.div
+              className="flex flex-wrap items-center justify-center gap-3"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              {useCases.map((key) => (
+                <span
+                  key={key}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-pr-border text-sm text-pr-primary font-sans hover:border-pr-brand/40 hover:bg-pr-brand-light transition-all duration-300"
+                >
+                  <CheckCircle size={14} className="text-pr-brand shrink-0" strokeWidth={1.5} />
+                  {t(`usecase_${key}` as any)}
+                </span>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
