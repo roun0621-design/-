@@ -13,7 +13,7 @@ export default function HeroSection() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-[88px] md:pt-[96px] pb-20">
       {/* Subtle background grid pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div
@@ -29,7 +29,7 @@ export default function HeroSection() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[150px]" style={{ background: "rgba(183, 159, 88, 0.06)" }} />
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center w-full">
         {/* Brand Logo – Icon + PACE RISE wordmark */}
         <motion.div
           className="mb-8 flex items-center justify-center gap-3 md:gap-4"
