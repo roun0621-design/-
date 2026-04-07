@@ -2,7 +2,7 @@
 // Sanity Client Configuration
 // ──────────────────────────────────────────
 import { createClient } from "@sanity/client";
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 
 // ⚠️ Replace these with your actual Sanity project values
 export const sanityConfig = {
@@ -17,8 +17,8 @@ export const sanityClient = createClient({
   token: process.env.SANITY_API_TOKEN, // Server-side only
 });
 
-// Image URL builder
-const builder = imageUrlBuilder(sanityClient);
+// Image URL builder (using named export — default export is deprecated)
+const builder = createImageUrlBuilder(sanityClient);
 
 export function urlFor(source: any) {
   return builder.image(source);

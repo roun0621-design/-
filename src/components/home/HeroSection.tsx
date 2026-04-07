@@ -30,6 +30,21 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center">
+        {/* Brand Logo */}
+        <motion.div
+          className="mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <img
+            src="/logo-character-gold.png"
+            alt="PACE RISE"
+            className="w-12 h-auto md:w-14 mx-auto"
+            loading="eager"
+          />
+        </motion.div>
+
         {/* Tagline */}
         <motion.p
           className="font-display text-[11px] md:text-xs tracking-[0.4em] text-pr-brand mb-8"

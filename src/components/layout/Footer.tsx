@@ -18,9 +18,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-5">
-            <span className="font-display text-2xl tracking-wider text-pr-primary">
-              PACE RISE
-            </span>
+            <div className="flex items-center gap-3">
+              <img
+                src="/logo-character-gold.png"
+                alt="PACE RISE"
+                className="w-8 h-auto"
+                loading="lazy"
+              />
+              <span className="font-display text-2xl tracking-wider text-pr-primary">
+                PACE RISE
+              </span>
+            </div>
             <p className="mt-4 text-pr-secondary text-sm leading-relaxed max-w-sm">
               {nl2br(t("description"))}
             </p>
