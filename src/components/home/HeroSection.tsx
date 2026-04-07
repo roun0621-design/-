@@ -40,10 +40,10 @@ export default function HeroSection() {
           <img
             src="/logo-character-gold.png"
             alt="PACE RISE"
-            className="w-10 h-auto md:w-12 lg:w-14"
+            className="w-12 h-auto md:w-14 lg:w-[67px]"
             loading="eager"
           />
-          <span className="font-display text-3xl md:text-4xl lg:text-[42px] tracking-[0.15em] text-pr-primary">
+          <span className="font-display text-4xl md:text-5xl lg:text-[50px] tracking-[0.15em] text-pr-primary">
             PACE RISE
           </span>
         </motion.div>

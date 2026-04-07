@@ -22,10 +22,10 @@ export default function Footer() {
               <img
                 src="/logo-character-gold.png"
                 alt="PACE RISE"
-                className="w-8 h-auto"
+                className="w-10 h-auto"
                 loading="lazy"
               />
-              <span className="font-display text-2xl tracking-wider text-pr-primary">
+              <span className="font-display text-3xl tracking-wider text-pr-primary">
                 PACE RISE
               </span>
             </div>
