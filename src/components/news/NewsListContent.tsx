@@ -1,43 +1,82 @@
 "use client";
 // ──────────────────────────────────────────
-// News List Content – White Theme
+// News List Content – Instagram Feed Based
+// Behold.so API → 카드형 레이아웃
+// 클릭 시 Instagram 게시물로 이동
 // ──────────────────────────────────────────
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { Link } from "@/i18n/navigation";
-import { Calendar, ArrowRight, Newspaper } from "lucide-react";
+import {
+  Calendar,
+  ArrowUpRight,
+  Camera,
+  ExternalLink,
+  Play,
+  Images,
+} from "lucide-react";
 import Image from "next/image";
-import type { NewsPost } from "@/types";
-import { sanityClient } from "@/lib/sanity";
-import { NEWS_LIST_QUERY } from "@/lib/queries";
+import type { InstagramPost } from "@/types";
 
-const categoryColors: Record<string, string> = {
-  event: "bg-blue-50 text-blue-600",
-  tech: "bg-emerald-50 text-emerald-600",
-  partnership: "bg-purple-50 text-purple-600",
-  media: "bg-amber-50 text-amber-600",
-};
+/* placeholder patterns */
+const placeholderPatterns = [
+  "linear-gradient(135deg, rgba(183,159,88,0.08) 0%, rgba(183,159,88,0.02) 100%)",
+  "linear-gradient(45deg, rgba(183,159,88,0.04) 0%, rgba(183,159,88,0.10) 100%)",
+  "linear-gradient(180deg, rgba(183,159,88,0.06) 0%, rgba(183,159,88,0.03) 100%)",
+  "linear-gradient(225deg, rgba(183,159,88,0.02) 0%, rgba(183,159,88,0.08) 100%)",
+  "linear-gradient(90deg, rgba(183,159,88,0.05) 0%, rgba(183,159,88,0.09) 100%)",
+  "linear-gradient(315deg, rgba(183,159,88,0.10) 0%, rgba(183,159,88,0.04) 100%)",
+];
+
+/** 미디어 타입 아이콘 */
+function MediaBadge({ type }: { type: string }) {
+  if (type === "VIDEO")
+    return (
+      <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 bg-black/60 backdrop-blur-sm text-white text-[10px] font-display tracking-wider rounded-full">
+        <Play size={10} fill="white" />
+        REEL
+      </span>
+    );
+  if (type === "CAROUSEL_ALBUM")
+    return (
+      <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2.5 py-1 bg-black/60 backdrop-blur-sm text-white text-[10px] font-display tracking-wider rounded-full">
+        <Images size={10} />
+        ALBUM
+      </span>
+    );
+  return null;
+}
+
+/** 날짜 포맷 */
+function formatDate(timestamp: string, locale: string) {
+  return new Date(timestamp).toLocaleDateString(
+    locale === "ko" ? "ko-KR" : "en-US",
+    { year: "numeric", month: "long", day: "numeric" }
+  );
+}
 
 export default function NewsListContent() {
   const t = useTranslations("news");
   const locale = useLocale();
-  const [posts, setPosts] = useState<NewsPost[]>([]);
+  const [posts, setPosts] = useState<InstagramPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const data = await sanityClient.fetch(NEWS_LIST_QUERY, { locale });
-        setPosts(data || []);
-      } catch (error) {
-        console.error("Failed to fetch news:", error);
+        const res = await fetch("/api/instagram");
+        if (res.ok) {
+          const data = await res.json();
+          setPosts(data.posts || []);
+        }
+      } catch {
+        // silent fail
       } finally {
         setLoading(false);
       }
     }
     fetchPosts();
-  }, [locale]);
+  }, []);
 
   return (
     <div className="pt-20 md:pt-24">
@@ -78,72 +117,132 @@ export default function NewsListContent() {
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="rounded-2xl bg-white animate-pulse h-80" />
+                <div
+                  key={i}
+                  className="rounded-2xl bg-white animate-pulse h-96"
+                  style={{ background: placeholderPatterns[i] }}
+                />
               ))}
             </div>
           ) : posts.length === 0 ? (
-            <motion.div className="text-center py-20" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <Newspaper size={48} className="mx-auto text-pr-tertiary mb-4" strokeWidth={1} />
-              <p className="text-pr-secondary text-lg font-sans">{t("no_posts")}</p>
+            <motion.div
+              className="text-center py-20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Camera
+                size={48}
+                className="mx-auto text-pr-tertiary mb-4"
+                strokeWidth={1}
+              />
+              <p className="text-pr-secondary text-lg font-sans">
+                {t("no_posts")}
+              </p>
+              <a
+                href="https://www.instagram.com/pace.rise"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-6 text-pr-brand font-display text-sm tracking-wider hover:underline"
+              >
+                @pace.rise
+                <ArrowUpRight size={14} />
+              </a>
             </motion.div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.map((post, i) => (
-                <motion.div
-                  key={post._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <Link
-                    href={`/news/${post.slug.current}`}
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {posts.map((post, i) => (
+                  <motion.a
+                    key={post.id}
+                    href={post.permalink}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group block bg-white rounded-2xl border border-pr-border overflow-hidden hover:border-pr-brand/40 hover:shadow-lg transition-all duration-300"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.06 }}
                   >
-                    <div className="relative aspect-[16/10] bg-gray-100">
-                      {post.thumbnail ? (
-                        <Image
-                          src={post.thumbnail}
-                          alt={post.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    {/* Image */}
+                    <div
+                      className="relative aspect-square bg-gray-100"
+                      style={
+                        post.colorPalette?.dominant
+                          ? {
+                              backgroundColor: `rgb(${post.colorPalette.dominant})`,
+                            }
+                          : undefined
+                      }
+                    >
+                      <Image
+                        src={post.imageUrlLarge || post.imageUrl}
+                        alt={
+                          post.caption?.slice(0, 100) || "PACE RISE Instagram"
+                        }
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        unoptimized
+                      />
+                      <MediaBadge type={post.mediaType} />
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <ExternalLink
+                          size={24}
+                          className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          strokeWidth={1.5}
                         />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <Newspaper size={32} className="text-pr-tertiary" strokeWidth={1} />
-                        </div>
-                      )}
-                      {post.category && (
-                        <span className={`absolute top-3 left-3 px-3 py-1 text-xs font-medium rounded-full ${categoryColors[post.category] || "bg-gray-100 text-gray-600"}`}>
-                          {post.category}
-                        </span>
-                      )}
+                      </div>
                     </div>
-                    <div className="p-6">
+
+                    {/* Content */}
+                    <div className="p-5">
                       <div className="flex items-center gap-2 text-xs text-pr-tertiary mb-3">
                         <Calendar size={12} strokeWidth={1.5} />
-                        <time>
-                          {new Date(post.publishedAt).toLocaleDateString(
-                            locale === "ko" ? "ko-KR" : "en-US",
-                            { year: "numeric", month: "long", day: "numeric" }
-                          )}
-                        </time>
+                        <time>{formatDate(post.timestamp, locale)}</time>
                       </div>
-                      <h3 className="text-lg font-semibold tracking-tight text-pr-primary group-hover:text-pr-brand transition-colors line-clamp-2">
-                        {post.title}
-                      </h3>
-                      {post.excerpt && (
-                        <p className="mt-2 text-sm text-pr-secondary line-clamp-2 font-sans">{post.excerpt}</p>
+                      {post.caption && (
+                        <p className="text-sm text-pr-primary leading-relaxed line-clamp-3 font-sans">
+                          {post.caption}
+                        </p>
                       )}
                       <div className="mt-4 flex items-center gap-1 text-sm text-pr-brand font-display tracking-wider">
-                        {t("read_more")}
-                        <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" strokeWidth={2} />
+                        Instagram
+                        <ArrowUpRight
+                          size={13}
+                          className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                          strokeWidth={2}
+                        />
                       </div>
                     </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Follow CTA */}
+              <motion.div
+                className="mt-16 text-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                <a
+                  href="https://www.instagram.com/pace.rise"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light hover:border-pr-brand transition-all duration-300 group"
+                >
+                  <Camera size={15} strokeWidth={1.5} />
+                  {locale === "ko"
+                    ? "인스타그램에서 더 보기"
+                    : "See more on Instagram"}
+                  <ArrowUpRight
+                    size={14}
+                    strokeWidth={2}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </a>
+              </motion.div>
+            </>
           )}
         </div>
       </section>
