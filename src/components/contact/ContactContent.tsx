@@ -1,6 +1,6 @@
 "use client";
 // ──────────────────────────────────────────
-// Contact Form – White Theme, Resend
+// Contact Form – White Theme, EmailJS
 // ──────────────────────────────────────────
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
@@ -13,10 +13,26 @@ import {
   Camera,
   Globe,
 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { nl2br } from "@/utils/nl2br";
 import type { ContactFormData } from "@/types";
 
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = "service_2m9u30y";
+const EMAILJS_TEMPLATE_ID = "template_1b38kxr";
+const EMAILJS_PUBLIC_KEY = "X_szMaNV2u_7MFW9y";
+
 const inquiryTypes = ["pacing", "cos", "event", "partnership", "demo", "other"] as const;
+
+// Inquiry type labels for email
+const typeLabels: Record<string, string> = {
+  pacing: "WAVELIGHT SYSTEM 문의",
+  cos: "PACE RISE : Node (COS) 문의",
+  event: "대회 도입 · 운영 문의",
+  partnership: "파트너십 / 협업 제안",
+  demo: "시연 요청",
+  other: "기타 문의",
+};
 
 export default function ContactContent() {
   const t = useTranslations("contact");
@@ -35,18 +51,26 @@ export default function ContactContent() {
     e.preventDefault();
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setForm({ name: "", email: "", organization: "", type: "pacing", message: "", locale });
-      } else {
-        setStatus("error");
-      }
-    } catch {
+      const templateParams = {
+        from_name: form.name,
+        from_email: form.email,
+        organization: form.organization || "-",
+        inquiry_type: typeLabels[form.type] || form.type,
+        message: form.message,
+        title: `${typeLabels[form.type] || form.type} — ${form.name}`,
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setStatus("success");
+      setForm({ name: "", email: "", organization: "", type: "pacing", message: "", locale });
+    } catch (err) {
+      console.error("EmailJS error:", err);
       setStatus("error");
     }
   };
