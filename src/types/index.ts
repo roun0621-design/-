@@ -21,15 +21,23 @@ export interface NewsPost {
   };
 }
 
-// Instagram Post (from API)
+// Instagram Post (from Behold.so API)
 export interface InstagramPost {
   id: string;
   caption?: string;
-  media_type: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM";
-  media_url: string;
-  thumbnail_url?: string;
+  mediaType: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM";
+  imageUrl: string;       // CDN 최적화 medium 이미지
+  imageUrlLarge: string;  // CDN 최적화 large 이미지
+  thumbnailUrl?: string;  // CDN 최적화 small 이미지
   permalink: string;
   timestamp: string;
+  colorPalette?: {
+    dominant: string;
+    muted: string;
+    vibrant: string;
+    vibrantLight: string;
+    vibrantDark: string;
+  };
 }
 
 // Contact Form Data

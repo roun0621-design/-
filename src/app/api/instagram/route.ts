@@ -1,42 +1,46 @@
 // ──────────────────────────────────────────
-// API Route: Instagram Feed Proxy
+// API Route: Instagram Feed via Behold.so
 // ──────────────────────────────────────────
-// Instagram Basic Display API 또는 Graph API를 통해
-// @pace.rise 피드를 가져옵니다.
-// 환경변수: INSTAGRAM_ACCESS_TOKEN
+// Behold.so JSON Feed를 프록시하여 프론트엔드에 전달
+// Facebook 계정 불필요 — Instagram 직접 연동
 import { NextResponse } from "next/server";
 
-const INSTAGRAM_TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN;
+const BEHOLD_FEED_URL = "https://feeds.behold.so/770EW8zSiT6qv5MCZOWR";
 const CACHE_DURATION = 60 * 30; // 30분 캐시
 
 export async function GET() {
-  if (!INSTAGRAM_TOKEN) {
-    // 토큰이 없으면 빈 배열 반환 (개발 중 graceful fallback)
-    return NextResponse.json(
-      { posts: [], message: "Instagram token not configured" },
-      {
-        status: 200,
-        headers: {
-          "Cache-Control": `public, s-maxage=60, stale-while-revalidate=120`,
-        },
-      }
-    );
-  }
-
   try {
-    const res = await fetch(
-      `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&limit=12&access_token=${INSTAGRAM_TOKEN}`,
-      { next: { revalidate: CACHE_DURATION } }
-    );
+    const res = await fetch(BEHOLD_FEED_URL, {
+      next: { revalidate: CACHE_DURATION },
+    });
 
     if (!res.ok) {
-      throw new Error(`Instagram API error: ${res.status}`);
+      throw new Error(`Behold API error: ${res.status}`);
     }
 
     const data = await res.json();
 
+    // Behold 응답을 통일된 포맷으로 변환
+    const posts = (data.posts || []).map((post: any) => ({
+      id: post.id,
+      caption: post.prunedCaption || post.caption || "",
+      mediaType: post.mediaType, // IMAGE, VIDEO, CAROUSEL_ALBUM
+      permalink: post.permalink,
+      timestamp: post.timestamp,
+      // CDN 최적화 이미지 사용 (WebP, 리사이즈 제공)
+      imageUrl: post.sizes?.medium?.mediaUrl || post.mediaUrl,
+      imageUrlLarge: post.sizes?.large?.mediaUrl || post.mediaUrl,
+      thumbnailUrl: post.sizes?.small?.mediaUrl || post.thumbnailUrl,
+      colorPalette: post.colorPalette,
+    }));
+
     return NextResponse.json(
-      { posts: data.data || [] },
+      {
+        posts,
+        username: data.username,
+        profilePictureUrl: data.profilePictureUrl,
+        followersCount: data.followersCount,
+      },
       {
         status: 200,
         headers: {
@@ -45,7 +49,7 @@ export async function GET() {
       }
     );
   } catch (error) {
-    console.error("Instagram fetch error:", error);
+    console.error("Behold fetch error:", error);
     return NextResponse.json(
       { posts: [], error: "Failed to fetch Instagram feed" },
       { status: 200 }

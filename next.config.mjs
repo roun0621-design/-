@@ -20,6 +20,18 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.cdninstagram.com",
       },
+      {
+        protocol: "https",
+        hostname: "behold.pictures",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.behold.pictures",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn2.behold.pictures",
+      },
     ],
   },
 };
