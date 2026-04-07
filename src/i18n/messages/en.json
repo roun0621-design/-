@@ -71,7 +71,16 @@
     "target_elite_desc": "Maximizing elite athlete performance\nthrough precise pacing\nand real-time data.",
     "target_masters": "Masters Innovation",
     "target_masters_desc": "Bringing professional\ncompetition management technology\nto amateur track & field culture.",
-    "history_title": "History",
+    "history_title": "Key Milestones",
+    "footprint_title": "Operational Footprint",
+    "footprint_elite_label": "Elite Track",
+    "footprint_elite_desc": "Technical operations for 15+\nnational-level elite championships",
+    "footprint_masters_label": "Masters & Events",
+    "footprint_masters_desc": "Pacing support for 30+\nmasters events including\nMizuno Light Lab & Run Korea",
+    "footprint_partners_label": "Partners",
+    "footprint_partners_desc": "Wave Light adoption across\nall 4 major athletics federations",
+    "footprint_system_label": "System",
+    "footprint_system_desc": "Korea's only integrated\nWave Light hardware &\nNODE software control",
     "clients_title": "Our Partners"
   },
   "news": {

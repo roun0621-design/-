@@ -71,7 +71,16 @@
     "target_elite_desc": "정밀한 페이싱과 실시간 데이터로\n엘리트 선수의 기량을 극대화합니다.",
     "target_masters": "마스터즈 혁신",
     "target_masters_desc": "아마추어 육상 문화에\n프로페셔널 경기 운영 기술을\n보급합니다.",
-    "history_title": "연혁",
+    "history_title": "주요 연혁",
+    "footprint_title": "운영 성과 요약",
+    "footprint_elite_label": "Elite Track",
+    "footprint_elite_desc": "전국 규모 엘리트 대회\n기술 총괄 운영",
+    "footprint_masters_label": "Masters & Events",
+    "footprint_masters_desc": "미즈노 라이트랩, 런코리아 등\n마스터즈 이벤트 페이싱 지원",
+    "footprint_partners_label": "Partners",
+    "footprint_partners_desc": "4대 전 육상 연맹\n웨이브라이트 시스템 도입",
+    "footprint_system_label": "System",
+    "footprint_system_desc": "국내 유일 Wave Light 하드웨어 &\nNODE 소프트웨어 통합 제어",
     "clients_title": "함께하는 파트너"
   },
   "news": {
