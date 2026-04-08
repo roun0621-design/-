@@ -109,13 +109,18 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-pr-border flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="mt-16 pt-8 border-t border-pr-border flex flex-col items-center gap-3">
           <p className="text-xs text-pr-tertiary">
-            {t("copyright", { year: year.toString() })}
+            (주)페이스라이즈 | 대표 김로운 | 사업자등록번호 773-81-03370
           </p>
-          <p className="text-xs text-pr-tertiary tracking-wider font-display">
-            pace-rise.com
-          </p>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2 w-full">
+            <p className="text-xs text-pr-tertiary">
+              {t("copyright", { year: year.toString() })}
+            </p>
+            <p className="text-xs text-pr-tertiary tracking-wider font-display">
+              pace-rise.com
+            </p>
+          </div>
         </div>
       </div>
     </footer>

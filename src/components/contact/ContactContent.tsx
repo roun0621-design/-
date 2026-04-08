@@ -41,11 +41,14 @@ export default function ContactContent() {
     name: "",
     email: "",
     organization: "",
-    type: "pacing",
+    type: "",
     message: "",
     locale,
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [privacyAgreed, setPrivacyAgreed] = useState(false);
+
+  const isFormValid = form.name && form.email && form.type && form.message && privacyAgreed;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +71,8 @@ export default function ContactContent() {
       );
 
       setStatus("success");
-      setForm({ name: "", email: "", organization: "", type: "pacing", message: "", locale });
+      setForm({ name: "", email: "", organization: "", type: "", message: "", locale });
+      setPrivacyAgreed(false);
     } catch (err) {
       console.error("EmailJS error:", err);
       setStatus("error");
@@ -190,12 +194,14 @@ export default function ContactContent() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-pr-primary mb-2">{t("type")}</label>
+                    <label className="block text-sm font-medium text-pr-primary mb-2">{t("type")} *</label>
                     <select
+                      required
                       value={form.type}
                       onChange={(e) => updateField("type", e.target.value)}
-                      className={inputClasses}
+                      className={`${inputClasses} ${!form.type ? "text-pr-tertiary" : ""}`}
                     >
+                      <option value="" disabled>{t("type_placeholder")}</option>
                       {inquiryTypes.map((type) => (
                         <option key={type} value={type}>
                           {t(`type_${type}` as any)}
@@ -216,9 +222,34 @@ export default function ContactContent() {
                     />
                   </div>
 
+                  {/* 개인정보 수집·이용 동의 */}
+                  <div className="bg-gray-50 border border-pr-border rounded-xl p-5">
+                    <p className="text-sm font-medium text-pr-primary mb-3">{t("privacy_title")} *</p>
+                    <div className="text-xs text-pr-secondary leading-relaxed space-y-1 mb-4">
+                      <p>{t("privacy_company")}</p>
+                      <ul className="list-disc list-inside space-y-0.5 ml-1">
+                        <li>{t("privacy_items")}</li>
+                        <li>{t("privacy_purpose")}</li>
+                        <li>{t("privacy_period")}</li>
+                      </ul>
+                      <p className="mt-2 text-pr-tertiary">{t("privacy_note")}</p>
+                    </div>
+                    <label className="flex items-center gap-2.5 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={privacyAgreed}
+                        onChange={(e) => setPrivacyAgreed(e.target.checked)}
+                        className="w-4 h-4 rounded border-pr-border text-pr-brand focus:ring-pr-brand/30 cursor-pointer"
+                      />
+                      <span className="text-sm text-pr-primary group-hover:text-pr-brand transition-colors">
+                        {t("privacy_agree")}
+                      </span>
+                    </label>
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={status === "sending"}
+                    disabled={status === "sending" || !isFormValid}
                     className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {status === "sending" ? (
