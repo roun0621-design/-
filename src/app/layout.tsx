@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     alternateLocale: "en_US",
     images: [
       {
-        url: "/og-image-v2.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "PACE RISE – Sports Technology for Track & Field",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image-v2.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
