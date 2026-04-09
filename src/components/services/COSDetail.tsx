@@ -26,6 +26,9 @@ import {
   Layers,
   ExternalLink,
   Play,
+  Settings,
+  MessageSquare,
+  Wrench,
 } from "lucide-react";
 
 /* ── Operator features ── */
@@ -299,6 +302,111 @@ export default function COSDetail() {
         </div>
       </section>
 
+      {/* Custom Solutions */}
+      <section className="py-24 md:py-32 bg-[var(--pr-bg-secondary)]">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">CUSTOM SOLUTIONS</p>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
+              {t("custom_title")}
+            </h2>
+            <p className="mt-4 text-pr-secondary max-w-2xl mx-auto font-sans leading-relaxed">
+              {t("custom_desc")}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {[
+              { icon: Settings, key: "custom_event" },
+              { icon: Wrench, key: "custom_special" },
+              { icon: MessageSquare, key: "custom_meeting" },
+            ].map(({ icon: Icon, key }, i) => (
+              <motion.div
+                key={key}
+                className="bg-white rounded-2xl border border-pr-border p-7 hover:border-pr-brand/40 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-4">
+                  <Icon size={18} strokeWidth={1.5} />
+                </div>
+                <p className="text-sm text-pr-secondary leading-relaxed font-sans">
+                  {t(key as any)}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.p
+            className="text-center text-base text-pr-primary font-medium italic"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            &ldquo;{t("custom_quote")}&rdquo;
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Demo Process */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">DEMO</p>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
+              {t("demo_process_title")}
+            </h2>
+            <p className="mt-4 text-pr-secondary max-w-xl mx-auto font-sans leading-relaxed">
+              {t("cta_demo_desc")}
+            </p>
+          </div>
+
+          {/* 4-step process */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {[
+              { step: "01", key: "demo_step_1" },
+              { step: "02", key: "demo_step_2" },
+              { step: "03", key: "demo_step_3" },
+              { step: "04", key: "demo_step_4" },
+            ].map(({ step, key }, i) => (
+              <motion.div
+                key={key}
+                className="relative bg-[var(--pr-bg-secondary)] rounded-2xl border border-pr-border p-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <p className="font-display text-2xl text-pr-brand/30 mb-3">{step}</p>
+                <h4 className="text-sm font-semibold text-pr-primary mb-2">
+                  {t(key as any)}
+                </h4>
+                <p className="text-xs text-pr-secondary font-sans leading-relaxed">
+                  {t(`${key}_desc` as any)}
+                </p>
+                {i < 3 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 text-pr-brand/30">
+                    <ChevronRight size={20} strokeWidth={2} />
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link
+              href="/contact?type=demo"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-pr-brand text-white text-sm font-display tracking-wider rounded-full hover:bg-pr-brand/90 transition-all duration-300 shadow-sm"
+            >
+              <Play size={14} strokeWidth={2} />
+              {t("cta_demo")}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Band */}
       <section className="py-20 md:py-24 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
@@ -309,10 +417,9 @@ export default function COSDetail() {
             {nl2br(t("cta_desc"))}
           </p>
 
-          {/* Primary CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <a
-              href="https://pace-rise.com"
+              href="https://pace-rise-node.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-pr-brand text-white text-sm font-display tracking-wider rounded-full hover:bg-pr-brand/90 transition-all duration-300 shadow-sm"
@@ -328,11 +435,7 @@ export default function COSDetail() {
               {t("cta_demo")}
             </Link>
           </div>
-          <p className="text-xs text-pr-tertiary mb-8 font-sans">
-            {t("cta_demo_desc")}
-          </p>
 
-          {/* Secondary Links */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact" className="btn-primary">
               {t("cta_inquiry")}
