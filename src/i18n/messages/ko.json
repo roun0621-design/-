@@ -178,6 +178,8 @@
     "hero_desc": "대회 생성부터 결승 진출까지, 육상 경기 운영의 모든 워크플로를 하나의 시스템에서.\n\n실시간 기록 입력, 자동 Q/q 판정, 문서 출력, 전광판 연동, 중계 오버레이까지 통합 지원합니다.",
     "cta_inquiry": "도입 문의하기",
     "cta_features": "기능 살펴보기",
+    "cta_live": "P-R : Node에서 확인하기",
+    "cta_demo": "데모 체험 신청",
     "pipeline_create": "대회 생성",
     "pipeline_event": "종목 설정",
     "pipeline_athlete": "선수 등록",
@@ -222,7 +224,8 @@
     "arch_security_desc": "Viewer(operation_key), Judge/Staff(기록 입력), Admin(전체 제어, bcrypt, 대회 후 잠금). Rate Limiting + Helmet 보안, 감사/운영 로그, DB 백업/복원.",
     "wa_rules_desc": "풍속 제한, 타이브레이크, 높이뛰기 실패 카운팅, Q/q 자동 판정, 혼성 종목 채점 등 World Athletics(WA) 규정을 소프트웨어에 내장하여, 운영자의 실수를 방지하고 공정한 경기를 보장합니다.",
     "cta_title": "PACE RISE : Node 도입을 원하시나요?",
-    "cta_desc": "대회 규모와 운영 환경에 맞는 최적의 솔루션을 제안해 드립니다."
+    "cta_desc": "대회 규모와 운영 환경에 맞는 최적의 솔루션을 제안해 드립니다.",
+    "cta_demo_desc": "실제 시스템을 직접 체험해 보세요. 맞춤형 데모 환경을 준비해 드립니다."
   },
   "footer": {
     "description": "대한민국 육상의 질적 성장을 이끄는 스포츠테크 스튜디오, PACE RISE가 함께합니다.",

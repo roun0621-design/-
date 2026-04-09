@@ -178,6 +178,8 @@
     "hero_desc": "From tournament creation to finals advancement — every track & field competition workflow unified in a single platform.\n\nReal-time record entry, automatic Q/q qualification, official document output, electronic scoreboard integration, and live broadcast overlay — all seamlessly connected.",
     "cta_inquiry": "Inquire About Adoption",
     "cta_features": "Explore Features",
+    "cta_live": "View on P-R : Node",
+    "cta_demo": "Request a Demo",
     "pipeline_create": "Create",
     "pipeline_event": "Events",
     "pipeline_athlete": "Athletes",
@@ -222,7 +224,8 @@
     "arch_security_desc": "Viewer (operation_key), Judge/Staff (record entry), Admin (full control, bcrypt, post-event lock). Rate Limiting + Helmet security, audit/operation logs, DB backup/restore.",
     "wa_rules_desc": "Wind limits, tie-breaks, high jump failure counting, Q/q auto-qualification, mixed event scoring — World Athletics (WA) rules are built into the software to prevent operator errors and ensure fair competition.",
     "cta_title": "Want to Adopt PACE RISE : Node?",
-    "cta_desc": "We'll propose the optimal solution for your event scale and operational environment."
+    "cta_desc": "We'll propose the optimal solution for your event scale and operational environment.",
+    "cta_demo_desc": "Experience the system firsthand. We'll prepare a customized demo environment for you."
   },
   "footer": {
     "description": "A sportstech studio leading the qualitative growth of Korean track & field — PACE RISE is with you.",

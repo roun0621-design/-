@@ -2,8 +2,9 @@
 // ──────────────────────────────────────────
 // Contact Form – White Theme, EmailJS
 // ──────────────────────────────────────────
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Send,
@@ -34,9 +35,11 @@ const typeLabels: Record<string, string> = {
   other: "기타 문의",
 };
 
-export default function ContactContent() {
+// Inner component that uses useSearchParams (must be wrapped in Suspense)
+function ContactForm() {
   const t = useTranslations("contact");
   const locale = useLocale();
+  const searchParams = useSearchParams();
   const [form, setForm] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -47,6 +50,14 @@ export default function ContactContent() {
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [privacyAgreed, setPrivacyAgreed] = useState(false);
+
+  // URL ?type=demo 파라미터로 문의 유형 자동 선택
+  useEffect(() => {
+    const typeParam = searchParams.get("type");
+    if (typeParam && inquiryTypes.includes(typeParam as any)) {
+      setForm((prev) => ({ ...prev, type: typeParam }));
+    }
+  }, [searchParams]);
 
   const isFormValid = form.name && form.email && form.type && form.message && privacyAgreed;
 
@@ -313,5 +324,14 @@ export default function ContactContent() {
         </div>
       </section>
     </div>
+  );
+}
+
+// Wrapper with Suspense for useSearchParams SSR compatibility
+export default function ContactContent() {
+  return (
+    <Suspense>
+      <ContactForm />
+    </Suspense>
   );
 }

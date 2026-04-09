@@ -24,6 +24,8 @@ import {
   Smartphone,
   BarChart3,
   Layers,
+  ExternalLink,
+  Play,
 } from "lucide-react";
 
 /* ── Operator features ── */
@@ -83,6 +85,15 @@ export default function COSDetail() {
               </Link>
               <a href="#operator" className="btn-secondary">
                 {t("cta_features")}
+              </a>
+              <a
+                href="https://pace-rise.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand hover:text-white transition-all duration-300"
+              >
+                {t("cta_live")}
+                <ExternalLink size={14} strokeWidth={2} />
               </a>
             </div>
           </motion.div>
@@ -297,6 +308,31 @@ export default function COSDetail() {
           <p className="text-pr-secondary mb-8 font-sans">
             {nl2br(t("cta_desc"))}
           </p>
+
+          {/* Primary CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+            <a
+              href="https://pace-rise.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-pr-brand text-white text-sm font-display tracking-wider rounded-full hover:bg-pr-brand/90 transition-all duration-300 shadow-sm"
+            >
+              {t("cta_live")}
+              <ExternalLink size={14} strokeWidth={2} />
+            </a>
+            <Link
+              href="/contact?type=demo"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-pr-brand text-pr-brand text-sm font-display tracking-wider rounded-full hover:bg-pr-brand hover:text-white transition-all duration-300"
+            >
+              <Play size={14} strokeWidth={2} />
+              {t("cta_demo")}
+            </Link>
+          </div>
+          <p className="text-xs text-pr-tertiary mb-8 font-sans">
+            {t("cta_demo_desc")}
+          </p>
+
+          {/* Secondary Links */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact" className="btn-primary">
               {t("cta_inquiry")}
