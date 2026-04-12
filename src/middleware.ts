@@ -30,6 +30,13 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 308);
   }
 
+  // 숫자로만 이루어진 경로 → 홈으로 리다이렉트 (카페24 이전 사이트 잔여 URL)
+  if (/^\/\d+$/.test(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    return NextResponse.redirect(url, 308);
+  }
+
   return intlMiddleware(request);
 }
 
