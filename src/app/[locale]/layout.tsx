@@ -10,6 +10,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { buildSeoMeta } from "@/utils/seo";
 
 // Static generation for all locales
 export function generateStaticParams() {
@@ -23,30 +24,22 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: "meta" });
-
-  const baseUrl = "https://pace-rise.com";
-  const canonicalUrl = locale === "ko" ? baseUrl : `${baseUrl}/en`;
+  const seo = buildSeoMeta("/", locale);
 
   return {
     title: t("title"),
     description: t("description"),
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        ko: baseUrl,
-        en: `${baseUrl}/en`,
-      },
-    },
+    ...seo,
     openGraph: {
       title: t("title"),
       description: t("description"),
-      url: canonicalUrl,
+      ...seo.openGraph,
       siteName: "PACE RISE",
       locale: locale === "ko" ? "ko_KR" : "en_US",
       type: "website",
       images: [
         {
-          url: "/og-image.png",
+          url: "/og-image-v2.png",
           width: 1200,
           height: 630,
           alt: "PACE RISE – Sports Technology for Track & Field",
@@ -57,7 +50,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/og-image.png"],
+      images: ["/og-image-v2.png"],
     },
   };
 }
