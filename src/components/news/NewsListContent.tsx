@@ -79,9 +79,9 @@ export default function NewsListContent() {
   }, []);
 
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-24">
       {/* Header */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
@@ -112,7 +112,7 @@ export default function NewsListContent() {
       <div className="section-divider" />
 
       {/* Posts Grid */}
-      <section className="py-16 md:py-24 bg-[var(--pr-bg-secondary)]">
+      <section className="py-12 md:py-24 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -98,9 +98,9 @@ function ContactForm() {
     "w-full px-4 py-3.5 bg-white border border-pr-border rounded-xl text-pr-primary placeholder:text-pr-tertiary focus:outline-none focus:border-pr-brand/50 focus:ring-1 focus:ring-pr-brand/20 transition-all font-sans text-sm";
 
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-24">
       {/* Header */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
@@ -131,7 +131,7 @@ function ContactForm() {
       <div className="section-divider" />
 
       {/* Form + Info */}
-      <section className="py-16 md:py-24 bg-[var(--pr-bg-secondary)]">
+      <section className="py-12 md:py-24 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             {/* Form */}
@@ -156,7 +156,7 @@ function ContactForm() {
               ) : (
                 <form
                   onSubmit={handleSubmit}
-                  className="bg-white rounded-2xl border border-pr-border p-8 md:p-10 space-y-6"
+                  className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 md:p-10 space-y-6"
                 >
                   {status === "error" && (
                     <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">

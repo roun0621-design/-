@@ -18,10 +18,10 @@ export default function VisionSection() {
   const t = useTranslations("home");
 
   return (
-    <section className="py-28 md:py-36 bg-[var(--pr-bg-secondary)]">
+    <section className="py-16 md:py-36 bg-[var(--pr-bg-secondary)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 md:mb-20">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ export default function VisionSection() {
           {goals.map(({ key, icon: Icon }, i) => (
             <motion.div
               key={key}
-              className="bg-white rounded-2xl border border-pr-border p-8 text-center hover:border-pr-brand/40 transition-all duration-300"
+              className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 text-center hover:border-pr-brand/40 transition-all duration-300"
               style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

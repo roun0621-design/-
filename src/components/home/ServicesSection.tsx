@@ -27,10 +27,10 @@ export default function ServicesSection() {
   const t = useTranslations("home");
 
   return (
-    <section className="py-28 md:py-36 bg-white">
+    <section className="py-16 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 md:mb-20">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -70,7 +70,7 @@ export default function ServicesSection() {
               transition={{ delay: i * 0.15 }}
             >
               <Link href={href} className="block group">
-                <div className="card-elegant p-10 md:p-12 h-full">
+                <div className="card-elegant p-6 md:p-12 h-full">
                   {/* Icon + Label */}
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand">

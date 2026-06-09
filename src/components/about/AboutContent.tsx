@@ -116,9 +116,9 @@ export default function AboutPage() {
   const locale = useLocale();
 
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-24">
       {/* Hero Banner */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-16 md:py-32 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
@@ -149,7 +149,7 @@ export default function AboutPage() {
       <div className="section-divider" />
 
       {/* Mission */}
-      <section className="py-20 md:py-28 bg-[var(--pr-bg-secondary)]">
+      <section className="py-14 md:py-28 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
             className="bg-white rounded-2xl border border-pr-border p-10 md:p-14"
@@ -173,7 +173,7 @@ export default function AboutPage() {
       </section>
 
       {/* Role / Bridge */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
@@ -207,9 +207,9 @@ export default function AboutPage() {
       <div className="section-divider" />
 
       {/* Technology */}
-      <section className="py-20 md:py-28 bg-[var(--pr-bg-secondary)]">
+      <section className="py-14 md:py-28 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">TECHNOLOGY</p>
             <h2 className="text-3xl md:text-4xl font-bold text-pr-primary">{t("tech_title")}</h2>
           </div>
@@ -218,7 +218,7 @@ export default function AboutPage() {
             {techItems.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-8 hover:border-pr-brand/40 transition-all duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -242,9 +242,9 @@ export default function AboutPage() {
       {/* ════════════════════════════════════════
           KEY MILESTONES TIMELINE
          ════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">KEY MILESTONES</p>
             <h2 className="text-3xl md:text-4xl font-bold text-pr-primary">{t("history_title")}</h2>
           </div>
@@ -308,7 +308,7 @@ export default function AboutPage() {
       {/* ════════════════════════════════════════
           OPERATIONAL FOOTPRINT
          ════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-[var(--pr-bg-secondary)]">
+      <section className="py-12 md:py-24 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">OPERATIONAL FOOTPRINT</p>

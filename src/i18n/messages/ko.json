@@ -6,17 +6,19 @@
   "nav": {
     "home": "홈",
     "about": "회사 소개",
+    "services": "서비스",
     "news": "소식",
-    "contact": "문의하기"
+    "contact": "문의하기",
+    "node_cta": "Node 바로가기"
   },
   "hero": {
     "tagline": "SPORTS TECHNOLOGY FOR TRACK & FIELD",
-    "title_line1": "대한민국 육상의",
-    "title_line2": "질적 성장을 이끕니다",
-    "description": "엘리트 체육의 정밀함과 아마추어 체육의 열정을 잇는 기술적 가교. PACE RISE는 모든 선수가 한계를 넘어설 수 있는 환경을 제공합니다.",
-    "value_rms": "레이스 매니지먼트 시스템(RMS)",
-    "value_tracking": "실시간 데이터 트래킹",
-    "value_records": "체계적인 기록 관리",
+    "title_line1": "레이스를",
+    "title_line2": "빛과 데이터로 운영합니다",
+    "description": "PACE RISE는 트랙 위 LED 페이싱 라이트(Wave Light)를 운영하고, 대회 전 과정을 통합하는 경기 운영 시스템(COS)을 만듭니다.\n다이아몬드 리그의 기술을 한국 트랙 위에서 구현합니다.",
+    "value_rms": "LED 페이싱 라이트 운영",
+    "value_tracking": "경기 운영 시스템(COS)",
+    "value_records": "실시간 기록·중계 연동",
     "cta_services": "서비스 알아보기",
     "cta_contact": "문의하기",
     "audience_youth": "꿈나무 육성과 체계적 훈련 환경",
@@ -248,6 +250,14 @@
     "social": "소셜 미디어",
     "contact_us": "연락처",
     "copyright": "© {year} PACE RISE. All rights reserved."
+  },
+  "node_modal": {
+    "badge": "PACE RISE : Node",
+    "title": "Node를 찾아오셨나요?",
+    "desc": "여기는 PACE RISE 공식 홈페이지입니다.\n경기 운영 시스템(Node)에 접속하시려면 아래 버튼을 눌러 이동하세요.",
+    "cta_go": "Node 바로가기",
+    "cta_stay": "홈페이지 둘러보기",
+    "dismiss": "다시 보지 않기"
   },
   "common": {
     "loading": "로딩 중...",

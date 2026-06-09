@@ -51,10 +51,10 @@ export default function InstagramFeed() {
   };
 
   return (
-    <section className="py-28 md:py-36 bg-white">
+    <section className="py-16 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-9 md:mb-14">
           <motion.div
             className="inline-flex items-center gap-2 text-pr-brand mb-4"
             initial={{ opacity: 0, y: 20 }}

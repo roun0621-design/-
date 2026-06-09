@@ -35,7 +35,7 @@ export default function NewsDetailContent({ slug }: { slug: string }) {
 
   if (loading) {
     return (
-      <div className="pt-20 md:pt-24">
+      <div className="pt-16 md:pt-24">
         <div className="max-w-3xl mx-auto px-6 py-32">
           <div className="space-y-4">
             <div className="h-8 bg-gray-100 rounded animate-pulse w-3/4" />
@@ -49,7 +49,7 @@ export default function NewsDetailContent({ slug }: { slug: string }) {
 
   if (!post) {
     return (
-      <div className="pt-20 md:pt-24">
+      <div className="pt-16 md:pt-24">
         <div className="max-w-3xl mx-auto px-6 py-32 text-center">
           <p className="text-pr-secondary text-lg font-sans">게시글을 찾을 수 없습니다.</p>
           <Link href="/news" className="mt-4 inline-flex items-center gap-2 text-pr-brand font-display text-sm tracking-wider">
@@ -70,8 +70,8 @@ export default function NewsDetailContent({ slug }: { slug: string }) {
   };
 
   return (
-    <div className="pt-20 md:pt-24">
-      <article className="max-w-3xl mx-auto px-6 lg:px-8 py-16 md:py-24">
+    <div className="pt-16 md:pt-24">
+      <article className="max-w-3xl mx-auto px-6 lg:px-8 py-12 md:py-24">
         {/* Back Link */}
         <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}>
           <Link href="/news" className="inline-flex items-center gap-2 text-sm text-pr-secondary hover:text-pr-brand transition-colors mb-8 font-sans">

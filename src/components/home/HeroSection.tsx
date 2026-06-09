@@ -13,7 +13,7 @@ export default function HeroSection() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-[88px] md:pt-[96px] pb-20">
+    <section className="relative min-h-[88vh] md:min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-[72px] md:pt-[96px] pb-12 md:pb-20">
       {/* Subtle background grid pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div
@@ -32,7 +32,7 @@ export default function HeroSection() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center w-full">
         {/* Brand Logo – Icon + PACE RISE wordmark */}
         <motion.div
-          className="mb-8 flex items-center justify-center gap-3 md:gap-4"
+          className="mb-8 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
@@ -40,12 +40,14 @@ export default function HeroSection() {
           <img
             src="/logo-character-gold.png"
             alt="PACE RISE"
-            className="w-12 h-auto md:w-14 lg:w-[67px]"
+            className="w-12 h-auto md:w-14 lg:w-[67px] shrink-0"
             loading="eager"
           />
           <span className="font-display text-4xl md:text-5xl lg:text-[50px] tracking-[0.15em] text-pr-primary">
             PACE RISE
           </span>
+          {/* phantom spacer mirrors the icon so the wordmark stays page-centered on desktop */}
+          <span aria-hidden className="hidden md:block md:w-14 lg:w-[67px] shrink-0" />
         </motion.div>
 
         {/* Tagline */}
@@ -112,7 +114,7 @@ export default function HeroSection() {
 
         {/* Target audiences */}
         <motion.div
-          className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
+          className="mt-12 md:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}

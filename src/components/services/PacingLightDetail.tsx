@@ -38,9 +38,9 @@ export default function PacingLightDetail() {
   const t = useTranslations("pacing_light");
 
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-24">
       {/* Hero */}
-      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+      <section className="py-12 md:py-24 bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[200px]" style={{ background: "rgba(183, 159, 88, 0.04)" }} />
         <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
           <motion.div
@@ -75,7 +75,7 @@ export default function PacingLightDetail() {
       <div className="section-divider" />
 
       {/* Track Animation Visual */}
-      <section className="py-16 md:py-24 bg-[var(--pr-bg-secondary)]">
+      <section className="py-12 md:py-24 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -91,7 +91,7 @@ export default function PacingLightDetail() {
       <div className="section-divider" />
 
       {/* What is Wavelight */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-16 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -141,9 +141,9 @@ export default function PacingLightDetail() {
       <div className="section-divider" />
 
       {/* Features */}
-      <section id="features" className="py-24 md:py-32 bg-[var(--pr-bg-secondary)]">
+      <section id="features" className="py-16 md:py-32 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">KEY FEATURES</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
               {t("features_title")}
@@ -153,7 +153,7 @@ export default function PacingLightDetail() {
             {features.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-8 hover:border-pr-brand/40 transition-all duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -175,7 +175,7 @@ export default function PacingLightDetail() {
       </section>
 
       {/* Use Cases – compact inline tags */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">USE CASES</p>
@@ -203,7 +203,7 @@ export default function PacingLightDetail() {
       </section>
 
       {/* Diamond League Reference */}
-      <section className="py-24 md:py-32 bg-[var(--pr-bg-secondary)]">
+      <section className="py-16 md:py-32 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0 }}
@@ -222,7 +222,7 @@ export default function PacingLightDetail() {
       </section>
 
       {/* CTA Band */}
-      <section className="py-20 md:py-24 bg-white">
+      <section className="py-14 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-pr-primary mb-4">
             {t("cta_title")}

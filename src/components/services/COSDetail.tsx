@@ -60,9 +60,9 @@ export default function COSDetail() {
   const t = useTranslations("cos");
 
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-16 md:pt-24">
       {/* Hero */}
-      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+      <section className="py-12 md:py-24 bg-white relative overflow-hidden">
         <div className="absolute bottom-0 left-0 w-[600px] h-[500px] rounded-full blur-[200px]" style={{ background: "rgba(183, 159, 88, 0.04)" }} />
         <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
           <motion.div
@@ -81,24 +81,24 @@ export default function COSDetail() {
             <p className="mt-6 text-lg md:text-xl text-pr-secondary max-w-2xl mx-auto leading-relaxed font-sans text-balance">
               {nl2br(t("hero_desc"))}
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className="btn-primary">
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <Link href="/contact" className="btn-primary w-full sm:w-auto">
                 {t("cta_inquiry")}
                 <ArrowRight size={16} strokeWidth={2} />
               </Link>
-              <a href="#operator" className="btn-secondary">
+              <a href="#operator" className="btn-secondary w-full sm:w-auto">
                 {t("cta_features")}
               </a>
-              <a
-                href="https://pace-rise.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand hover:text-white transition-all duration-300"
-              >
-                {t("cta_live")}
-                <ExternalLink size={14} strokeWidth={2} />
-              </a>
             </div>
+            <a
+              href="https://pace-rise-node.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-1.5 text-sm font-display tracking-wider text-pr-brand hover:gap-2.5 transition-all duration-300"
+            >
+              {t("cta_live")}
+              <ExternalLink size={14} strokeWidth={2} />
+            </a>
           </motion.div>
         </div>
       </section>
@@ -106,7 +106,7 @@ export default function COSDetail() {
       <div className="section-divider" />
 
       {/* Workflow Pipeline Animation */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-8">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-3">WORKFLOW</p>
@@ -147,9 +147,9 @@ export default function COSDetail() {
       <div className="section-divider" />
 
       {/* Operator Features (Admin Side) */}
-      <section id="operator" className="py-24 md:py-32 bg-white">
+      <section id="operator" className="py-16 md:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">FOR OPERATORS</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
               {t("operator_title")}
@@ -162,7 +162,7 @@ export default function COSDetail() {
             {operatorFeatures.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-8 hover:border-pr-brand/40 transition-all duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-all duration-300"
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -187,9 +187,9 @@ export default function COSDetail() {
       <div className="section-divider" />
 
       {/* Consumer Features */}
-      <section className="py-24 md:py-32 bg-[var(--pr-bg-secondary)]">
+      <section className="py-16 md:py-32 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand">FOR VIEWERS</p>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200">
@@ -211,7 +211,7 @@ export default function COSDetail() {
             {consumerFeatures.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-8 hover:border-pr-brand/40 transition-all duration-300 relative"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-all duration-300 relative"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -248,9 +248,9 @@ export default function COSDetail() {
       </section>
 
       {/* Technical Architecture */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-16 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">ARCHITECTURE</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
               {t("arch_title")}
@@ -303,7 +303,7 @@ export default function COSDetail() {
       </section>
 
       {/* Custom Solutions */}
-      <section className="py-24 md:py-32 bg-[var(--pr-bg-secondary)]">
+      <section className="py-16 md:py-32 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">CUSTOM SOLUTIONS</p>
@@ -351,9 +351,9 @@ export default function COSDetail() {
       </section>
 
       {/* Demo Process */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-16 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
+          <div className="text-center mb-9 md:mb-14">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">DEMO</p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
               {t("demo_process_title")}
@@ -408,7 +408,7 @@ export default function COSDetail() {
       </section>
 
       {/* CTA Band */}
-      <section className="py-20 md:py-24 bg-[var(--pr-bg-secondary)]">
+      <section className="py-14 md:py-24 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-pr-primary mb-4">
             {t("cta_title")}

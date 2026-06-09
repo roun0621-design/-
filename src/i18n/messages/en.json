@@ -6,17 +6,19 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "services": "Services",
     "news": "News",
-    "contact": "Contact"
+    "contact": "Contact",
+    "node_cta": "Open Node"
   },
   "hero": {
     "tagline": "SPORTS TECHNOLOGY FOR TRACK & FIELD",
-    "title_line1": "Elevating Korean",
-    "title_line2": "Track & Field",
-    "description": "A technological bridge connecting the precision of elite athletics with the passion of amateur sports. PACE RISE empowers every athlete with tools to exceed their potential.",
-    "value_rms": "Race Management System (RMS)",
-    "value_tracking": "Real-time Data Tracking",
-    "value_records": "Systematic Record Management",
+    "title_line1": "We run track & field",
+    "title_line2": "on light and data",
+    "description": "PACE RISE operates LED pacing lights (Wave Light) on the track and builds the Competition Operating System (COS) that runs the entire meet.\nWe bring Diamond League technology to tracks in Korea.",
+    "value_rms": "LED Pacing Lights (Wave Light)",
+    "value_tracking": "Competition Operating System (COS)",
+    "value_records": "Live results & broadcast",
     "cta_services": "Explore Services",
     "cta_contact": "Contact Us",
     "audience_youth": "Systematic training for young talents",
@@ -248,6 +250,14 @@
     "social": "Social Media",
     "contact_us": "Contact",
     "copyright": "© {year} PACE RISE. All rights reserved."
+  },
+  "node_modal": {
+    "badge": "PACE RISE : Node",
+    "title": "Looking for Node?",
+    "desc": "This is the official PACE RISE homepage.\nTo access the Competition Operating System (Node), tap the button below.",
+    "cta_go": "Open Node",
+    "cta_stay": "Browse the site",
+    "dismiss": "Don't show again"
   },
   "common": {
     "loading": "Loading...",
