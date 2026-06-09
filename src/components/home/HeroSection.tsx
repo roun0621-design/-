@@ -107,7 +107,10 @@ export default function HeroSection() {
             {t("cta_services")}
             <ArrowRight size={16} strokeWidth={2} />
           </Link>
-          <Link href="/contact" className="btn-secondary">
+          <Link
+            href={{ pathname: "/contact", query: { type: "demo" } }}
+            className="btn-secondary"
+          >
             {t("cta_contact")}
           </Link>
         </motion.div>

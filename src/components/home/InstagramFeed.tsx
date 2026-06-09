@@ -118,7 +118,6 @@ export default function InstagramFeed() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 50vw, 33vw"
-                    unoptimized
                   />
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-end p-4">

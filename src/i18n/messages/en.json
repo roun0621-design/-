@@ -20,7 +20,7 @@
     "value_tracking": "Competition Operating System (COS)",
     "value_records": "Live results & broadcast",
     "cta_services": "Explore Services",
-    "cta_contact": "Contact Us",
+    "cta_contact": "Request a Demo",
     "audience_youth": "Systematic training for young talents",
     "audience_youth_label": "YOUTH",
     "audience_elite": "Maximizing elite performance",
@@ -55,7 +55,16 @@
     "goal_democratize": "Democratizing Technology",
     "goal_democratize_desc": "Bringing international-grade technology to track & field events at every level.",
     "instagram_title": "PACE RISE Updates",
-    "instagram_subtitle": "Latest from @pace.rise on Instagram"
+    "instagram_subtitle": "Latest from @pace.rise on Instagram",
+    "trust_label": "TRUSTED ON TRACK",
+    "trust_title": "Already proven on Korean tracks",
+    "trust_desc": "From national elite championships to masters events,\nPACE RISE is validated on real tracks every season.",
+    "trust_elite_label": "National elite championships operated",
+    "trust_masters_label": "Masters & community events paced",
+    "trust_partners_label": "Athletics federations using Wave Light",
+    "trust_system_label": "Korea's only integrated HW + SW system",
+    "trust_partners_line": "Korea Track & Field League (KTFL) MOU · KAAF collaboration · Mizuno Light Lab · Jindo County",
+    "trust_cta": "See our track record"
   },
   "about": {
     "title": "About PACE RISE",

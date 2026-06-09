@@ -3,6 +3,7 @@
 // ──────────────────────────────────────────
 import { unstable_setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/home/HeroSection";
+import TrustSection from "@/components/home/TrustSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import VisionSection from "@/components/home/VisionSection";
 import InstagramFeed from "@/components/home/InstagramFeed";
@@ -19,6 +20,7 @@ export default function HomePage({
     <>
       <HeroSection />
       <div className="section-divider" />
+      <TrustSection />
       <ServicesSection />
       <VisionSection />
       <div className="section-divider" />

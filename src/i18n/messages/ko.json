@@ -20,7 +20,7 @@
     "value_tracking": "경기 운영 시스템(COS)",
     "value_records": "실시간 기록·중계 연동",
     "cta_services": "서비스 알아보기",
-    "cta_contact": "문의하기",
+    "cta_contact": "도입 · 데모 문의",
     "audience_youth": "꿈나무 육성과 체계적 훈련 환경",
     "audience_youth_label": "YOUTH",
     "audience_elite": "엘리트 퍼포먼스 극대화",
@@ -55,7 +55,16 @@
     "goal_democratize": "기술 민주화",
     "goal_democratize_desc": "국제 대회급 기술을 모든 수준의 육상 현장에 보급합니다.",
     "instagram_title": "PACE RISE 소식",
-    "instagram_subtitle": "@pace.rise 인스타그램 피드"
+    "instagram_subtitle": "@pace.rise 인스타그램 피드",
+    "trust_label": "TRUSTED ON TRACK",
+    "trust_title": "이미 한국 육상 현장이 선택했습니다",
+    "trust_desc": "전국 단위 엘리트 대회부터 마스터즈 이벤트까지,\nPACE RISE는 실제 트랙 위에서 검증되고 있습니다.",
+    "trust_elite_label": "전국 엘리트 대회 기술 운영",
+    "trust_masters_label": "마스터즈 · 이벤트 페이싱 지원",
+    "trust_partners_label": "전 육상 연맹 Wave Light 도입",
+    "trust_system_label": "국내 유일 HW·SW 통합 시스템",
+    "trust_partners_line": "한국실업육상연맹(KTFL) MOU · 대한육상연맹 협력 · 미즈노 라이트랩 · 진도군",
+    "trust_cta": "운영 실적 자세히 보기"
   },
   "about": {
     "title": "About PACE RISE",

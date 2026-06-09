@@ -5,7 +5,7 @@
 // Guides visitors who came looking for PACE RISE : Node.
 // ──────────────────────────────────────────
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { Monitor, ArrowRight, X, ExternalLink } from "lucide-react";
 import { nl2br } from "@/utils/nl2br";
@@ -14,6 +14,7 @@ const NODE_URL = "https://pace-rise-node.com";
 
 export default function NodeWelcomeModal() {
   const t = useTranslations("node_modal");
+  const locale = useLocale();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -93,7 +94,9 @@ export default function NodeWelcomeModal() {
               {/* Title */}
               <h2
                 id="node-modal-title"
-                className="text-[17px] sm:text-2xl font-bold tracking-tight text-pr-primary mb-3 whitespace-nowrap"
+                className={`text-[17px] sm:text-2xl font-bold tracking-tight text-pr-primary mb-3 ${
+                  locale === "ko" ? "whitespace-nowrap" : "text-balance"
+                }`}
               >
                 {t("title")}
               </h2>
