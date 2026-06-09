@@ -1,7 +1,7 @@
 "use client";
 // ──────────────────────────────────────────
 // Node Welcome Modal
-// "Looking for Node?" gateway popup — shown once per session.
+// "Looking for Node?" gateway popup — shown on every home visit.
 // Guides visitors who came looking for PACE RISE : Node.
 // ──────────────────────────────────────────
 import { useEffect, useState } from "react";
@@ -11,34 +11,17 @@ import { Monitor, ArrowRight, X, ExternalLink } from "lucide-react";
 import { nl2br } from "@/utils/nl2br";
 
 const NODE_URL = "https://pace-rise-node.com";
-const SESSION_KEY = "pr_node_modal_seen";
-const DISMISS_KEY = "pr_node_modal_dismissed";
 
 export default function NodeWelcomeModal() {
   const t = useTranslations("node_modal");
   const [open, setOpen] = useState(false);
-  const [dontShow, setDontShow] = useState(false);
 
   useEffect(() => {
-    try {
-      if (localStorage.getItem(DISMISS_KEY) === "1") return;
-      if (sessionStorage.getItem(SESSION_KEY) === "1") return;
-    } catch {
-      /* storage unavailable — show anyway */
-    }
     const timer = setTimeout(() => setOpen(true), 900);
     return () => clearTimeout(timer);
   }, []);
 
-  const close = () => {
-    setOpen(false);
-    try {
-      sessionStorage.setItem(SESSION_KEY, "1");
-      if (dontShow) localStorage.setItem(DISMISS_KEY, "1");
-    } catch {
-      /* ignore */
-    }
-  };
+  const close = () => setOpen(false);
 
   // Close on ESC + lock body scroll while open
   useEffect(() => {
@@ -51,8 +34,7 @@ export default function NodeWelcomeModal() {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, dontShow]);
+  }, [open]);
 
   return (
     <AnimatePresence>
@@ -141,17 +123,6 @@ export default function NodeWelcomeModal() {
                   <ArrowRight size={14} strokeWidth={2} />
                 </button>
               </div>
-
-              {/* Don't show again */}
-              <label className="mt-5 inline-flex items-center gap-2 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  checked={dontShow}
-                  onChange={(e) => setDontShow(e.target.checked)}
-                  className="w-4 h-4 rounded border-pr-border text-pr-brand focus:ring-pr-brand/30 cursor-pointer accent-[#B79F58]"
-                />
-                <span className="text-xs text-pr-tertiary">{t("dismiss")}</span>
-              </label>
             </div>
           </motion.div>
         </motion.div>

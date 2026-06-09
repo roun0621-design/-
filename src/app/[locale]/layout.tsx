@@ -10,7 +10,6 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import NodeWelcomeModal from "@/components/layout/NodeWelcomeModal";
 import { buildSeoMeta } from "@/utils/seo";
 
 // Static generation for all locales
@@ -79,7 +78,6 @@ export default async function LocaleLayout({
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />
-      <NodeWelcomeModal />
     </NextIntlClientProvider>
   );
 }

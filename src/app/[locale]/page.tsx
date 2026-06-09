@@ -6,6 +6,7 @@ import HeroSection from "@/components/home/HeroSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import VisionSection from "@/components/home/VisionSection";
 import InstagramFeed from "@/components/home/InstagramFeed";
+import NodeWelcomeModal from "@/components/layout/NodeWelcomeModal";
 
 export default function HomePage({
   params: { locale },
@@ -22,6 +23,7 @@ export default function HomePage({
       <VisionSection />
       <div className="section-divider" />
       <InstagramFeed />
+      <NodeWelcomeModal />
     </>
   );
 }
