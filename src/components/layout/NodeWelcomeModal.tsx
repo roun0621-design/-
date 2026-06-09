@@ -58,7 +58,7 @@ export default function NodeWelcomeModal() {
             role="dialog"
             aria-modal="true"
             aria-labelledby="node-modal-title"
-            className="relative w-full max-w-md bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.18)] overflow-hidden"
+            className="relative w-full max-w-lg bg-white rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.18)] overflow-hidden"
             initial={{ opacity: 0, y: 40, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.96 }}
@@ -79,7 +79,7 @@ export default function NodeWelcomeModal() {
               style={{ background: "rgba(183,159,88,0.18)" }}
             />
 
-            <div className="relative px-7 pt-9 pb-7 text-center">
+            <div className="relative px-5 sm:px-6 pt-9 pb-7 text-center">
               {/* Icon */}
               <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-2xl bg-pr-brand-light text-pr-brand mb-5">
                 <Monitor size={26} strokeWidth={1.5} />
@@ -93,7 +93,7 @@ export default function NodeWelcomeModal() {
               {/* Title */}
               <h2
                 id="node-modal-title"
-                className="text-2xl font-bold tracking-tight text-pr-primary mb-3"
+                className="text-[17px] sm:text-2xl font-bold tracking-tight text-pr-primary mb-3 whitespace-nowrap"
               >
                 {t("title")}
               </h2>
