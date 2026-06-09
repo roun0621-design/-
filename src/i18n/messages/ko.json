@@ -253,7 +253,7 @@
   },
   "node_modal": {
     "badge": "PACE RISE : Node",
-    "title": "Node를 찾아오셨나요?",
+    "title": "경기 운영 시스템인 Node를 찾아오셨나요?",
     "desc": "여기는 PACE RISE 공식 홈페이지입니다.\n경기 운영 시스템(Node)에 접속하시려면 아래 버튼을 눌러 이동하세요.",
     "cta_go": "Node 바로가기",
     "cta_stay": "홈페이지 둘러보기",
