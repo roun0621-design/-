@@ -1,20 +1,39 @@
 "use client";
 // ──────────────────────────────────────────
 // Brand & Events Detail – the collaboration door
-// Elite-proven tech, brought to a brand's running event.
-// Evidence: public brand events (ASICS · MIZUNO · DESCENTE).
+// Framed as a service/agency offering (planning · gear · crew · deliverables),
+// NOT a tool feature list. Tools appear only as means.
+// Evidence: public brand projects (ASICS · MIZUNO · DESCENTE).
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Sparkles, Activity, Image as ImageIcon, BarChart3, Settings, ArrowRight } from "lucide-react";
+import {
+  Sparkles,
+  ClipboardList,
+  Wrench,
+  Users,
+  FileText,
+  ShieldCheck,
+  Zap,
+  Layers,
+  ArrowRight,
+} from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 
 const offers = [
-  { key: "experience", icon: Activity },
-  { key: "content", icon: ImageIcon },
-  { key: "data", icon: BarChart3 },
-  { key: "operation", icon: Settings },
+  { key: "plan", icon: ClipboardList },
+  { key: "setup", icon: Wrench },
+  { key: "crew", icon: Users },
+  { key: "output", icon: FileText },
+] as const;
+
+const steps = ["1", "2", "3", "4"] as const;
+
+const why = [
+  { key: "1", icon: ShieldCheck },
+  { key: "2", icon: Zap },
+  { key: "3", icon: Layers },
 ] as const;
 
 const cases = ["asics", "mizuno", "descente"] as const;
@@ -71,7 +90,7 @@ export default function BrandEventsDetail() {
         </div>
       </section>
 
-      {/* What we build together */}
+      {/* What we handle */}
       <section className="py-16 md:py-28 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
@@ -108,7 +127,78 @@ export default function BrandEventsDetail() {
         </div>
       </section>
 
-      {/* Track record — brand events */}
+      {/* How it works */}
+      <section className="py-16 md:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12 md:mb-16">
+            <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">
+              {t("process_label")}
+            </p>
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-pr-primary">
+              {t("process_title")}
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {steps.map((n, i) => (
+              <motion.div
+                key={n}
+                className="relative"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+              >
+                <span className="font-display text-3xl text-pr-brand/30">0{n}</span>
+                <h3 className="mt-3 text-lg font-bold tracking-tight text-pr-primary">
+                  {t(`process_${n}_title` as any)}
+                </h3>
+                <p className="mt-2 text-[14px] text-pr-secondary leading-relaxed font-sans">
+                  {t(`process_${n}_desc` as any)}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why PACE RISE */}
+      <section className="py-16 md:py-28 bg-[var(--pr-bg-secondary)]">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12 md:mb-16">
+            <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">
+              {t("why_label")}
+            </p>
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-pr-primary">
+              {t("why_title")}
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {why.map(({ key, icon: Icon }, i) => (
+              <motion.div
+                key={key}
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8"
+                style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
+                  <Icon size={20} strokeWidth={1.5} />
+                </div>
+                <h3 className="text-lg font-bold tracking-tight text-pr-primary mb-2">
+                  {t(`why_${key}_title` as any)}
+                </h3>
+                <p className="text-[14px] text-pr-secondary leading-relaxed font-sans">
+                  {t(`why_${key}_desc` as any)}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Track record — brand projects */}
       <section className="py-16 md:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">

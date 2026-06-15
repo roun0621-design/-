@@ -26,7 +26,7 @@ const services = [
     key: "brand",
     icon: Sparkles,
     href: "/services/brand-events",
-    features: ["feature_experience", "feature_content", "feature_operation"],
+    features: ["feature_plan", "feature_setup", "feature_crew"],
   },
 ] as const;
 
