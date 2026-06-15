@@ -27,7 +27,7 @@ const inquiryTypes = ["pacing", "cos", "event", "partnership", "demo", "other"] 
 
 // Inquiry type labels for email
 const typeLabels: Record<string, string> = {
-  pacing: "WAVELIGHT SYSTEM 문의",
+  pacing: "페이싱 라이트 문의",
   cos: "PACE RISE : Node (COS) 문의",
   event: "대회 도입 · 운영 문의",
   partnership: "파트너십 / 협업 제안",

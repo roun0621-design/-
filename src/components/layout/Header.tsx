@@ -22,7 +22,7 @@ const tailNavItems = [
 ] as const;
 
 const serviceItems = [
-  { label: "WAVELIGHT SYSTEM", href: "/services/pacing-light", icon: Zap },
+  { label: "PACING LIGHT", href: "/services/pacing-light", icon: Zap },
   { label: "PACE RISE : Node", href: "/services/cos", icon: Monitor },
 ] as const;
 

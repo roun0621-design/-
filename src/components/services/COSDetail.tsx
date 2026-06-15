@@ -58,6 +58,7 @@ const archStats = [
 
 export default function COSDetail() {
   const t = useTranslations("cos");
+  const nav = useTranslations("nav");
 
   return (
     <div className="pt-16 md:pt-24">
@@ -442,7 +443,7 @@ export default function COSDetail() {
               <ArrowRight size={16} strokeWidth={2} />
             </Link>
             <Link href="/services/pacing-light" className="btn-secondary">
-              WAVELIGHT SYSTEM
+              {nav("pacing_light")}
               <ChevronRight size={14} strokeWidth={2} />
             </Link>
           </div>
