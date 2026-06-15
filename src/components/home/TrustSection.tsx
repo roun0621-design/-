@@ -5,15 +5,15 @@
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Trophy, CalendarCheck, Handshake, Cpu, ArrowRight } from "lucide-react";
+import { Users, CalendarCheck, Snowflake, Cpu, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 
 const stats = [
-  { icon: Trophy, value: "15+", key: "elite" },
-  { icon: CalendarCheck, value: "30+", key: "masters" },
-  { icon: Handshake, value: "4", key: "partners" },
-  { icon: Cpu, value: "Only", key: "system" },
+  { icon: Users, key: "athletes" },
+  { icon: CalendarCheck, key: "events" },
+  { icon: Snowflake, key: "camp" },
+  { icon: Cpu, key: "node" },
 ] as const;
 
 export default function TrustSection() {
@@ -52,9 +52,21 @@ export default function TrustSection() {
           </motion.p>
         </div>
 
+        {/* Brand line — strongest proof: who works with us */}
+        <motion.div
+          className="mb-8 md:mb-10 text-center"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 px-5 py-3 rounded-full bg-white border border-pr-border font-display text-sm md:text-base tracking-wide text-pr-primary" style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}>
+            {t("trust_brands_line")}
+          </p>
+        </motion.div>
+
         {/* Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-          {stats.map(({ icon: Icon, value, key }, i) => (
+          {stats.map(({ icon: Icon, key }, i) => (
             <motion.div
               key={key}
               className="bg-white rounded-2xl border border-pr-border p-6 md:p-7 text-center hover:border-pr-brand/30 transition-all duration-300"
@@ -68,16 +80,16 @@ export default function TrustSection() {
                 <Icon size={18} strokeWidth={1.5} />
               </div>
               <p className="font-display text-2xl md:text-3xl text-pr-brand mb-2">
-                {value}
+                {t(`trust_stat_${key}_value` as any)}
               </p>
               <p className="text-[13px] text-pr-secondary leading-relaxed font-sans">
-                {t(`trust_${key}_label` as any)}
+                {t(`trust_stat_${key}_label` as any)}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Partner names */}
+        {/* Federation deployment line — "adopted", not "official partner" */}
         <motion.p
           className="mt-10 text-center text-[13px] md:text-sm text-pr-tertiary font-sans tracking-wide"
           initial={{ opacity: 0 }}
@@ -85,7 +97,7 @@ export default function TrustSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          {t("trust_partners_line")}
+          {t("trust_federation_line")}
         </motion.p>
 
         {/* Link to full track record */}
