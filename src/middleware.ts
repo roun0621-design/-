@@ -59,7 +59,9 @@ export default function middleware(request: NextRequest) {
   if (!isValidRoute(stripped) && !isValidRoute(pathname)) {
     const url = request.nextUrl.clone();
     url.pathname = "/";
-    return NextResponse.redirect(url, 308);
+    // 307(임시)로 처리 — 308(영구)은 브라우저가 캐시해서
+    // 나중에 추가된 새 라우트도 홈으로 계속 튕기는 문제 발생
+    return NextResponse.redirect(url, 307);
   }
 
   return intlMiddleware(request);
