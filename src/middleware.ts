@@ -15,6 +15,7 @@ const validRoutes = new Set([
   "/contact",
   "/services/cos",
   "/services/pacing-light",
+  "/services/brand-events",
 ]);
 
 // 동적 라우트 패턴 (/news/[slug])
