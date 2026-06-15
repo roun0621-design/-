@@ -1,10 +1,11 @@
 "use client";
 // ──────────────────────────────────────────
-// Services Section – 2 cards: Pacing Light + COS
+// Services Section – 3 axes: Pacing Light · Node · Brand & Events
+// (tools we operate + the work we collaborate on)
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Zap, Monitor, ArrowRight } from "lucide-react";
+import { Zap, Monitor, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 
@@ -20,6 +21,12 @@ const services = [
     icon: Monitor,
     href: "/services/cos",
     features: ["feature_workflow", "feature_realtime", "feature_broadcast"],
+  },
+  {
+    key: "brand",
+    icon: Sparkles,
+    href: "/services/brand-events",
+    features: ["feature_experience", "feature_content", "feature_operation"],
   },
 ] as const;
 
@@ -60,7 +67,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map(({ key, icon: Icon, href, features }, i) => (
             <motion.div
               key={key}
@@ -70,7 +77,7 @@ export default function ServicesSection() {
               transition={{ delay: i * 0.15 }}
             >
               <Link href={href} className="block group">
-                <div className="card-elegant p-6 md:p-12 h-full">
+                <div className="card-elegant p-6 md:p-8 h-full">
                   {/* Icon + Label */}
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand">

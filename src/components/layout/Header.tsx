@@ -6,7 +6,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { Menu, X, Globe, ChevronDown, ExternalLink, Zap, Monitor } from "lucide-react";
+import { Menu, X, Globe, ChevronDown, ExternalLink, Zap, Monitor, Sparkles } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 
 const NODE_URL = "https://pace-rise-node.com";
@@ -24,6 +24,7 @@ const tailNavItems = [
 const serviceItems = [
   { label: "PACING LIGHT", href: "/services/pacing-light", icon: Zap },
   { label: "PACE RISE : Node", href: "/services/cos", icon: Monitor },
+  { label: "BRAND & EVENTS", href: "/services/brand-events", icon: Sparkles },
 ] as const;
 
 export default function Header() {
