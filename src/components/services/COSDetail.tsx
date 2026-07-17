@@ -120,6 +120,27 @@ export default function COSDetail() {
           >
             <PipelineAnimation />
           </motion.div>
+
+          {/* Demo video (loop) */}
+          <motion.div
+            className="mt-10 md:mt-14 rounded-2xl overflow-hidden border border-pr-border bg-black"
+            style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.08)" }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <video
+              className="w-full h-auto block"
+              src="/cos-demo.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label="PACE RISE : Node demo"
+            />
+          </motion.div>
         </div>
       </section>
 
