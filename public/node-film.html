@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>PACE RISE : Node — Launch Film v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+<style>
+:root{--gold:#B79F58;--gold-b:#D9C27A;--ink:#1E1E22;--paper:#F7F6F2;--white:#F5F5F2;--amber:#FFB300;
+--aud:'Audiowide',monospace;--pre:'Pretendard',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:var(--paper);overflow:hidden}
+body{font-family:var(--pre);cursor:pointer}
+#stage{position:fixed;inset:0;background:var(--paper);overflow:hidden}
+#stage.shake{animation:shake .34s ease-out}
+@keyframes shake{0%{transform:translate(0,0)}25%{transform:translate(-1.2%,.9%)}50%{transform:translate(1%,-.7%)}75%{transform:translate(-.5%,.4%)}100%{transform:translate(0,0)}}
+
+/* phone clip: world lives inside; animates from fullscreen to phone */
+#screenclip{position:absolute;inset:0;overflow:hidden;border-radius:0;transition:all 3.2s cubic-bezier(.55,0,.2,1);background:transparent}
+#world{position:absolute;inset:0;transition:opacity 1.6s ease,filter 1.6s ease}
+#world.ghost{opacity:.3;filter:saturate(.75)}
+#world svg{width:100%;height:100%;display:block}
+
+#bezel{position:absolute;left:50%;top:50%;width:34vmin;height:68vmin;
+transform:translate(-50%,-50%) scale(3.4);border:.55vmin solid rgba(158,132,62,.9);border-radius:4.6vmin;
+pointer-events:none;z-index:40;opacity:0}
+#bezel .notch{position:absolute;top:1.6vmin;left:50%;transform:translateX(-50%);width:9vmin;height:1.7vmin;border-radius:1vmin;background:rgba(158,132,62,.5)}
+
+/* phone inner content (logo state) */
+#phoneui{position:absolute;left:50%;top:50%;width:34vmin;height:68vmin;transform:translate(-50%,-50%);
+border-radius:4.6vmin;display:flex;align-items:center;justify-content:center;background:#000;
+opacity:0;transition:opacity 1s ease;z-index:30}
+#phoneui.on{opacity:1}
+#phoneui .plogo{font-family:var(--aud);font-size:3vmin;color:var(--ink);white-space:nowrap;
+transition:font-size 2.4s cubic-bezier(.2,.7,.2,1)}
+#phoneui .plogo .g{color:var(--gold)}
+#phoneui.hero{background:transparent}
+#phoneui.hero .plogo{font-size:7.2vmin}
+
+#stores{position:absolute;left:50%;top:62%;transform:translateX(-50%);z-index:35;
+display:flex;gap:3.4vmin;opacity:0;transition:opacity 1.4s ease}
+#stores.on{opacity:1}
+#stores .b{font-family:var(--aud);font-size:1.6vmin;letter-spacing:.26em;color:rgba(30,30,35,.85);
+border:.18vmin solid rgba(30,30,35,.35);border-radius:1vmin;padding:1.4vmin 2.8vmin}
+
+/* on your marks — screen space, appears at start beat */
+#marks{position:absolute;left:50%;top:28%;transform:translateX(-50%);z-index:25;
+font-family:var(--aud);color:#8A8A94;font-size:5.2vmin;letter-spacing:.14em;
+border-right:.32vmin solid var(--gold);padding-right:.9vmin;white-space:nowrap;overflow:hidden;
+width:0;opacity:0}
+#marks.type{opacity:1;animation:typew 1.7s steps(16,end) forwards,caret .7s step-end infinite}
+@keyframes typew{to{width:47vmin}}
+@keyframes caret{50%{border-color:transparent}}
+#marks.gone{transition:opacity .4s;opacity:0}
+
+#flash{position:absolute;inset:0;background:var(--gold-b);opacity:0;z-index:60;pointer-events:none}
+#flash.bang{animation:bang .5s ease-out forwards}
+@keyframes bang{0%{opacity:0}8%{opacity:.92}100%{opacity:0}}
+#whiteflash{position:absolute;inset:0;background:var(--gold-b);opacity:0;z-index:61;pointer-events:none}
+#whiteflash.pop{animation:pop .8s ease-out forwards}
+@keyframes pop{0%{opacity:0}12%{opacity:.9}100%{opacity:0}}
+
+#hint{position:absolute;bottom:3.2vmin;left:50%;transform:translateX(-50%);z-index:80;
+font-family:var(--aud);font-size:1.6vmin;letter-spacing:.3em;color:rgba(245,245,242,.35);
+opacity:0;transition:opacity .8s}
+#hint.on{opacity:1}
+
+/* ---- world svg internals ---- */
+.lane{stroke:rgba(158,132,62,.65);fill:none}
+.lane2{stroke:rgba(158,132,62,.42);fill:none}
+.lane3{stroke:rgba(158,132,62,.28);fill:none}
+.mark{stroke:rgba(245,245,242,.55);stroke-width:2.2}
+.room{fill:none;stroke:rgba(30,30,35,.3);stroke-width:1.4}
+.chk{opacity:0}
+.chk.lit{animation:chkin .6s ease forwards}
+@keyframes chkin{to{opacity:.85}}
+.rtrail{fill:none;stroke-linecap:round;stroke-dasharray:70 1400;stroke-dashoffset:70;opacity:0}
+#racetrail{stroke:url(#trailgrad);stroke-width:3.8}
+#racetrail.go{opacity:1;animation:comet 4.6s cubic-bezier(.45,.05,.55,.95) forwards}
+#racetrail2{stroke:rgba(217,194,122,.22);stroke-width:9;stroke-dasharray:110 1400;stroke-dashoffset:110;filter:blur(3px)}
+#racetrail2.go{opacity:1;animation:comet2 4.6s cubic-bezier(.45,.05,.55,.95) forwards}
+.tgray{stroke:url(#trailgray);stroke-width:3.8}
+.tgray.go{opacity:1;animation:comet 4.85s cubic-bezier(.45,.05,.55,.95) forwards}
+.tnavy{stroke:url(#trailnavy);stroke-width:3.8}
+.tnavy.go{opacity:1;animation:comet 5.05s cubic-bezier(.45,.05,.55,.95) forwards}
+.ggray{stroke:rgba(122,122,132,.25);stroke-width:9;stroke-dasharray:110 1400;stroke-dashoffset:110;filter:blur(3px)}
+.ggray.go{opacity:1;animation:comet2 4.85s cubic-bezier(.45,.05,.55,.95) forwards}
+.gnavy{stroke:rgba(90,110,158,.25);stroke-width:9;stroke-dasharray:110 1400;stroke-dashoffset:110;filter:blur(3px)}
+.gnavy.go{opacity:1;animation:comet2 5.05s cubic-bezier(.45,.05,.55,.95) forwards}
+@keyframes comet{to{stroke-dashoffset:-466}}
+@keyframes comet2{to{stroke-dashoffset:-426}}
+.rlbl{font-family:var(--aud);fill:rgba(30,30,35,.5);font-size:7px;letter-spacing:.2em}
+.ckm{fill:none;stroke:rgba(30,30,35,.8);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;
+stroke-dasharray:12;stroke-dashoffset:12;opacity:0}
+.starter{opacity:0}
+.starter.wait{animation:stin .6s ease forwards}
+@keyframes stin{to{opacity:1}}
+#starters.gone .starter{transition:opacity .3s;opacity:0!important;animation:none}
+.btxt.cg{fill:#D9C27A}.btxt.cs{fill:#C9C9CF}.btxt.cn{fill:#8FA5D8}
+#scanline{}
+#pfscan.scan #scanline{animation:pfsweep 2.2s cubic-bezier(.6,.05,.4,.95) forwards}
+@keyframes pfsweep{0%{transform:translateX(0)}100%{transform:translateX(32px)}}
+.scrib{fill:none;stroke:rgba(30,30,35,.7);stroke-width:1.3;stroke-linecap:round;
+stroke-dasharray:60;stroke-dashoffset:60}
+#restype.write .scrib{animation:scribble .9s ease forwards}
+#restype.write .scrib:nth-child(2){animation-delay:.5s}
+#restype.write .scrib:nth-child(3){animation-delay:1.0s}
+@keyframes scribble{to{stroke-dashoffset:0}}
+#rooms{opacity:0;transition:opacity 1.2s ease}
+#rooms.show{opacity:1}
+.lane,.lane2,.lane3{stroke-dasharray:2500;stroke-dashoffset:2500}
+.lane.draw,.lane2.draw,.lane3.draw{animation:lanedraw 2.3s cubic-bezier(.4,0,.3,1) forwards}
+@keyframes lanedraw{to{stroke-dashoffset:0}}
+#boardpanel{opacity:.9}
+.brow{opacity:0}
+.brow.in{animation:brin .5s cubic-bezier(.2,.9,.3,1.2) forwards}
+@keyframes brin{to{opacity:1}}
+#boardglow{filter:drop-shadow(0 0 6px rgba(255,179,0,.65))}
+.btxt{font-family:var(--aud);fill:var(--amber)}
+.bdot{fill:var(--amber)}
+.dim1{opacity:.55}.dim2{opacity:.32}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="screenclip">
+    <div id="world">
+      <svg id="cam" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="trailgrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#D9C27A" stop-opacity="0"/>
+            <stop offset="70%" stop-color="#D9C27A" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#FFF3D6" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="trailgray" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#7A7A84" stop-opacity="0"/>
+            <stop offset="70%" stop-color="#7A7A84" stop-opacity=".8"/>
+            <stop offset="100%" stop-color="#5A5A64" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="trailnavy" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3A4A70" stop-opacity="0"/>
+            <stop offset="70%" stop-color="#4A5E8E" stop-opacity=".75"/>
+            <stop offset="100%" stop-color="#8FA5D8" stop-opacity=".95"/>
+          </linearGradient>
+        </defs>
+
+        <!-- vertical track -->
+        <g id="trackset">
+          <rect class="lane" x="265" y="185" rx="95" ry="95" width="410" height="190" stroke-width="2"/>
+          <rect class="lane2" x="254" y="174" rx="106" ry="106" width="432" height="212" stroke-width="1.5"/>
+          <rect class="lane2" x="243" y="163" rx="117" ry="117" width="454" height="234" stroke-width="1.2"/>
+          <rect class="lane3" x="232" y="152" rx="128" ry="128" width="476" height="256" stroke-width="1"/>
+        </g>
+
+        <!-- rooms (outside) : call L-center, photo R-upper, records R-lower, board top-center -->
+        <g id="rooms">
+          <rect class="room" x="441" y="451" width="56" height="42" rx="7"/>
+          <rect class="room" x="330" y="76"  width="56" height="40" rx="7"/>
+          <rect class="room" x="681" y="79"  width="60" height="42" rx="7"/>
+          <g id="boardpanel">
+            <rect x="136" y="253" width="110" height="54" rx="5" fill="#0B0B08" stroke="#1c1c1e" stroke-width="2"/>
+            <g id="boardglow" visibility="hidden">
+              <g class="brow" id="br1">
+                <circle cx="170.5" cy="266" r="2.2" fill="#D9C27A"/>
+                <text class="btxt cg" x="180.5" y="266" dominant-baseline="central" text-anchor="start" font-size="11">20.34</text>
+              </g>
+              <g class="brow" id="br2">
+                <circle cx="170.5" cy="280" r="2.2" fill="#8A8A94"/>
+                <text class="btxt cs" x="180.5" y="280" dominant-baseline="central" text-anchor="start" font-size="11">20.35</text>
+              </g>
+              <g class="brow" id="br3">
+                <circle cx="170.5" cy="294" r="2.2" fill="#5A6E9E"/>
+                <text class="btxt cn" x="180.5" y="294" dominant-baseline="central" text-anchor="start" font-size="11">20.37</text>
+              </g>
+            </g>
+          </g>
+          <g id="pfscan" visibility="hidden">
+            <rect x="336" y="80" width="44" height="32" rx="3" fill="#0B0B0D"/>
+            <circle cx="348" cy="87"  r="2.6" fill="#D9C27A"/>
+            <circle cx="348" cy="96"  r="2.6" fill="#8A8A94"/>
+            <circle cx="348" cy="105" r="2.6" fill="#5A6E9E"/>
+            <line id="scanline" x1="340" y1="82" x2="340" y2="110" stroke="#E5484D" stroke-width="1.4"/>
+            <rect x="336" y="80" width="44" height="32" rx="3" fill="none" stroke="rgba(229,72,77,.35)" stroke-width="1"/>
+          </g>
+          <g id="restype" visibility="hidden">
+            <path class="scrib" d="M 693 92  q 6 -4 12 0 t 12 0 t 12 0"/>
+            <path class="scrib" d="M 693 100 q 6 -4 12 0 t 12 0 t 8 0"/>
+            <path class="scrib" d="M 693 108 q 6 -4 12 0 t 10 0"/>
+          </g>
+          <text class="rlbl" x="469" y="507" text-anchor="middle">CALL ROOM</text>
+          <text class="rlbl" x="358" y="130" text-anchor="middle">PHOTO FINISH</text>
+          <text class="rlbl" x="711" y="135" text-anchor="middle">RESULT</text>
+          <text class="rlbl" x="191" y="243" text-anchor="middle">SCOREBOARD</text>
+          <text class="rlbl" x="590" y="424" text-anchor="start">START LINE</text>
+        </g>
+
+        <!-- call room minimal check dots -->
+        <g id="chks">
+          <circle class="chk" cx="455" cy="467" r="3" fill="#D9C27A"/>
+          <circle class="chk" cx="469" cy="467" r="3" fill="#8A8A94"/>
+          <circle class="chk" cx="483" cy="467" r="3" fill="#5A6E9E"/>
+          <g id="chkmarks">
+            <path class="ckm" d="M 452 477 l 2.2 2.2 l 4 -4.4"/>
+            <path class="ckm" d="M 466 477 l 2.2 2.2 l 4 -4.4"/>
+            <path class="ckm" d="M 480 477 l 2.2 2.2 l 4 -4.4"/>
+          </g>
+        </g>
+
+        <!-- node dots (no labels) -->
+        <g id="starters">
+          <circle class="starter" id="stNavy" cx="645.3" cy="383.7" r="3.6" fill="#5A6E9E"/>
+          <circle class="starter" id="stGray" cx="613.8" cy="386.2" r="3.6" fill="#8A8A94"/>
+          <circle class="starter" id="stGold" cx="580"   cy="380.5" r="3.6" fill="#D9C27A"/>
+        </g>
+
+        <!-- race path : start â down â bottom curve â up right straight â finish -->
+        <path id="racepath" d="M 580 380.5 A 100.5 100.5 0 0 0 580 179.5 L 360 179.5" fill="none" stroke="none"/>
+        <path id="trailnavyG" class="rtrail gnavy" d="M 645.3 383.7 A 122.5 122.5 0 0 0 580 157.5 L 360 157.5"/>
+        <path id="trailnavyP" class="rtrail tnavy" d="M 645.3 383.7 A 122.5 122.5 0 0 0 580 157.5 L 360 157.5"/>
+        <path id="trailgrayG" class="rtrail ggray" d="M 613.8 386.2 A 111.5 111.5 0 0 0 580 168.5 L 360 168.5"/>
+        <path id="trailgrayP" class="rtrail tgray" d="M 613.8 386.2 A 111.5 111.5 0 0 0 580 168.5 L 360 168.5"/>
+        <path id="racetrail2" class="rtrail" d="M 580 380.5 A 100.5 100.5 0 0 0 580 179.5 L 360 179.5"/>
+        <path id="racetrail"  class="rtrail" d="M 580 380.5 A 100.5 100.5 0 0 0 580 179.5 L 360 179.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div id="phoneui"><div class="plogo">PACE RISE <span class="g">:</span> <span class="g">Node</span></div></div>
+  <div id="bezel"><div class="notch"></div></div>
+  <div id="stores"><span class="b">APP STORE</span><span class="b">GOOGLE PLAY</span></div>
+
+  <div id="marks">On your marks...</div>
+  <div id="flash"></div>
+  <div id="whiteflash"></div>
+  <div id="hint">CLICK TO REPLAY</div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+let timers=[];const at=(ms,fn)=>timers.push(setTimeout(fn,ms));
+const cam=$('#cam');
+
+/* ---------- viewBox camera ---------- */
+let vbAnim=null;
+function setVB(x,y,w,h){cam.setAttribute('viewBox',x+' '+y+' '+w+' '+h);}
+function getVB(){return cam.getAttribute('viewBox').split(' ').map(Number);}
+const eases={io:t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, out:t=>1-Math.pow(1-t,3), in:t=>t*t*t};
+function camTo(x,y,w,h,dur,ease='io'){
+  cancelAnimationFrame(vbAnim);
+  const [x0,y0,w0,h0]=getVB(), t0=performance.now(), E=eases[ease];
+  return new Promise(res=>{
+    (function step(now){
+      let t=Math.min(1,(now-t0)/dur); const e=E(t);
+      setVB(x0+(x-x0)*e, y0+(y-y0)*e, w0+(w-w0)*e, h0+(h-h0)*e);
+      if(t<1) vbAnim=requestAnimationFrame(step); else res();
+    })(t0);
+  });
+}
+
+function resetAll(){
+  timers.forEach(clearTimeout);timers=[];cancelAnimationFrame(vbAnim);
+  $('#bezel').getAnimations().forEach(a=>a.cancel());
+  $('#phoneui').classList.remove('on','hero');
+  $('#stores').classList.remove('on');
+  $('#marks').classList.remove('type','gone');
+  $('#flash').classList.remove('bang');$('#whiteflash').classList.remove('pop');
+  $('#hint').classList.remove('on');$('#stage').classList.remove('shake');
+  document.querySelectorAll('.ndot,.chk').forEach(n=>{n.classList.remove('lit');});
+  document.querySelectorAll('.brow').forEach(b=>b.classList.remove('in'));
+  document.querySelectorAll('.rtrail').forEach(el=>{el.classList.remove('go');
+    el.style.animation='none';void el.getBoundingClientRect();el.style.animation='';});
+  document.querySelectorAll('.lane,.lane2,.lane3').forEach(l=>{l.classList.remove('draw');
+    l.style.animation='none';void l.getBoundingClientRect();l.style.animation='';});
+  $('#rooms').classList.remove('show');
+  $('#starters').classList.remove('gone');
+  document.querySelectorAll('.starter').forEach(st=>st.classList.remove('wait'));
+  $('#pfscan').classList.remove('scan');$('#pfscan').setAttribute('visibility','hidden');
+  $('#restype').setAttribute('visibility','hidden');$('#restype').classList.remove('write');
+  document.querySelectorAll('.ckm,.scrib').forEach(m=>{m.getAnimations().forEach(a=>a.cancel());});
+  document.querySelectorAll('.ckm').forEach(m=>m.style.opacity='0');
+  document.querySelectorAll('.scrib').forEach(p=>{p.style.animation='none';void p.getBoundingClientRect();p.style.animation='';});
+  $('#boardglow').setAttribute('visibility','hidden');
+  $('#world').classList.remove('ghost');
+  setVB(-10,-50,980,660); // aerial opening framing
+}
+
+function play(){
+  resetAll();
+
+  /* opening A : line-draw aerial 0-3.2s */
+  at(200,()=>document.querySelectorAll('.lane,.lane2,.lane3').forEach((l,i)=>at(i*160,()=>l.classList.add('draw'))));
+  at(2300,()=>$('#rooms').classList.add('show'));
+
+  /* call room 3.2-7.2 */
+  at(3200,()=>camTo(370,350,240,240,2400));
+  at(5200,()=>document.querySelectorAll('.chk').forEach((c,i)=>at(i*520,()=>c.classList.add('lit'))));
+  at(5700,()=>document.querySelectorAll('.ckm').forEach((m,i)=>at(i*520,()=>{
+    m.style.opacity='1';
+    m.animate([{strokeDashoffset:12},{strokeDashoffset:0}],{duration:450,easing:'ease',fill:'forwards'});})));
+
+  /* start 7.2-12.2 : three node dots stand by */
+  at(7200,()=>camTo(470,230,270,270,2400));
+  at(8300,()=>document.querySelectorAll('.starter').forEach((st,i)=>at(i*300,()=>st.classList.add('wait'))));
+  at(8900,()=>$('#marks').classList.add('type'));
+  at(12200,()=>{$('#flash').classList.add('bang');$('#stage').classList.add('shake');
+    at(400,()=>$('#stage').classList.remove('shake'));$('#marks').classList.add('gone');});
+
+  /* 3-runner staggered race 12.6-17.4 */
+  at(12600,()=>{$('#starters').classList.add('gone');
+    document.querySelectorAll('.rtrail').forEach(t=>t.classList.add('go'));});
+  at(12600,()=>camTo(480,120,330,330,1500,'in'));
+  at(14100,()=>camTo(520,90,340,340,1400,'io'));
+  at(15500,()=>camTo(225,22,310,310,1900,'out'));
+
+  /* finish 17.2 */
+  at(17200,()=>{$('#whiteflash').classList.add('pop');});
+
+  /* PHOTO FINISH scan 17.8-20.6 */
+  at(17800,()=>camTo(278,12,160,160,1400));
+  at(19000,()=>{$('#pfscan').setAttribute('visibility','visible');$('#pfscan').classList.add('scan');});
+  at(21400,()=>$('#pfscan').setAttribute('visibility','hidden'));
+
+  /* RESULT typing 21.4-24.6 */
+  at(21400,()=>camTo(646,20,160,160,1400));
+  at(22800,()=>{const el=$('#restype');el.setAttribute('visibility','visible');
+    el.querySelectorAll('.scrib').forEach((p,i)=>{
+      p.animate([{strokeDashoffset:60},{strokeDashoffset:0}],{duration:900,delay:i*500,easing:'ease',fill:'forwards'});});});
+
+  /* SCOREBOARD 25-29 */
+  at(25000,()=>camTo(81,170,220,220,1800,'out'));
+  at(26800,()=>{$('#boardglow').setAttribute('visibility','visible');
+    ['#br1','#br2','#br3'].forEach((b,i)=>at(i*450,()=>$(b).classList.add('in')));});
+
+  /* to field center 29.4-31 */
+  at(29400,()=>camTo(350,160,240,240,1600,'io'));
+
+  /* zoomout: stadium settles INSIDE phone; bezel shrinks with same easing 31-34.2 */
+  at(31000,()=>{
+    const vw=innerWidth,vh=innerHeight;
+    const phW=Math.min(vw,vh)*0.34*0.86, phH=Math.min(vw,vh)*0.68*0.86;
+    const cw=640,chh=310,cx=430,cy=280;
+    const sc=Math.min(phW/cw, phH/chh);
+    camTo(cx-(vw/sc)/2, cy-(vh/sc)/2, vw/sc, vh/sc, 3200,'io');
+    const bz=$('#bezel');
+    bz.animate([{opacity:0,transform:'translate(-50%,-50%) scale(3.4)'},
+                {opacity:1,transform:'translate(-50%,-50%) scale(1)'}],
+               {duration:3200,easing:'cubic-bezier(.45,0,.55,1)',fill:'forwards'});
+  });
+  at(34400,()=>$('#world').classList.add('ghost'));
+
+  /* logo over ghost field -> bezel-only fade -> stores */
+  at(35400,()=>$('#phoneui').classList.add('on','hero'));
+  at(35800,()=>$('#bezel').animate([{opacity:1},{opacity:0}],{duration:1500,easing:'ease',fill:'forwards'}));
+  at(37600,()=>$('#stores').classList.add('on'));
+  at(40600,()=>$('#hint').classList.add('on'));
+
+  /* auto-loop: restart the film continuously */
+  at(44000,()=>play());
+}
+
+document.addEventListener('click',play);
+document.addEventListener('keydown',e=>{if(e.key==='r'||e.key==='R')play();});
+window.addEventListener('load',()=>setTimeout(play,500));
+</script>
+</body>
+</html>
