@@ -81,7 +81,7 @@ NEXT_PUBLIC_SANITY_DATASET=      # production
 SANITY_API_TOKEN=                # Sanity 읽기 토큰
 INSTAGRAM_ACCESS_TOKEN=          # Instagram Long-lived Token
 RESEND_API_KEY=                  # Resend API 키
-CONTACT_EMAIL_TO=                # 문의 수신 이메일 (기본: pacerise.run@gmail.com)
+CONTACT_EMAIL_TO=                # 문의 수신 이메일 (기본: info@pace-rise.com)
 NEXT_PUBLIC_GA_MEASUREMENT_ID=   # Google Analytics 4 Measurement ID (G-XXXXXXXXXX)
 NEXT_PUBLIC_SITE_URL=            # https://pace-rise.com
 NEXT_PUBLIC_RECORDS_URL=         # https://records.pace-rise.com
@@ -97,6 +97,23 @@ NEXT_PUBLIC_RECORDS_URL=         # https://records.pace-rise.com
 ### siteSettings (사이트 전역 설정)
 - `companyName`, `description`/`descriptionEn`, `email`, `instagram`
 - `website`, `recordsSystemUrl`, `logo`, `ogImage`
+
+## Content Updates (코드 수정 없이 자주 바꾸는 것들)
+
+### 언론 보도 추가 — `/news` 하단 "언론 보도"
+- `src/data/press.ts`의 `pressItems` 배열에 `{ date, outlet, title, url }` 항목 추가 → 빌드/배포
+- 최신순 자동 정렬, 클릭 시 새 탭으로 기사 이동. 6건 초과 시 "더 보기" 버튼 표시
+
+### 서비스 페이지 현장 사진 (페이지당 최대 4장, 히어로 바로 아래 표시)
+- `public/images/services/<pacing-light | node | brand-events>/` 폴더에 사진을 넣고 빌드/배포
+- 파일명 순으로 최대 4장 표시 (예: `01-xxx.webp`). 폴더가 비어 있으면 영역 자체가 숨겨짐
+- 브랜드 · 이벤트는 사진 하단에 캡션 표시: 파일명 slug(`01-sprint-challenge` → `sprint-challenge`)를
+  `BrandEventsDetail.tsx`의 `photoCaptionKeys` + 번역 키(`brand_events.photo_*`)에 등록
+- 권장: 가로형 4:3, 긴 변 1600px 이하, 장당 500KB 이하 (`sips -Z 1600 01.jpg` 로 리사이즈)
+
+### 회사 이메일 등 공용 정보
+- `src/lib/site.ts` (`CONTACT_EMAIL`) 한 곳만 수정
+- 문의 폼 수신 주소는 코드가 아니라 **EmailJS 대시보드**(템플릿 `template_1b38kxr`의 To Email)에서 변경
 
 ## Development
 

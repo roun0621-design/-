@@ -3,6 +3,7 @@
 // News List Content – Instagram Feed Based
 // Behold.so API → 카드형 레이아웃
 // 클릭 시 Instagram 게시물로 이동
+// 하단: 언론 보도(PressSection)
 // ──────────────────────────────────────────
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
@@ -17,6 +18,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import type { InstagramPost } from "@/types";
+import PressSection from "@/components/news/PressSection";
+import { INSTAGRAM_URL } from "@/lib/site";
 
 /* placeholder patterns */
 const placeholderPatterns = [
@@ -91,15 +94,15 @@ export default function NewsListContent() {
             NEWS
           </motion.p>
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-pr-primary"
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-pr-primary"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            {t("title")}
+            {t("heading")}
           </motion.h1>
           <motion.p
-            className="mt-4 text-lg text-pr-secondary font-sans"
+            className="mt-4 text-base md:text-lg text-pr-secondary font-display"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -139,7 +142,7 @@ export default function NewsListContent() {
                 {t("no_posts")}
               </p>
               <a
-                href="https://www.instagram.com/pace.rise"
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-6 text-pr-brand font-display text-sm tracking-wider hover:underline"
@@ -226,7 +229,7 @@ export default function NewsListContent() {
                 transition={{ delay: 0.4 }}
               >
                 <a
-                  href="https://www.instagram.com/pace.rise"
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light hover:border-pr-brand transition-all duration-300 group"
@@ -246,6 +249,11 @@ export default function NewsListContent() {
           )}
         </div>
       </section>
+
+      <div className="section-divider" />
+
+      {/* Press coverage */}
+      <PressSection />
     </div>
   );
 }

@@ -5,6 +5,7 @@
 import type { Metadata } from "next";
 import { Audiowide, Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
+import { CONTACT_EMAIL } from "@/lib/site";
 import "./globals.css";
 
 // ── Google Fonts ──
@@ -96,7 +97,7 @@ const jsonLd = {
   alternateName: "페이스라이즈",
   url: "https://pace-rise.com",
   logo: "https://pace-rise.com/logo-character-gold.png",
-  email: "pacerise.run@gmail.com",
+  email: CONTACT_EMAIL,
   sameAs: ["https://www.instagram.com/pace.rise"],
   description:
     "LED 트랙 페이싱 시스템(웨이브라이트) 및 경기 운영 시스템(PACE RISE : Node)을 통해 육상 경기의 새로운 기준을 제시하는 스포츠 테크놀로지 기업",
@@ -119,6 +120,12 @@ export default function RootLayout({
       className={`${audiowide.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        {/* Pretendard (Korean) – must be a <link>; a CSS @import after other rules is ignored */}
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"

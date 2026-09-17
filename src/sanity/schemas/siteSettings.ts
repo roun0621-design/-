@@ -30,7 +30,7 @@ const siteSettings = {
       name: "email",
       title: "대표 이메일",
       type: "string",
-      initialValue: "pacerise.run@gmail.com",
+      initialValue: "info@pace-rise.com",
     },
     {
       name: "instagram",

@@ -7,6 +7,8 @@ import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 import TrackAnimation from "@/components/animations/TrackAnimation";
+import ServicePhotos from "@/components/services/ServicePhotos";
+import type { ServicePhoto } from "@/lib/servicePhotos";
 import {
   Zap,
   Eye,
@@ -34,7 +36,7 @@ const useCases = [
   "training",
 ] as const;
 
-export default function PacingLightDetail() {
+export default function PacingLightDetail({ photos = [] }: { photos?: ServicePhoto[] }) {
   const t = useTranslations("pacing_light");
 
   return (
@@ -69,6 +71,14 @@ export default function PacingLightDetail() {
               </a>
             </div>
           </motion.div>
+
+          {/* Field photos – right under the hero copy (public/images/services/pacing-light) */}
+          <ServicePhotos
+            photos={photos}
+            alt={t("photos_alt")}
+            label="ON THE TRACK"
+            className="mt-14 md:mt-20"
+          />
         </div>
       </section>
 

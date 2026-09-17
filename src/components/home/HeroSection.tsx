@@ -115,6 +115,25 @@ export default function HeroSection() {
           </Link>
         </motion.div>
 
+        {/* Main photo – Wave Light on track (public/images/home/hero-*.webp) */}
+        <motion.figure
+          className="mt-14 md:mt-20 overflow-hidden rounded-2xl md:rounded-3xl border border-pr-border"
+          style={{ boxShadow: "0 20px 60px rgba(0, 0, 0, 0.12)" }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.65 }}
+        >
+          <picture>
+            <source media="(min-width: 640px)" srcSet="/images/home/hero-wide.webp" />
+            <img
+              src="/images/home/hero-mobile.webp"
+              alt={t("photo_alt")}
+              className="block w-full aspect-[4/3] sm:aspect-[21/9] object-cover"
+              loading="eager"
+            />
+          </picture>
+        </motion.figure>
+
         {/* Target audiences */}
         <motion.div
           className="mt-12 md:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-3xl mx-auto"

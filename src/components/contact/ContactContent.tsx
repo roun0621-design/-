@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { nl2br } from "@/utils/nl2br";
+import { CONTACT_EMAIL, INSTAGRAM_URL } from "@/lib/site";
 import type { ContactFormData } from "@/types";
 
 // EmailJS Configuration
@@ -289,8 +290,8 @@ function ContactForm() {
               <h3 className="text-lg font-semibold text-pr-primary mb-4">{t("info_title")}</h3>
 
               {[
-                { icon: Mail, label: t("info_email"), value: "pacerise.run@gmail.com", href: "mailto:pacerise.run@gmail.com" },
-                { icon: Camera, label: t("info_instagram"), value: "@pace.rise", href: "https://www.instagram.com/pace.rise" },
+                { icon: Mail, label: t("info_email"), value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+                { icon: Camera, label: t("info_instagram"), value: "@pace.rise", href: INSTAGRAM_URL },
                 { icon: Globe, label: t("info_website"), value: "pace-rise.com", href: "https://pace-rise.com" },
               ].map(({ icon: Icon, label, value, href }, i) => (
                 <div key={i} className="bg-white rounded-xl border border-pr-border p-5 hover:border-pr-brand/30 transition-colors duration-300">
@@ -314,7 +315,7 @@ function ContactForm() {
               ))}
 
               <a
-                href="mailto:pacerise.run@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="block text-center px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light transition-all duration-300"
               >
                 {t("direct_email")}

@@ -10,7 +10,11 @@
     "pacing_light": "Pacing Light",
     "news": "News",
     "contact": "Contact",
-    "node_cta": "Open Node"
+    "node_cta": "Open Node",
+    "brand_events": "Brand & Events",
+    "service_pacing_desc": "LED pace-guidance system",
+    "service_node_desc": "Competition operating system (COS)",
+    "service_brand_desc": "Brand running events, end to end"
   },
   "hero": {
     "tagline": "SPORTS TECH STUDIO",
@@ -27,7 +31,8 @@
     "audience_elite": "Maximizing elite performance",
     "audience_elite_label": "ELITE",
     "audience_masters": "Innovating masters & amateur culture",
-    "audience_masters_label": "MASTERS"
+    "audience_masters_label": "MASTERS",
+    "photo_alt": "Athletes running alongside LED pacing lights on a blue track, with a PACE RISE board"
   },
   "home": {
     "services_subtitle": "Core Services of PACE RISE",
@@ -76,7 +81,20 @@
     "trust_stat_node_value": "Node",
     "trust_stat_node_label": "WA-certified own HW · self-built operating system",
     "trust_federation_line": "Wave Light deployed at athletics federation meets nationwide",
-    "trust_cta": "See our track record"
+    "trust_cta": "See our track record",
+    "intro_label": "WHO WE ARE",
+    "intro_title": "PACE RISE is a sports-tech company that runs track and running events with technology.",
+    "intro_desc": "LED pacing lights that draw the pace on the track, Node — an operating system covering every step of a meet — and the tech and operations behind brand running events. Hardware, software and on-site crew, all delivered by one team.",
+    "intro_paths_title": "What brings you here?",
+    "intro_path_org_who": "Federations · Meet organizers",
+    "intro_path_org_desc": "From result entry to call room, scoreboard and broadcast — run the whole meet on one system.",
+    "intro_path_org_link": "Node · Competition OS",
+    "intro_path_team_who": "Teams · Coaches · Athletes",
+    "intro_path_team_desc": "A light that runs the track at your target pace, for training and record attempts.",
+    "intro_path_team_link": "Pacing Light",
+    "intro_path_brand_who": "Brands · Agencies",
+    "intro_path_brand_desc": "From concept to gear and on-site operations, one team handles your running event.",
+    "intro_path_brand_link": "Brand & Events"
   },
   "brand_events": {
     "meta_title": "Brand · Event Collaboration · PACE RISE",
@@ -126,7 +144,11 @@
     "case_descente_role": "Technical Partner",
     "cta_title": "Have a project to build together?",
     "cta_desc": "Let's talk about how to bring your brand's running to life.",
-    "cta_button": "Propose a collaboration"
+    "cta_button": "Propose a collaboration",
+    "photos_alt": "Brand running event on site",
+    "photo_sprint": "Street sprint challenge",
+    "photo_slowjog": "Slow jogging session",
+    "photo_treadmill": "In-store treadmill challenge"
   },
   "about": {
     "title": "About PACE RISE",
@@ -154,7 +176,21 @@
     "footprint_partners_desc": "Wave Light adoption across all 4 major athletics federations",
     "footprint_system_label": "System",
     "footprint_system_desc": "Korea's only integrated Wave Light hardware & NODE software control",
-    "clients_title": "Our Partners"
+    "clients_title": "Our Partners",
+    "company_title": "Company Overview",
+    "company_name_label": "Company",
+    "company_name": "PACE RISE · (주)페이스라이즈",
+    "company_ceo_label": "CEO",
+    "company_ceo": "Roun Kim (김로운)",
+    "company_business_label": "Business",
+    "company_business": "LED pacing light (Wave Light) operations\nPACE RISE : Node — competition operating system\nTech & on-site operations for brand running events",
+    "company_reg_label": "Business Reg. No.",
+    "company_email_label": "Email",
+    "company_web_label": "Web · Social",
+    "cta_title": "Have a project in mind?",
+    "cta_desc": "Meet operations, system adoption or brand collaboration — we'd love to hear from you.",
+    "cta_button": "Contact Us",
+    "photo_alt": "Briefing participants on site at a running event"
   },
   "news": {
     "title": "News",
@@ -164,7 +200,12 @@
     "back_to_list": "Back to News",
     "no_posts": "No news articles yet.",
     "share": "Share",
-    "related": "Related News"
+    "related": "Related News",
+    "heading": "PACE RISE News",
+    "press_title": "In the Press",
+    "press_subtitle": "PACE RISE in the media",
+    "press_read": "Read article",
+    "press_more": "Show more"
   },
   "contact": {
     "title": "Contact Us",
@@ -243,7 +284,8 @@
     "diamond_title": "Technology Proven at the Diamond League",
     "diamond_desc": "The Wavelight LED pacing system is officially adopted at major international events including the World Athletics Diamond League.\n\nPACE RISE brings this record-breaking light technology to Korean tracks.",
     "cta_title": "Want to Adopt the Pacing Light System?",
-    "cta_desc": "We'll propose the optimal solution for your event scale and track environment."
+    "cta_desc": "We'll propose the optimal solution for your event scale and track environment.",
+    "photos_alt": "Pacing Light in the field"
   },
   "cos": {
     "meta_title": "COS · Competition Operating System · PACE RISE : Node",
@@ -305,6 +347,8 @@
     "cta_title": "Want to Adopt PACE RISE : Node?",
     "cta_desc": "We'll propose the optimal solution for your event scale and operational environment.",
     "cta_demo_desc": "Experience the exact same system used in live competitions.",
+    "app_title": "Get the App",
+    "app_desc": "Access Node anytime, anywhere with the iOS & Android apps.",
     "demo_process_title": "Demo Experience Process",
     "demo_step_1": "Request Demo",
     "demo_step_1_desc": "Submit a demo request via the button below or contact page",
@@ -313,7 +357,8 @@
     "demo_step_3": "Demo Setup",
     "demo_step_3_desc": "Custom demo environment configured with access URL provided",
     "demo_step_4": "Experience & Consult",
-    "demo_step_4_desc": "Hands-on trial followed by adoption consultation"
+    "demo_step_4_desc": "Hands-on trial followed by adoption consultation",
+    "photos_alt": "PACE RISE : Node in operation"
   },
   "footer": {
     "description": "A sportstech studio leading the qualitative growth of Korean track & field — PACE RISE is with you.",

@@ -3,6 +3,7 @@
 // ──────────────────────────────────────────
 import { unstable_setRequestLocale } from "next-intl/server";
 import HeroSection from "@/components/home/HeroSection";
+import IntroSection from "@/components/home/IntroSection";
 import TrustSection from "@/components/home/TrustSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import VisionSection from "@/components/home/VisionSection";
@@ -19,6 +20,8 @@ export default function HomePage({
   return (
     <>
       <HeroSection />
+      <div className="section-divider" />
+      <IntroSection />
       <div className="section-divider" />
       <TrustSection />
       <ServicesSection />

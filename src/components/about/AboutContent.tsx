@@ -2,6 +2,7 @@
 // ──────────────────────────────────────────
 // About Page – Company & Technology (White Theme)
 // History section: Key Milestones + Operational Footprint
+// Closing: Company Overview (회사 개요) + Contact CTA
 // ──────────────────────────────────────────
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
@@ -16,8 +17,11 @@ import {
   Handshake,
   Cpu,
   CalendarCheck,
+  ArrowRight,
 } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
+import { CONTACT_EMAIL, INSTAGRAM_URL } from "@/lib/site";
 
 const techItems = [
   { key: "pacing", icon: Zap },
@@ -143,6 +147,24 @@ export default function AboutPage() {
           >
             {nl2br(t("subtitle"))}
           </motion.p>
+        </div>
+
+        {/* Photo banner (public/images/about/team-briefing.webp) */}
+        <div className="max-w-5xl mx-auto px-6 lg:px-8 mt-12 md:mt-16">
+          <motion.figure
+            className="overflow-hidden rounded-2xl md:rounded-3xl border border-pr-border"
+            style={{ boxShadow: "0 20px 60px rgba(0, 0, 0, 0.10)" }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <img
+              src="/images/about/team-briefing.webp"
+              alt={t("photo_alt")}
+              className="block w-full aspect-[3/2] md:aspect-[21/9] object-cover object-[center_60%]"
+              loading="eager"
+            />
+          </motion.figure>
         </div>
       </section>
 
@@ -340,6 +362,75 @@ export default function AboutPage() {
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          COMPANY OVERVIEW + CONTACT CTA
+         ════════════════════════════════════════ */}
+      <section className="py-14 md:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-10 md:mb-14">
+            <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">COMPANY</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-pr-primary">{t("company_title")}</h2>
+          </div>
+
+          <motion.dl
+            className="rounded-2xl border border-pr-border divide-y divide-pr-border overflow-hidden"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            {[
+              { label: t("company_name_label"), value: t("company_name") },
+              { label: t("company_ceo_label"), value: t("company_ceo") },
+              { label: t("company_business_label"), value: nl2br(t("company_business")) },
+              { label: t("company_reg_label"), value: "773-81-03370" },
+              {
+                label: t("company_email_label"),
+                value: (
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-pr-brand transition-colors">
+                    {CONTACT_EMAIL}
+                  </a>
+                ),
+              },
+              {
+                label: t("company_web_label"),
+                value: (
+                  <>
+                    <a href="https://pace-rise.com" className="hover:text-pr-brand transition-colors">
+                      pace-rise.com
+                    </a>
+                    <span className="mx-2 text-pr-tertiary">·</span>
+                    <a
+                      href={INSTAGRAM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-pr-brand transition-colors"
+                    >
+                      @pace.rise
+                    </a>
+                  </>
+                ),
+              },
+            ].map(({ label, value }, i) => (
+              <div key={i} className="flex flex-col sm:flex-row gap-1 sm:gap-6 px-6 py-4 md:px-8 md:py-5">
+                <dt className="sm:w-40 shrink-0 text-[13px] text-pr-tertiary font-sans">{label}</dt>
+                <dd className="text-[15px] text-pr-primary leading-relaxed font-sans">{value}</dd>
+              </div>
+            ))}
+          </motion.dl>
+
+          <div className="mt-14 md:mt-20 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-pr-primary mb-4">
+              {t("cta_title")}
+            </h3>
+            <p className="text-pr-secondary mb-8 font-sans">{t("cta_desc")}</p>
+            <Link href="/contact" className="btn-primary">
+              {t("cta_button")}
+              <ArrowRight size={16} strokeWidth={2} />
+            </Link>
           </div>
         </div>
       </section>

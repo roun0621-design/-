@@ -22,9 +22,9 @@ const tailNavItems = [
 ] as const;
 
 const serviceItems = [
-  { label: "PACING LIGHT", href: "/services/pacing-light", icon: Zap },
-  { label: "PACE RISE : Node", href: "/services/cos", icon: Monitor },
-  { label: "BRAND & EVENTS", href: "/services/brand-events", icon: Sparkles },
+  { label: "PACING LIGHT", descKey: "service_pacing_desc", href: "/services/pacing-light", icon: Zap },
+  { label: "PACE RISE : Node", descKey: "service_node_desc", href: "/services/cos", icon: Monitor },
+  { label: "BRAND & EVENTS", descKey: "service_brand_desc", href: "/services/brand-events", icon: Sparkles },
 ] as const;
 
 export default function Header() {
@@ -92,8 +92,8 @@ export default function Header() {
                 <ChevronDown size={13} strokeWidth={2} className="transition-transform duration-200 group-hover:rotate-180" />
               </button>
               <div className="absolute left-0 top-full pt-2 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
-                <div className="w-64 rounded-2xl border border-pr-border bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] p-2">
-                  {serviceItems.map(({ label, href, icon: Icon }) => (
+                <div className="w-72 rounded-2xl border border-pr-border bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] p-2">
+                  {serviceItems.map(({ label, descKey, href, icon: Icon }) => (
                     <Link
                       key={href}
                       href={href}
@@ -102,8 +102,13 @@ export default function Header() {
                       <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-pr-brand-light text-pr-brand shrink-0">
                         <Icon size={16} strokeWidth={1.5} />
                       </span>
-                      <span className="font-display text-[12px] tracking-wider text-pr-primary group-hover/item:text-pr-brand transition-colors">
-                        {label}
+                      <span className="min-w-0">
+                        <span className="block font-display text-[12px] tracking-wider text-pr-primary group-hover/item:text-pr-brand transition-colors">
+                          {label}
+                        </span>
+                        <span className="block mt-0.5 text-[11.5px] leading-snug text-pr-secondary">
+                          {t(descKey)}
+                        </span>
                       </span>
                     </Link>
                   ))}
@@ -201,7 +206,7 @@ export default function Header() {
                 {t("services")}
               </span>
             </div>
-            {serviceItems.map(({ label, href, icon: Icon }) => (
+            {serviceItems.map(({ label, descKey, href, icon: Icon }) => (
               <Link
                 key={href}
                 href={href}
@@ -213,7 +218,10 @@ export default function Header() {
                 <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-pr-brand-light text-pr-brand shrink-0">
                   <Icon size={16} strokeWidth={1.5} />
                 </span>
-                <span className="font-display text-[13px] tracking-wider text-pr-primary">{label}</span>
+                <span className="min-w-0">
+                  <span className="block font-display text-[13px] tracking-wider text-pr-primary">{label}</span>
+                  <span className="block mt-0.5 text-[12px] leading-snug text-pr-secondary">{t(descKey)}</span>
+                </span>
               </Link>
             ))}
 

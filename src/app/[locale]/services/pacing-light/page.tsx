@@ -6,6 +6,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import PacingLightDetail from "@/components/services/PacingLightDetail";
 import { buildSeoMeta } from "@/utils/seo";
+import { getServicePhotos } from "@/lib/servicePhotos";
 
 export async function generateMetadata({
   params: { locale },
@@ -27,5 +28,5 @@ export default function PacingLightPage({
   params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
-  return <PacingLightDetail />;
+  return <PacingLightDetail photos={getServicePhotos("pacing-light")} />;
 }

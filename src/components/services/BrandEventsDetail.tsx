@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
+import ServicePhotos from "@/components/services/ServicePhotos";
+import type { ServicePhoto } from "@/lib/servicePhotos";
 
 const offers = [
   { key: "plan", icon: ClipboardList },
@@ -38,8 +40,18 @@ const why = [
 
 const cases = ["asics", "mizuno", "descente"] as const;
 
-export default function BrandEventsDetail() {
+// photo filename slug → caption key (public/images/services/brand-events)
+const photoCaptionKeys = {
+  "sprint-challenge": "photo_sprint",
+  "slow-jogging": "photo_slowjog",
+  "treadmill-challenge": "photo_treadmill",
+} as const;
+
+export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePhoto[] }) {
   const t = useTranslations("brand_events");
+  const captions = Object.fromEntries(
+    Object.entries(photoCaptionKeys).map(([slug, key]) => [slug, t(key)])
+  );
 
   return (
     <div className="pt-16 md:pt-24">
@@ -87,6 +99,14 @@ export default function BrandEventsDetail() {
               <ArrowRight size={16} strokeWidth={2} />
             </Link>
           </motion.div>
+
+          {/* Field photos (public/images/services/brand-events) */}
+          <ServicePhotos
+            photos={photos}
+            alt={t("photos_alt")}
+            captions={captions}
+            className="mt-14 md:mt-20"
+          />
         </div>
       </section>
 

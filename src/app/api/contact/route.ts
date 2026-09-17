@@ -4,8 +4,9 @@
 // 환경변수: RESEND_API_KEY, CONTACT_EMAIL_TO
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { CONTACT_EMAIL } from "@/lib/site";
 
-const ADMIN_EMAIL = process.env.CONTACT_EMAIL_TO || "pacerise.run@gmail.com";
+const ADMIN_EMAIL = process.env.CONTACT_EMAIL_TO || CONTACT_EMAIL;
 
 // Lazy initialization to avoid build-time errors
 function getResend() {

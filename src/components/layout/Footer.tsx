@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Mail, ExternalLink, Camera } from "lucide-react";
 import { nl2br } from "@/utils/nl2br";
+import { CONTACT_EMAIL, INSTAGRAM_URL } from "@/lib/site";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -17,7 +18,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <div className="flex items-center gap-3">
               <img
                 src="/logo-character-gold.png"
@@ -75,27 +76,35 @@ export default function Footer() {
                   PACE RISE : Node
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/services/brand-events"
+                  className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200"
+                >
+                  {nav("brand_events")}
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Contact */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-3">
             <h4 className="font-display text-xs tracking-[0.2em] text-pr-primary uppercase mb-5">
               {t("contact_us")}
             </h4>
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:pacerise.run@gmail.com"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200 inline-flex items-center gap-1.5"
                 >
                   <Mail size={13} strokeWidth={1.5} />
-                  Email
+                  {CONTACT_EMAIL}
                 </a>
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com/pace.rise"
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-pr-secondary hover:text-pr-brand transition-colors duration-200 inline-flex items-center gap-1.5"

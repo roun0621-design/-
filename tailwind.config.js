@@ -20,7 +20,7 @@ module.exports = {
         "pr-brand-light": "rgba(183, 159, 88, 0.10)",
       },
       fontFamily: {
-        display: ["var(--font-audiowide)", "monospace"],
+        display: ["var(--font-audiowide)", "Pretendard Variable", "Pretendard", "sans-serif"],
         sans: [
           "var(--font-inter)",
           "Pretendard Variable",
