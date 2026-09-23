@@ -8,6 +8,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { ServicePhoto } from "@/lib/servicePhotos";
+import Parallax from "@/components/motion/Parallax";
 
 interface Props {
   photos: ServicePhoto[];
@@ -47,14 +48,17 @@ export default function ServicePhotos({ photos, alt, label, captions, className 
               viewport={{ once: true }}
               transition={{ delay: (i % 2) * 0.1, duration: 0.6 }}
             >
-              <Image
-                src={src}
-                alt={title ? `${alt} – ${title}` : `${alt} ${i + 1}`}
-                fill
-                unoptimized
-                sizes={wide ? "(max-width: 1024px) 100vw, 960px" : "(max-width: 640px) 100vw, 50vw"}
-                className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
-              />
+              <Parallax className="absolute inset-0" amount={5} scale={1.12}>
+                <Image
+                  src={src}
+                  alt={title ? `${alt} – ${title}` : `${alt} ${i + 1}`}
+                  fill
+                  unoptimized
+                  priority={i === 0}
+                  sizes={wide ? "(max-width: 1024px) 100vw, 960px" : "(max-width: 640px) 100vw, 50vw"}
+                  className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                />
+              </Parallax>
               {captions && (
                 <figcaption className="absolute inset-x-0 bottom-0 px-5 pb-4 pt-16 md:px-6 md:pb-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                   <span className="flex items-center gap-2 font-display text-[10px] tracking-[0.22em] text-[#D9C27A]">

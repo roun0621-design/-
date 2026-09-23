@@ -8,6 +8,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Menu, X, Globe, ChevronDown, ExternalLink, Zap, Monitor, Sparkles } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
+import ScrollProgress from "@/components/motion/ScrollProgress";
 
 const NODE_URL = "https://pace-rise-node.com";
 
@@ -58,6 +59,7 @@ export default function Header() {
           : "bg-white/70 backdrop-blur-md"
       }`}
     >
+      <ScrollProgress />
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 md:h-[72px]">
           {/* Logo */}

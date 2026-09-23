@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 import TrackAnimation from "@/components/animations/TrackAnimation";
 import ServicePhotos from "@/components/services/ServicePhotos";
+import RevealText from "@/components/motion/RevealText";
 import type { ServicePhoto } from "@/lib/servicePhotos";
 import {
   Zap,
@@ -93,7 +94,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <TrackAnimation />
+            <TrackAnimation hint={t("track_hint")} />
           </motion.div>
         </div>
       </section>
@@ -224,9 +225,10 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
             <h3 className="text-2xl md:text-3xl font-bold text-pr-primary mb-6">
               {t("diamond_title")}
             </h3>
-            <p className="text-pr-secondary leading-relaxed font-sans max-w-2xl mx-auto">
-              {nl2br(t("diamond_desc"))}
-            </p>
+            <RevealText
+              text={t("diamond_desc")}
+              className="text-pr-secondary leading-relaxed font-sans max-w-2xl mx-auto"
+            />
           </motion.div>
         </div>
       </section>

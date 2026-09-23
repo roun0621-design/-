@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Monitor, Zap, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
+import RevealText from "@/components/motion/RevealText";
 
 const paths = [
   { key: "org", icon: Monitor, href: "/services/cos" },
@@ -32,9 +33,11 @@ export default function IntroSection() {
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">
               {t("intro_label")}
             </p>
-            <h2 className="text-2xl md:text-[32px] font-bold tracking-tight text-pr-primary leading-[1.4]">
-              {t("intro_title")}
-            </h2>
+            <RevealText
+              as="h2"
+              text={t("intro_title")}
+              className="text-2xl md:text-[32px] font-bold tracking-tight text-pr-primary leading-[1.4]"
+            />
             <p className="mt-6 text-[15px] md:text-base text-pr-secondary leading-relaxed font-sans">
               {t("intro_desc")}
             </p>

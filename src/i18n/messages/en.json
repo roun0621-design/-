@@ -285,7 +285,8 @@
     "diamond_desc": "The Wavelight LED pacing system is officially adopted at major international events including the World Athletics Diamond League.\n\nPACE RISE brings this record-breaking light technology to Korean tracks.",
     "cta_title": "Want to Adopt the Pacing Light System?",
     "cta_desc": "We'll propose the optimal solution for your event scale and track environment.",
-    "photos_alt": "Pacing Light in the field"
+    "photos_alt": "Pacing Light in the field",
+    "track_hint": "Scroll to run the lights"
   },
   "cos": {
     "meta_title": "COS · Competition Operating System · PACE RISE : Node",

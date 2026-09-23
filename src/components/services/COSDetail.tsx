@@ -9,6 +9,9 @@ import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 import PipelineAnimation from "@/components/animations/PipelineAnimation";
 import ServicePhotos from "@/components/services/ServicePhotos";
+import OperatorShowcase from "@/components/services/OperatorShowcase";
+import CountUp from "@/components/motion/CountUp";
+import RevealText from "@/components/motion/RevealText";
 import type { ServicePhoto } from "@/lib/servicePhotos";
 import {
   Monitor,
@@ -189,7 +192,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <p className="font-display text-3xl md:text-4xl text-pr-brand">{value}</p>
+                <p className="font-display text-3xl md:text-4xl text-pr-brand"><CountUp value={value} /></p>
                 <p className="text-sm text-pr-secondary mt-2 font-sans">{t(`stat_${key}` as any)}</p>
               </motion.div>
             ))}
@@ -211,7 +214,11 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
               {nl2br(t("operator_desc"))}
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Desktop: sticky showcase (scroll-driven) */}
+          <OperatorShowcase features={operatorFeatures} photos={photos} />
+
+          {/* Mobile / tablet: card grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:hidden">
             {operatorFeatures.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
@@ -348,9 +355,10 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             viewport={{ once: true }}
           >
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-3">BUILT-IN WA RULE ENGINE</p>
-            <p className="text-pr-secondary font-sans leading-relaxed max-w-2xl mx-auto">
-              {nl2br(t("wa_rules_desc"))}
-            </p>
+            <RevealText
+              text={t("wa_rules_desc")}
+              className="text-pr-secondary font-sans leading-relaxed max-w-2xl mx-auto"
+            />
           </motion.div>
         </div>
       </section>

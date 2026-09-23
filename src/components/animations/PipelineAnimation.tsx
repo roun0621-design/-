@@ -2,10 +2,14 @@
 // ──────────────────────────────────────────
 // Pipeline Animation – COS Workflow Visual
 // Sequential step activation with flowing line
+//
+// 스크롤 연동: 이 블록이 화면 아래 90% 지점에 들어온 순간부터 위 35% 지점에
+// 닿을 때까지의 스크롤 거리를 6단계로 나눠, 내리는 만큼 다음 단계가 켜진다.
+// 올리면 다시 꺼짐. 동작 줄이기 설정에서는 전 단계가 켜진 정지 화면.
 // ──────────────────────────────────────────
 import { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
 
 const steps = [
   { key: "create", icon: "＋" },
@@ -16,44 +20,26 @@ const steps = [
   { key: "final", icon: "★" },
 ] as const;
 
-const STEP_DURATION = 1200; // ms per step
-const PAUSE_DURATION = 1500; // ms pause at end before restart
+const LINE_MS = 350; // 진행선이 다음 단계까지 따라오는 시간
 
 export default function PipelineAnimation() {
   const t = useTranslations("cos");
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(-1);
-  const intervalRef = useRef<ReturnType<typeof setTimeout>>();
+
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.9", "end 0.35"] });
+
+  // 진행률 0 → 아무것도 안 켜짐(-1), 1 → 마지막 단계(5)
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    if (reduce) return;
+    const idx = Math.ceil(v * steps.length) - 1;
+    setActiveIndex(Math.max(-1, Math.min(steps.length - 1, idx)));
+  });
 
   useEffect(() => {
-    let idx = -1;
-    let paused = false;
-
-    const tick = () => {
-      if (paused) {
-        paused = false;
-        idx = -1;
-        setActiveIndex(-1);
-        intervalRef.current = setTimeout(tick, STEP_DURATION * 0.5);
-        return;
-      }
-
-      idx++;
-      if (idx >= steps.length) {
-        paused = true;
-        intervalRef.current = setTimeout(tick, PAUSE_DURATION);
-        return;
-      }
-
-      setActiveIndex(idx);
-      intervalRef.current = setTimeout(tick, STEP_DURATION);
-    };
-
-    intervalRef.current = setTimeout(tick, 600);
-
-    return () => {
-      if (intervalRef.current) clearTimeout(intervalRef.current);
-    };
-  }, []);
+    if (reduce) setActiveIndex(steps.length - 1);
+  }, [reduce]);
 
   const stepLabels: Record<string, string> = {
     create: t("pipeline_create" as any) || "대회 생성",
@@ -65,7 +51,7 @@ export default function PipelineAnimation() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto py-4">
+    <div ref={ref} className="w-full max-w-2xl mx-auto py-4">
       {/* ── Desktop: horizontal layout ── */}
       <div className="hidden sm:flex items-center justify-between relative">
         {/* Background connecting line */}
@@ -81,7 +67,7 @@ export default function PipelineAnimation() {
                 : `${(activeIndex / (steps.length - 1)) * 100}%`,
             maxWidth: "calc(100% - 48px)",
             background: "var(--pr-brand)",
-            transitionDuration: `${STEP_DURATION * 0.8}ms`,
+            transitionDuration: `${LINE_MS}ms`,
           }}
         />
 
@@ -95,7 +81,7 @@ export default function PipelineAnimation() {
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center text-sm transition-all border-2"
                 style={{
-                  transitionDuration: "400ms",
+                  transitionDuration: "250ms",
                   background: isActive ? "var(--pr-brand)" : "white",
                   borderColor: isActive ? "var(--pr-brand)" : "var(--pr-border)",
                   color: isActive ? "white" : "var(--pr-text-tertiary)",
@@ -112,7 +98,7 @@ export default function PipelineAnimation() {
               <span
                 className="mt-2.5 text-[10px] font-display tracking-wider text-center transition-colors"
                 style={{
-                  transitionDuration: "400ms",
+                  transitionDuration: "250ms",
                   color: isActive
                     ? "var(--pr-text-primary)"
                     : "var(--pr-text-tertiary)",
@@ -140,7 +126,7 @@ export default function PipelineAnimation() {
                 : `${(activeIndex / (steps.length - 1)) * 100}%`,
             maxHeight: "calc(100% - 40px)",
             background: "var(--pr-brand)",
-            transitionDuration: `${STEP_DURATION * 0.8}ms`,
+            transitionDuration: `${LINE_MS}ms`,
           }}
         />
 
@@ -154,7 +140,7 @@ export default function PipelineAnimation() {
               <div
                 className="w-[38px] h-[38px] rounded-full flex items-center justify-center text-sm shrink-0 transition-all border-2"
                 style={{
-                  transitionDuration: "400ms",
+                  transitionDuration: "250ms",
                   background: isActive ? "var(--pr-brand)" : "white",
                   borderColor: isActive ? "var(--pr-brand)" : "var(--pr-border)",
                   color: isActive ? "white" : "var(--pr-text-tertiary)",
@@ -171,7 +157,7 @@ export default function PipelineAnimation() {
               <span
                 className="text-[11px] font-display tracking-wider transition-colors"
                 style={{
-                  transitionDuration: "400ms",
+                  transitionDuration: "250ms",
                   color: isActive
                     ? "var(--pr-text-primary)"
                     : "var(--pr-text-tertiary)",

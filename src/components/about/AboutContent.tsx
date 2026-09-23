@@ -4,8 +4,9 @@
 // History section: Key Milestones + Operational Footprint
 // Closing: Company Overview (회사 개요) + Contact CTA
 // ──────────────────────────────────────────
+import { useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring, useInView, useReducedMotion } from "framer-motion";
 import {
   Zap,
   Monitor,
@@ -22,6 +23,9 @@ import {
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 import { CONTACT_EMAIL, INSTAGRAM_URL } from "@/lib/site";
+import Parallax from "@/components/motion/Parallax";
+import CountUp from "@/components/motion/CountUp";
+import RevealText from "@/components/motion/RevealText";
 
 const techItems = [
   { key: "pacing", icon: Zap },
@@ -115,9 +119,66 @@ const footprint = [
   },
 ] as const;
 
+/* ── 타임라인 항목: 화면 위 60% 선을 지나면 켜지고, 올리면 다시 꺼짐 ── */
+function MilestoneItem({ m, locale }: { m: Milestone; locale: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  // root 하단을 40% 줄임 → 요소 top이 뷰포트 60% 선 위로 올라오면 in view
+  const inView = useInView(ref, { margin: "0px 0px -40% 0px" });
+  const active = reduce ? true : inView;
+  const isLeft = m.side === "left";
+  const text = locale === "ko" ? m.title_ko : m.title_en;
+  const org = locale === "ko" ? m.org_ko : m.org_en;
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`relative flex items-start mb-12 last:mb-0 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
+      animate={{ opacity: active ? 1 : 0.35, x: active ? 0 : isLeft ? -14 : 14 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+    >
+      {/* Dot on center line – lights up gold when the line reaches it */}
+      <motion.div
+        className="absolute left-5 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-10 border-2"
+        animate={{
+          backgroundColor: active ? "#B79F58" : "#FFFFFF",
+          borderColor: active ? "#B79F58" : "#E5E5E5",
+          boxShadow: active ? "0 0 0 3px #FFFFFF, 0 0 0 6px rgba(183,159,88,0.25)" : "0 0 0 3px #FFFFFF, 0 0 0 4px #E5E5E5",
+          scale: active ? 1.15 : 1,
+        }}
+        transition={{ duration: 0.35 }}
+      />
+
+      {/* Content card */}
+      <div className={`ml-12 md:ml-0 md:w-[46%] ${isLeft ? "md:text-right md:pr-10" : "md:text-left md:pl-10"}`}>
+        <span className="inline-block font-display text-[11px] tracking-[0.15em] text-pr-brand bg-pr-brand-light px-3 py-1 rounded-full mb-2.5">
+          {m.date}
+        </span>
+        <p className="text-[15px] font-medium text-pr-primary leading-relaxed font-sans whitespace-pre-line">
+          {text}
+        </p>
+        {org && (
+          <p className="mt-1.5 text-[12px] text-pr-tertiary leading-relaxed font-sans whitespace-pre-line">
+            {org}
+          </p>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function AboutPage() {
   const t = useTranslations("about");
   const locale = useLocale();
+  const reduce = useReducedMotion();
+
+  // 연혁 골드 선: 타임라인 영역이 뷰포트 60% 선을 지나는 만큼 위→아래로 그려짐
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: timelineProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 0.6", "end 0.6"],
+  });
+  const lineScale = useSpring(timelineProgress, { stiffness: 120, damping: 26, mass: 0.4 });
 
   return (
     <div className="pt-16 md:pt-24">
@@ -158,12 +219,14 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <img
-              src="/images/about/team-briefing.webp"
-              alt={t("photo_alt")}
-              className="block w-full aspect-[3/2] md:aspect-[21/9] object-cover object-[center_60%]"
-              loading="eager"
-            />
+            <Parallax amount={6} scale={1.14}>
+              <img
+                src="/images/about/team-briefing.webp"
+                alt={t("photo_alt")}
+                className="block w-full aspect-[3/2] md:aspect-[21/9] object-cover object-[center_60%]"
+                loading="eager"
+              />
+            </Parallax>
           </motion.figure>
         </div>
       </section>
@@ -187,9 +250,10 @@ export default function AboutPage() {
                 {t("mission_title")}
               </h2>
             </div>
-            <p className="text-pr-secondary text-lg leading-relaxed font-sans">
-              {nl2br(t("mission_desc"))}
-            </p>
+            <RevealText
+              text={t("mission_desc")}
+              className="text-pr-secondary text-lg leading-relaxed font-sans"
+            />
           </motion.div>
         </div>
       </section>
@@ -271,58 +335,17 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-pr-primary">{t("history_title")}</h2>
           </div>
 
-          <div className="relative">
-            {/* Center line */}
+          <div ref={timelineRef} className="relative">
+            {/* Center line – grey base + gold line drawn by scroll */}
             <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-pr-border -translate-x-px" />
+            <motion.div
+              className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-pr-brand -translate-x-px origin-top"
+              style={reduce ? undefined : { scaleY: lineScale }}
+            />
 
-            {milestones.map((m, i) => {
-              const isLeft = m.side === "left";
-              const text = locale === "ko" ? m.title_ko : m.title_en;
-              const org = locale === "ko" ? m.org_ko : m.org_en;
-
-              return (
-                <motion.div
-                  key={i}
-                  className={`relative flex items-start mb-12 last:mb-0 ${
-                    isLeft ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
-                  initial={{ opacity: 0, x: isLeft ? -24 : 24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.5 }}
-                >
-                  {/* Dot on center line */}
-                  <div
-                    className="absolute left-5 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-pr-brand z-10"
-                    style={{ boxShadow: "0 0 0 3px white, 0 0 0 4px var(--pr-border)" }}
-                  />
-
-                  {/* Content card */}
-                  <div
-                    className={`ml-12 md:ml-0 md:w-[46%] ${
-                      isLeft ? "md:text-right md:pr-10" : "md:text-left md:pl-10"
-                    }`}
-                  >
-                    {/* Date badge */}
-                    <span className="inline-block font-display text-[11px] tracking-[0.15em] text-pr-brand bg-pr-brand-light px-3 py-1 rounded-full mb-2.5">
-                      {m.date}
-                    </span>
-
-                    {/* Main text */}
-                    <p className="text-[15px] font-medium text-pr-primary leading-relaxed font-sans whitespace-pre-line">
-                      {text}
-                    </p>
-
-                    {/* Organization sub-label */}
-                    {org && (
-                      <p className="mt-1.5 text-[12px] text-pr-tertiary leading-relaxed font-sans whitespace-pre-line">
-                        {org}
-                      </p>
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
+            {milestones.map((m, i) => (
+              <MilestoneItem key={i} m={m} locale={locale} />
+            ))}
           </div>
         </div>
       </section>
@@ -353,7 +376,7 @@ export default function AboutPage() {
                 <div className="w-10 h-10 mx-auto flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-4">
                   <Icon size={18} strokeWidth={1.5} />
                 </div>
-                <p className="font-display text-2xl md:text-3xl text-pr-brand mb-2">{value}</p>
+                <p className="font-display text-2xl md:text-3xl text-pr-brand mb-2"><CountUp value={value} /></p>
                 <p className="text-xs font-display tracking-wider text-pr-primary uppercase mb-2">
                   {t(`footprint_${key}_label` as any)}
                 </p>

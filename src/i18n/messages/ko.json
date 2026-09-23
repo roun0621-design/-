@@ -285,7 +285,8 @@
     "diamond_desc": "웨이브라이트 LED 페이싱 시스템은 World Athletics 다이아몬드 리그를 비롯한 세계 주요 국제 대회에서 공식 채택되어 사용되고 있습니다.\n\n선수들의 세계 기록 도전을 빛으로 이끄는 이 기술을, PACE RISE가 한국의 트랙 위에서 구현합니다.",
     "cta_title": "페이싱 라이트 시스템 도입을 원하시나요?",
     "cta_desc": "대회 규모와 트랙 환경에 맞는 최적의 솔루션을 제안해 드립니다.",
-    "photos_alt": "페이싱 라이트 현장 사진"
+    "photos_alt": "페이싱 라이트 현장 사진",
+    "track_hint": "스크롤하면 빛이 달립니다"
   },
   "cos": {
     "meta_title": "COS · 경기 운영 시스템 · PACE RISE : Node",

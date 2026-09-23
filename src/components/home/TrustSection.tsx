@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Users, CalendarCheck, Snowflake, Cpu, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
+import CountUp from "@/components/motion/CountUp";
 
 const stats = [
   { icon: Users, key: "athletes" },
@@ -80,7 +81,7 @@ export default function TrustSection() {
                 <Icon size={18} strokeWidth={1.5} />
               </div>
               <p className="font-display text-2xl md:text-3xl text-pr-brand mb-2">
-                {t(`trust_stat_${key}_value` as any)}
+                <CountUp value={t(`trust_stat_${key}_value` as any)} />
               </p>
               <p className="text-[13px] text-pr-secondary leading-relaxed font-sans">
                 {t(`trust_stat_${key}_label` as any)}

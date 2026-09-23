@@ -10,6 +10,7 @@ import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import MotionProvider from "@/components/motion/MotionProvider";
 import { buildSeoMeta } from "@/utils/seo";
 
 // Static generation for all locales
@@ -75,9 +76,11 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <Header />
-      <main className="flex-1">{children}</main>
-      <Footer />
+      <MotionProvider>
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </MotionProvider>
     </NextIntlClientProvider>
   );
 }

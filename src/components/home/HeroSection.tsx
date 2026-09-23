@@ -3,14 +3,23 @@
 // Hero Section – Mission-first messaging
 // Apple/Stripe minimal white style
 // ──────────────────────────────────────────
+import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
+  const reduce = useReducedMotion();
+
+  // 메인 사진: 살짝 작게 시작해 스크롤하면 화면 폭까지 커지고, 안쪽 이미지는 느리게 밀림
+  const photoRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: photoRef, offset: ["start end", "end start"] });
+  const frameScale = useTransform(scrollYProgress, [0, 0.45], [0.93, 1]);
+  const frameRadius = useTransform(scrollYProgress, [0, 0.45], [36, 20]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
     <section className="relative min-h-[88vh] md:min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-[72px] md:pt-[96px] pb-12 md:pb-20">
@@ -117,21 +126,32 @@ export default function HeroSection() {
 
         {/* Main photo – Wave Light on track (public/images/home/hero-*.webp) */}
         <motion.figure
-          className="mt-14 md:mt-20 overflow-hidden rounded-2xl md:rounded-3xl border border-pr-border"
-          style={{ boxShadow: "0 20px 60px rgba(0, 0, 0, 0.12)" }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          ref={photoRef}
+          className="mt-14 md:mt-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.65 }}
         >
-          <picture>
-            <source media="(min-width: 640px)" srcSet="/images/home/hero-wide.webp" />
-            <img
-              src="/images/home/hero-mobile.webp"
-              alt={t("photo_alt")}
-              className="block w-full aspect-[4/3] sm:aspect-[21/9] object-cover"
-              loading="eager"
-            />
-          </picture>
+          <motion.div
+            className="overflow-hidden border border-pr-border will-change-transform"
+            style={
+              reduce
+                ? { borderRadius: 20, boxShadow: "0 20px 60px rgba(0, 0, 0, 0.12)" }
+                : { scale: frameScale, borderRadius: frameRadius, boxShadow: "0 20px 60px rgba(0, 0, 0, 0.12)" }
+            }
+          >
+            <motion.div style={reduce ? undefined : { y: imgY, scale: 1.14 }}>
+              <picture>
+                <source media="(min-width: 640px)" srcSet="/images/home/hero-wide.webp" />
+                <img
+                  src="/images/home/hero-mobile.webp"
+                  alt={t("photo_alt")}
+                  className="block w-full aspect-[4/3] sm:aspect-[21/9] object-cover"
+                  loading="eager"
+                />
+              </picture>
+            </motion.div>
+          </motion.div>
         </motion.figure>
 
         {/* Target audiences */}
