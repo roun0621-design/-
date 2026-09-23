@@ -7,6 +7,7 @@
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem } from "@/components/motion/Stagger";
 import {
   Sparkles,
   ClipboardList,
@@ -121,16 +122,13 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
               {t("offer_title")}
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {offers.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
                 className="bg-white rounded-2xl border border-pr-border p-6 md:p-7"
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                variants={staggerItem}
               >
                 <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
                   <Icon size={20} strokeWidth={1.5} />
@@ -143,7 +141,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -158,15 +156,12 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
               {t("process_title")}
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {steps.map((n, i) => (
               <motion.div
                 key={n}
                 className="relative"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                variants={staggerItem}
               >
                 <span className="font-display text-3xl text-pr-brand/30">0{n}</span>
                 <h3 className="mt-3 text-lg font-bold tracking-tight text-pr-primary">
@@ -177,7 +172,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -192,16 +187,13 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
               {t("why_title")}
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {why.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
                 className="bg-white rounded-2xl border border-pr-border p-6 md:p-8"
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                variants={staggerItem}
               >
                 <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
                   <Icon size={20} strokeWidth={1.5} />
@@ -214,7 +206,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -229,15 +221,12 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
               {t("cases_title")}
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {cases.map((key, i) => (
               <motion.div
                 key={key}
                 className="card-elegant p-6 md:p-8 h-full"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                variants={staggerItem}
               >
                 <span className="inline-block font-display text-[10px] tracking-[0.18em] text-pr-brand bg-pr-brand-light rounded-full px-3 py-1 mb-5">
                   {t(`case_${key}_role` as any)}
@@ -250,7 +239,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 

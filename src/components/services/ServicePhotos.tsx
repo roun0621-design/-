@@ -7,6 +7,7 @@
 // ──────────────────────────────────────────
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem } from "@/components/motion/Stagger";
 import type { ServicePhoto } from "@/lib/servicePhotos";
 import Parallax from "@/components/motion/Parallax";
 
@@ -31,7 +32,7 @@ export default function ServicePhotos({ photos, alt, label, captions, className 
           {label}
         </p>
       )}
-      <div className={`grid gap-4 md:gap-6 ${single ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}>
+      <Stagger className={`grid gap-4 md:gap-6 ${single ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}>
         {photos.map(({ src, slug }, i) => {
           const wide = single || (leadWide && i === 0);
           const title = captions?.[slug];
@@ -43,10 +44,7 @@ export default function ServicePhotos({ photos, alt, label, captions, className 
                 wide ? "sm:col-span-2 aspect-[4/3] sm:aspect-[21/9]" : "aspect-[4/3]"
               }`}
               style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (i % 2) * 0.1, duration: 0.6 }}
+              variants={staggerItem}
             >
               <Parallax className="absolute inset-0" amount={5} scale={1.12}>
                 <Image
@@ -75,7 +73,7 @@ export default function ServicePhotos({ photos, alt, label, captions, className 
             </motion.figure>
           );
         })}
-      </div>
+      </Stagger>
     </div>
   );
 }

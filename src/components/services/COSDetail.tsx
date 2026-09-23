@@ -5,6 +5,7 @@
 // ──────────────────────────────────────────
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem, reveal } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 import PipelineAnimation from "@/components/animations/PipelineAnimation";
@@ -151,10 +152,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-3">WORKFLOW</p>
           </div>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            {...reveal}
           >
             <PipelineAnimation />
           </motion.div>
@@ -163,10 +161,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
           <motion.div
             className="mt-10 md:mt-14 rounded-2xl overflow-hidden border border-pr-border bg-[#F7F6F2]"
             style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.08)" }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            {...reveal}
           >
             <iframe
               className="w-full aspect-video block border-0"
@@ -183,20 +178,17 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
       {/* Architecture Stats */}
       <section className="py-16 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {archStats.map(({ key, value }, i) => (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                variants={staggerItem}
               >
                 <p className="font-display text-3xl md:text-4xl text-pr-brand"><CountUp value={value} /></p>
                 <p className="text-sm text-pr-secondary mt-2 font-sans">{t(`stat_${key}` as any)}</p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -218,16 +210,13 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
           <OperatorShowcase features={operatorFeatures} photos={photos} />
 
           {/* Mobile / tablet: card grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:hidden">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:hidden">
             {operatorFeatures.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-all duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                variants={staggerItem}
               >
                 <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
                   <Icon size={20} strokeWidth={1.5} />
@@ -240,7 +229,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -267,15 +256,12 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
               {nl2br(t("consumer_desc"))}
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {consumerFeatures.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-all duration-300 relative"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300 relative"
+                variants={staggerItem}
               >
                 {key === "realtime_sse" && (
                   <div className="absolute top-4 right-4">
@@ -303,7 +289,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
                 </div>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -317,7 +303,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               { key: "backend", icon: Database },
               { key: "frontend", icon: Layers },
@@ -326,11 +312,8 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             ].map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="p-6 rounded-xl border border-pr-border hover:border-pr-brand/30 transition-all duration-300"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                className="p-6 rounded-xl border border-pr-border hover:border-pr-brand/30 transition-[border-color,box-shadow,background-color,color] duration-300"
+                variants={staggerItem}
               >
                 <div className="flex items-start gap-4">
                   <Icon size={18} className="text-pr-brand mt-0.5 shrink-0" strokeWidth={1.5} />
@@ -345,14 +328,12 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
                 </div>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
 
           {/* WA Rule Engine callout */}
           <motion.div
             className="mt-12 p-8 rounded-2xl bg-[var(--pr-bg-secondary)] border border-pr-border text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            {...reveal}
           >
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-3">BUILT-IN WA RULE ENGINE</p>
             <RevealText
@@ -376,7 +357,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             {[
               { icon: Settings, key: "custom_event" },
               { icon: Wrench, key: "custom_special" },
@@ -384,11 +365,8 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             ].map(({ icon: Icon, key }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-7 hover:border-pr-brand/40 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-2xl border border-pr-border p-7 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
+                variants={staggerItem}
               >
                 <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-4">
                   <Icon size={18} strokeWidth={1.5} />
@@ -398,13 +376,11 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
 
           <motion.p
             className="text-center text-base text-pr-primary font-medium italic"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            {...reveal}
           >
             &ldquo;{t("custom_quote")}&rdquo;
           </motion.p>
@@ -425,7 +401,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
           </div>
 
           {/* 4-step process */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
               { step: "01", key: "demo_step_1" },
               { step: "02", key: "demo_step_2" },
@@ -435,10 +411,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
               <motion.div
                 key={key}
                 className="relative bg-[var(--pr-bg-secondary)] rounded-2xl border border-pr-border p-6 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                variants={staggerItem}
               >
                 <p className="font-display text-2xl text-pr-brand/30 mb-3">{step}</p>
                 <h4 className="text-sm font-semibold text-pr-primary mb-2">
@@ -454,7 +427,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
                 )}
               </motion.div>
             ))}
-          </div>
+          </Stagger>
 
           <div className="text-center">
             <Link

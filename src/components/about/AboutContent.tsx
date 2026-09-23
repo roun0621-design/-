@@ -7,6 +7,7 @@
 import { useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion, useScroll, useSpring, useInView, useReducedMotion } from "framer-motion";
+import { Stagger, staggerItem, reveal } from "@/components/motion/Stagger";
 import {
   Zap,
   Monitor,
@@ -238,9 +239,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
             className="bg-white rounded-2xl border border-pr-border p-10 md:p-14"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...reveal}
           >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand">
@@ -261,7 +260,7 @@ export default function AboutPage() {
       {/* Role / Bridge */}
       <section className="py-14 md:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
               { key: "youth", icon: Users },
               { key: "elite", icon: TrendingUp },
@@ -269,11 +268,8 @@ export default function AboutPage() {
             ].map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="p-8 rounded-2xl border border-pr-border hover:border-pr-brand/30 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                className="p-8 rounded-2xl border border-pr-border hover:border-pr-brand/30 transition-[border-color,box-shadow,background-color,color] duration-300"
+                variants={staggerItem}
               >
                 <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
                   <Icon size={22} strokeWidth={1.5} />
@@ -286,7 +282,7 @@ export default function AboutPage() {
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -300,15 +296,12 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-pr-primary">{t("tech_title")}</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {techItems.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
+                variants={staggerItem}
               >
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-6">
                   <Icon size={22} strokeWidth={1.5} />
@@ -321,7 +314,7 @@ export default function AboutPage() {
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -362,16 +355,13 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {footprint.map(({ icon: Icon, value, key }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-7 text-center hover:border-pr-brand/30 transition-all duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-7 text-center hover:border-pr-brand/30 transition-[border-color,box-shadow,background-color,color] duration-300"
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
+                variants={staggerItem}
               >
                 <div className="w-10 h-10 mx-auto flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-4">
                   <Icon size={18} strokeWidth={1.5} />
@@ -385,7 +375,7 @@ export default function AboutPage() {
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -401,9 +391,7 @@ export default function AboutPage() {
 
           <motion.dl
             className="rounded-2xl border border-pr-border divide-y divide-pr-border overflow-hidden"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...reveal}
           >
             {[
               { label: t("company_name_label"), value: t("company_name") },

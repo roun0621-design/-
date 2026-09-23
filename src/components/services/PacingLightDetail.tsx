@@ -4,6 +4,7 @@
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem, reveal } from "@/components/motion/Stagger";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 import TrackAnimation from "@/components/animations/TrackAnimation";
@@ -89,10 +90,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
       <section className="py-12 md:py-24 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            {...reveal}
           >
             <TrackAnimation hint={t("track_hint")} />
           </motion.div>
@@ -104,11 +102,9 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
       {/* What is Wavelight */}
       <section className="py-16 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              variants={staggerItem}
             >
               <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">WAVE LIGHT SYSTEM</p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary mb-6">
@@ -123,9 +119,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
             </motion.div>
             <motion.div
               className="bg-[var(--pr-bg-secondary)] rounded-2xl p-10 border border-pr-border"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              variants={staggerItem}
             >
               <div className="space-y-6">
                 {["principle_1", "principle_2", "principle_3"].map((key, i) => (
@@ -145,7 +139,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
                 ))}
               </div>
             </motion.div>
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -160,15 +154,12 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
               {t("features_title")}
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
+                variants={staggerItem}
               >
                 <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
                   <Icon size={20} strokeWidth={1.5} />
@@ -181,7 +172,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
                 </p>
               </motion.div>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -195,9 +186,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
             </h2>
             <motion.div
               className="flex flex-wrap items-center justify-center gap-3"
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              {...reveal}
             >
               {useCases.map((key) => (
                 <span
@@ -217,9 +206,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
       <section className="py-16 md:py-32 bg-[var(--pr-bg-secondary)]">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            {...reveal}
           >
             <Trophy size={28} className="mx-auto text-pr-brand mb-6" strokeWidth={1.5} />
             <h3 className="text-2xl md:text-3xl font-bold text-pr-primary mb-6">

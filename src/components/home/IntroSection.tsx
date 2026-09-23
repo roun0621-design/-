@@ -6,6 +6,7 @@
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem } from "@/components/motion/Stagger";
 import { Monitor, Zap, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import RevealText from "@/components/motion/RevealText";
@@ -22,13 +23,11 @@ export default function IntroSection() {
   return (
     <section className="py-16 md:py-28 bg-white">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <Stagger className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* One-sentence company definition */}
           <motion.div
             className="lg:col-span-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={staggerItem}
           >
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">
               {t("intro_label")}
@@ -52,10 +51,7 @@ export default function IntroSection() {
               {paths.map(({ key, icon: Icon, href }, i) => (
                 <motion.li
                   key={key}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  variants={staggerItem}
                 >
                   <Link
                     href={href}
@@ -81,7 +77,7 @@ export default function IntroSection() {
               ))}
             </ul>
           </div>
-        </div>
+        </Stagger>
       </div>
     </section>
   );

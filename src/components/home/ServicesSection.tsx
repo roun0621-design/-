@@ -5,6 +5,7 @@
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem } from "@/components/motion/Stagger";
 import { Zap, Monitor, Sparkles, ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
@@ -37,44 +38,33 @@ export default function ServicesSection() {
     <section className="py-16 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-20">
+        <Stagger className="text-center mb-12 md:mb-20">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={staggerItem}
           >
             CORE SERVICES
           </motion.p>
           <motion.h2
             className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            variants={staggerItem}
           >
             {t("services_subtitle")}
           </motion.h2>
           <motion.p
             className="mt-4 text-pr-secondary max-w-xl mx-auto text-base font-sans text-balance"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            variants={staggerItem}
           >
             {nl2br(t("services_desc"))}
           </motion.p>
-        </div>
+        </Stagger>
 
         {/* Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map(({ key, icon: Icon, href, features }, i) => (
             <motion.div
               key={key}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
+              variants={staggerItem}
             >
               <Link href={href} className="block group">
                 <div className="card-elegant p-6 md:p-8 h-full">
@@ -119,7 +109,7 @@ export default function ServicesSection() {
               </Link>
             </motion.div>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

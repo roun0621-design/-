@@ -6,6 +6,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem, reveal } from "@/components/motion/Stagger";
 import { Camera, ExternalLink, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import type { InstagramPost } from "@/types";
@@ -54,12 +55,10 @@ export default function InstagramFeed() {
     <section className="py-16 md:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-9 md:mb-14">
+        <Stagger className="text-center mb-9 md:mb-14">
           <motion.div
             className="inline-flex items-center gap-2 text-pr-brand mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={staggerItem}
           >
             <Camera size={18} strokeWidth={1.5} />
             <span className="font-display text-[11px] tracking-[0.3em]">
@@ -68,26 +67,20 @@ export default function InstagramFeed() {
           </motion.div>
           <motion.h2
             className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            variants={staggerItem}
           >
             {t("instagram_title")}
           </motion.h2>
           <motion.p
             className="mt-3 text-pr-secondary font-sans"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            variants={staggerItem}
           >
             {t("instagram_subtitle")}
           </motion.p>
-        </div>
+        </Stagger>
 
         {/* Grid – 2col mobile, 3col desktop (6 posts) */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <Stagger className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {loading
             ? /* Loading skeleton */
               [...Array(6)].map((_, i) => (
@@ -107,10 +100,7 @@ export default function InstagramFeed() {
                   rel="noopener noreferrer"
                   className="group relative aspect-square rounded-xl overflow-hidden"
                   style={{ background: getPlaceholderBg(post, i) }}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
+                  variants={staggerItem}
                 >
                   <Image
                     src={post.imageUrl}
@@ -143,12 +133,9 @@ export default function InstagramFeed() {
                   href="https://www.instagram.com/pace.rise"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group aspect-square rounded-xl border border-pr-border flex flex-col items-center justify-center gap-2 hover:border-pr-brand/40 transition-all duration-300 cursor-pointer"
+                  className="group aspect-square rounded-xl border border-pr-border flex flex-col items-center justify-center gap-2 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300 cursor-pointer"
                   style={{ background: placeholderPatterns[i] }}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
+                  variants={staggerItem}
                 >
                   <Camera
                     size={i === 0 || i === 3 ? 28 : 20}
@@ -162,14 +149,12 @@ export default function InstagramFeed() {
                   )}
                 </motion.a>
               ))}
-        </div>
+        </Stagger>
 
         {/* Follow CTA */}
         <motion.div
           className="mt-12 text-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          {...reveal}
         >
           <a
             href="https://www.instagram.com/pace.rise"

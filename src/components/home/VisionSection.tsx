@@ -4,6 +4,7 @@
 // ──────────────────────────────────────────
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem } from "@/components/motion/Stagger";
 import { TrendingUp, Users, Target, Lightbulb } from "lucide-react";
 import { nl2br } from "@/utils/nl2br";
 import RevealText from "@/components/motion/RevealText";
@@ -22,21 +23,16 @@ export default function VisionSection() {
     <section className="py-16 md:py-36 bg-[var(--pr-bg-secondary)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-20">
+        <Stagger className="text-center mb-12 md:mb-20">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={staggerItem}
           >
             OUR VISION
           </motion.p>
           <motion.h2
             className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            variants={staggerItem}
           >
             {t("vision_title")}
           </motion.h2>
@@ -44,19 +40,16 @@ export default function VisionSection() {
             text={t("vision_desc")}
             className="mt-4 text-pr-secondary max-w-2xl mx-auto text-base font-sans text-balance"
           />
-        </div>
+        </Stagger>
 
         {/* 4-goal grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {goals.map(({ key, icon: Icon }, i) => (
             <motion.div
               key={key}
-              className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 text-center hover:border-pr-brand/40 transition-all duration-300"
+              className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 text-center hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
               style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              variants={staggerItem}
             >
               <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
                 <Icon size={22} strokeWidth={1.5} />
@@ -69,7 +62,7 @@ export default function VisionSection() {
               </p>
             </motion.div>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

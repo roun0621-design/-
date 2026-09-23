@@ -60,9 +60,11 @@
     font-family: var(--font-audiowide), "Pretendard Variable", Pretendard, sans-serif;
   }
 
-  /* Thin elegant card */
+  /* Thin elegant card
+     transition은 색·그림자에만: transition-all 이면 framer-motion이 매 프레임 바꾸는
+     transform까지 CSS가 300ms씩 지연시켜 등장 애니메이션이 뚝뚝 끊김 */
   .card-elegant {
-    @apply bg-white rounded-2xl border border-pr-border transition-all duration-300;
+    @apply bg-white rounded-2xl border border-pr-border transition-[border-color,box-shadow] duration-300;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 

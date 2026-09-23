@@ -7,6 +7,7 @@
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
+import { Stagger, staggerItem } from "@/components/motion/Stagger";
 import { ArrowUpRight, Newspaper } from "lucide-react";
 import { pressItems } from "@/data/press";
 
@@ -26,44 +27,33 @@ export default function PressSection() {
   return (
     <section className="py-14 md:py-28 bg-white">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-10 md:mb-14">
+        <Stagger className="text-center mb-10 md:mb-14">
           <motion.div
             className="inline-flex items-center gap-2 text-pr-brand mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            variants={staggerItem}
           >
             <Newspaper size={15} strokeWidth={1.5} />
             <span className="font-display text-[11px] tracking-[0.3em]">PRESS</span>
           </motion.div>
           <motion.h2
             className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            variants={staggerItem}
           >
             {t("press_title")}
           </motion.h2>
           <motion.p
             className="mt-4 text-pr-secondary font-display"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            variants={staggerItem}
           >
             {t("press_subtitle")}
           </motion.p>
-        </div>
+        </Stagger>
 
-        <ul className="rounded-2xl border border-pr-border divide-y divide-pr-border overflow-hidden">
+        <Stagger as="ul" className="rounded-2xl border border-pr-border divide-y divide-pr-border overflow-hidden">
           {items.map((item, i) => (
             <motion.li
               key={item.url}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: Math.min(i, 5) * 0.05 }}
+              variants={staggerItem}
             >
               <a
                 href={item.url}
@@ -94,7 +84,7 @@ export default function PressSection() {
               </a>
             </motion.li>
           ))}
-        </ul>
+        </Stagger>
 
         {sorted.length > INITIAL_COUNT && !expanded && (
           <div className="mt-8 text-center">
