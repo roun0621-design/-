@@ -6,8 +6,9 @@
 <title>PACE RISE 브랜드 필름</title>
 <!--
   PACE RISE Brand Film · "The Break" (홈페이지 임베드용, 컨트롤 없음)
-  원본: pace-rise-logo/PACE RISE 브랜드 필름.html (프로토타입 v3) 의 스테이지만 추출.
-  15초 루프 · 무음 · SVG 시간 기반 렌더. ?f=916 → 세로형, ?t=초 → 정지 프레임.
+  원본: pace-rise-logo/PACE RISE 브랜드 필름.html (2026-10-09 22:03 판) 의 스테이지+렌더 스크립트를 그대로 추출.
+  16초 루프 · 무음 · SVG 시간 기반 렌더 · 카메라 줌/팬 포함.
+  ?f=916 → 세로형, ?t=초 → 정지 프레임, ?board=1 → 전광판 버전.
   prefers-reduced-motion: 마지막 장면(BEYOND LIMITS)에서 정지.
 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap">
@@ -18,63 +19,81 @@ svg{display:block;width:100%;height:100%}
 </head>
 <body>
 <svg id="stage" viewBox="-420 0 1920 1080" preserveAspectRatio="xMidYMid meet" aria-label="PACE RISE 브랜드 필름">
-  <rect x="-2000" y="-2000" width="5000" height="5000" fill="#0E0E10"/>
-  <g id="track" opacity="0">
-    <line x1="-1400" y1="750" x2="2400" y2="750" stroke="#45444B" stroke-width="3"/>
-    <line x1="-1400" y1="772" x2="2400" y2="772" stroke="#3A393F" stroke-width="2.4"/>
-    <line x1="-1400" y1="790" x2="2400" y2="790" stroke="#312F36" stroke-width="2"/>
-    <line x1="-1400" y1="804" x2="2400" y2="804" stroke="#29282D" stroke-width="1.6"/>
-    <line x1="-1400" y1="814" x2="2400" y2="814" stroke="#222126" stroke-width="1.3"/>
-    <g id="ticks" stroke="#2E2D33" stroke-width="2"></g>
-    <rect x="536" y="750" width="8" height="64" fill="#F1EFEA" opacity=".8"/>
-  </g>
-  <line id="hair" x1="540" y1="254" x2="540" y2="750" stroke="#F1EFEA" stroke-width="1.5" opacity="0"/>
-  <g id="sym">
-    <polygon id="gapGlow" points="510,544.8 570,459.2 570,439.2 510,524.8" fill="#C24A2E" opacity="0"/>
-    <g id="lower"><rect id="bar" x="510" y="254" width="60" height="496" fill="#F1EFEA"/><polygon id="lowerPoly" points="510,750 570,750 570,459.2 510,544.8" fill="#F1EFEA" opacity="0"/></g>
-    <g id="upper"><polygon points="510,524.8 570,439.2 570,254 510,254" fill="#F1EFEA" opacity="0"/></g>
-  </g>
-  <defs><filter id="rblur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur id="rblurF" stdDeviation="0"/></filter></defs>
-  <g id="runner" opacity="0" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#rblur)">
-    <polyline id="legB" stroke="#8F3621" stroke-width="20"/>
-    <polyline id="armB" stroke="#8F3621" stroke-width="18"/>
-    <polyline id="torso" stroke="#C24A2E" stroke-width="22"/>
-    <rect id="head" width="30" height="30" fill="#C24A2E" stroke="none"/>
-    <polyline id="legF" stroke="#C24A2E" stroke-width="20"/>
-    <polyline id="armF" stroke="#C24A2E" stroke-width="18"/>
-  </g>
-  <text id="recOld" x="650" y="712" font-family="Audiowide, Arial, sans-serif" font-size="46" fill="#8A867E" opacity="0">10.01</text>
-  <text id="recNew" x="650" y="712" font-family="Audiowide, Arial, sans-serif" font-size="46" fill="#C24A2E" opacity="0">9.99</text>
-  <text id="wL" x="0" y="600" font-family="Audiowide, Arial, sans-serif" font-size="150" letter-spacing="6" fill="#F1EFEA" opacity="0" text-anchor="end">PACE R</text>
-  <text id="wR" x="0" y="600" font-family="Audiowide, Arial, sans-serif" font-size="150" letter-spacing="6" fill="#F1EFEA" opacity="0">SE</text>
-  <text id="tag" x="540" y="700" text-anchor="middle" font-family="Audiowide, Arial, sans-serif" font-size="40" letter-spacing="12" fill="#F1EFEA" opacity="0">BEYOND LIMITS</text>
-  <text id="lbl" x="-360" y="1000" font-family="Audiowide, Arial, sans-serif" font-size="22" letter-spacing="6" fill="#8A867E" opacity="0">PACE RISE</text>
-</svg>
+    <rect x="-2000" y="-2000" width="5000" height="5000" fill="#0E0E10"/>
+    <g id="track" opacity="0">
+      <line x1="-1400" y1="750" x2="2400" y2="750" stroke="#45444B" stroke-width="3"/>
+      <line x1="-1400" y1="772" x2="2400" y2="772" stroke="#3A393F" stroke-width="2.4"/>
+      <line x1="-1400" y1="790" x2="2400" y2="790" stroke="#312F36" stroke-width="2"/>
+      <line x1="-1400" y1="804" x2="2400" y2="804" stroke="#29282D" stroke-width="1.6"/>
+      <line x1="-1400" y1="814" x2="2400" y2="814" stroke="#222126" stroke-width="1.3"/>
+      <g id="ticks" stroke="#2E2D33" stroke-width="2"></g>
+      <rect x="816" y="750" width="8" height="64" fill="#F1EFEA" opacity=".8"/>
+    </g>
+    <!-- symbol -->
+    <line id="hair" x1="820" y1="447" x2="820" y2="750" stroke="#F1EFEA" stroke-width="1.5" opacity="0"/>
+    <g id="sym"><g transform="translate(280 0)">
+      <polygon id="flash" points="470,641.2 610,641.2 610,447 470,447" fill="#C24A2E" opacity="0" style="filter:url(#rblur2)"/>
+      <polygon id="gapGlow" points="510,641.2 570,555.6 570,535.6 510,621.2" fill="#C24A2E" opacity="0"/>
+      <g id="lower"><rect id="bar" x="510" y="447" width="60" height="303" fill="#F1EFEA"/><polygon id="lowerPoly" points="510,750 570,750 570,555.6 510,641.2" fill="#F1EFEA" opacity="0"/></g>
+      <g id="upper"><polygon points="510,621.2 570,535.6 570,447 510,447" fill="#F1EFEA" opacity="0"/></g>
+    </g></g>
+    <!-- runner (straight segments only) -->
+    <defs><filter id="rblur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur id="rblurF" stdDeviation="0"/></filter><filter id="rblur2" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="28"/></filter></defs>
+    <g id="runner" opacity="0" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#rblur)">
+      <polyline id="legB" stroke="#A9A69E" stroke-width="24"/>
+      <polyline id="armB" stroke="#A9A69E" stroke-width="22"/>
+      <polyline id="torso" stroke="#F1EFEA" stroke-width="30"/>
+      <rect id="head" width="88" height="88" rx="14" fill="#F1EFEA" stroke="none"/>
+      <polyline id="legF" stroke="#F1EFEA" stroke-width="24"/>
+      <polyline id="armF" stroke="#F1EFEA" stroke-width="22"/>
+    </g>
+    <!-- record -->
+    <g id="board" transform="translate(40 140)" opacity="0">
+      <line id="bPost" x1="-130" y1="214" x2="-130" y2="610" stroke="#8A867E" stroke-width="2" opacity=".35"/>
+      <line x1="-30" y1="203" x2="-30" y2="610" stroke="#8A867E" stroke-width="1.5" opacity=".2"/>
+      <g transform="skewY(-7) scale(0.95 1)" font-family="Audiowide, Arial, sans-serif" text-anchor="middle">
+        <rect x="-290" y="-46" width="318" height="246" fill="#F1EFEA" fill-opacity=".03" stroke="#8A867E" stroke-opacity=".4" stroke-width="1.5"/>
+        <line x1="-290" y1="18" x2="28" y2="18" stroke="#8A867E" stroke-opacity=".18" stroke-width="1"/>
+        <text id="bLbl" x="-131" y="0" font-size="20" letter-spacing="6" fill="#8A867E">RECORD</text>
+        <text id="bOld" x="-131" y="86" font-size="64" fill="#8A867E">10.01</text>
+        <line id="bStrike" x1="0" y1="64" x2="0" y2="64" stroke="#C24A2E" stroke-width="5"/>
+        <text id="bNew" x="-131" y="172" font-size="64" fill="#C24A2E" opacity="0">9.99</text>
+      </g>
+    </g>
+    <!-- wordmark -->
+    <text id="wL" x="0" y="600" font-family="Audiowide, Arial, sans-serif" font-size="150" letter-spacing="6" fill="#F1EFEA" opacity="0" text-anchor="end">PACE R</text>
+    <text id="wR" x="0" y="600" font-family="Audiowide, Arial, sans-serif" font-size="150" letter-spacing="6" fill="#F1EFEA" opacity="0">SE</text>
+    <text id="tag" x="540" y="700" text-anchor="middle" font-family="Audiowide, Arial, sans-serif" font-size="40" letter-spacing="12" fill="#F1EFEA" opacity="0">BEYOND LIMITS</text>
+    <text id="lbl" x="-360" y="1000" font-family="Audiowide, Arial, sans-serif" font-size="22" letter-spacing="6" fill="#8A867E" opacity="0">PACE RISE</text>
+  </svg>
 
 <script>
 (function(){
-  const DUR = 15;
+  const DUR = 16;
   const $ = id => document.getElementById(id);
   const stage=$('stage'), ground=$('track'), hair=$('hair'), sym=$('sym'), bar=$('bar'), lowerPoly=$('lowerPoly'), upper=$('upper'), gapGlow=$('gapGlow'),
         runner=$('runner'), torso=$('torso'), head=$('head'), legF=$('legF'), legB=$('legB'), armF=$('armF'), armB=$('armB'),
-        recOld=$('recOld'), recNew=$('recNew'), wL=$('wL'), wR=$('wR'), tag=$('tag'), lbl=$('lbl');
+        board=$('board'), flash=$('flash'), bOld=$('bOld'), bStrike=$('bStrike'), bNew=$('bNew'), wL=$('wL'), wR=$('wR'), tag=$('tag'), lbl=$('lbl');
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
   const span=(t,a,b)=>clamp((t-a)/(b-a),0,1);
   const easeOutCubic=x=>1-Math.pow(1-x,3);
+  const easeInCubic=x=>x*x*x;
   const easeInOut=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
   const easeOutQuint=x=>1-Math.pow(1-x,5);
   const lerp=(a,b,x)=>a+(b-a)*x;
   const TAU=Math.PI*2;
 
-  const SX=510, SBOT=750, SYMH=519, SLIDE={x:16,y:-23};
+  // symbol geometry
+  const LX=820, SX=790, SBOT=750, SYMH=326, SLIDE={x:16,y:-23};   // 결승선 x=820 (16:9 프레임의 약 2/3)
   const D=Math.PI/180;
-  const TORSO=118, HEADOFF=150, CHEST=0.65;
+  const TORSO=90, HEADOFF=140, CHEST=0.7, HEAD=88, LEGS=100;   // 3등신
   const THETA_RUN=72, THETA_DIP=55;
-  const T_START=0.5, T_BREAK=5.0, T_FADE0=6.1, T_FADE1=7.0;
-  const HIP_Y=565;
-  const HIP_AT_BREAK=540 - TORSO*CHEST*Math.cos(THETA_DIP*D);
-  const LUNGE={legF:{a:50,f:8},legB:{a:-44,f:28},armF:{c:-50},armB:{c:55}};
+  const T_START=0.3, T_BREAK=5.0, T_FADE0=5.5, T_FADE1=6.3;
+  const HIP_Y=750-LEGS;
+  const HIP_AT_BREAK=LX - TORSO*CHEST*Math.cos(THETA_DIP*D);   // chest on the line centre
+  const LUNGE={legF:{a:50,f:8},legB:{a:-44,f:28},armF:{c:-100,b:15},armB:{c:-116,b:12}};   // 골인: 양팔 뒤로
 
+  // wordmark layout
   let L={ready:false,k:0.244,ix:540,base:600,wlx:0,wrx:0};
   function measure(){
     const wl=wL.getComputedTextLength(), wr=wR.getComputedTextLength();
@@ -82,85 +101,133 @@ svg{display:block;width:100%;height:100%}
     const symW=76*L.k, gapL=14, gapR=18, total=wl+gapL+symW+gapR+wr, x0=540-total/2;
     L.wlx=x0+wl; L.ix=x0+wl+gapL; L.wrx=L.ix+symW+gapR; L.ready=true;
   }
-  function leg(hx,hy,p,tg,lw){
+
+  // ---- runner kinematics (facing +x, y down), scale-aware
+  function leg(hx,hy,p,tg,lw,k){
     let a=50*Math.sin(TAU*p), f=25+85*(0.5+0.5*Math.sin(TAU*p+1.2));
     a=lerp(a,tg.a,lw)*D; f=lerp(f,tg.f,lw)*D;
-    const kx=hx+95*Math.sin(a), ky=hy+95*Math.cos(a);
-    const fx=kx+90*Math.sin(a-f), fy=ky+90*Math.cos(a-f);
+    const kx=hx+52*k*Math.sin(a), ky=hy+52*k*Math.cos(a);
+    const fx=kx+48*k*Math.sin(a-f), fy=ky+48*k*Math.cos(a-f);
     return `${hx},${hy} ${kx},${ky} ${fx},${fy}`;
   }
-  function arm(sx,sy,p,tg,lw){
-    const c=lerp(-55*Math.sin(TAU*p),tg.c,lw)*D;
-    const ex=sx+70*Math.sin(c), ey=sy+70*Math.cos(c);
-    const hx=ex+62*Math.cos(c), hy=ey-62*Math.sin(c);
+  function arm(sx,sy,p,tg,lw,k){
+    const c=lerp(-55*Math.sin(TAU*p),tg.c,lw)*D, bnd=lerp(90,tg.b??90,lw)*D;
+    const ex=sx+42*k*Math.sin(c), ey=sy+42*k*Math.cos(c);
+    const hx=ex+36*k*Math.sin(c+bnd), hy=ey+36*k*Math.cos(c+bnd);
     return `${sx},${sy} ${ex},${ey} ${hx},${hy}`;
   }
-  function drawRunner(hx,p,thetaDeg,lw){
-    const hy=HIP_Y, th=thetaDeg*D, ux=Math.cos(th), uy=-Math.sin(th);
-    const sx=hx+TORSO*ux, sy=hy+TORSO*uy;
-    const cx=hx+HEADOFF*ux, cy=hy+HEADOFF*uy;
-    torso.setAttribute('points',`${hx},${hy} ${sx},${sy}`);
-    head.setAttribute('x',cx-15); head.setAttribute('y',cy-15); head.setAttribute('transform',`rotate(${-(90-thetaDeg)} ${cx} ${cy})`);
-    legF.setAttribute('points',leg(hx,hy,p,LUNGE.legF,lw)); legB.setAttribute('points',leg(hx,hy,p+0.5,LUNGE.legB,lw));
-    armF.setAttribute('points',arm(sx,sy,p+0.5,LUNGE.armF,lw)); armB.setAttribute('points',arm(sx,sy,p,LUNGE.armB,lw));
+  function drawRunner(el,hx,groundY,p,thetaDeg,lw,k){
+    const hy=groundY-LEGS*k, th=thetaDeg*D, ux=Math.cos(th), uy=-Math.sin(th);
+    const sx=hx+TORSO*k*ux, sy=hy+TORSO*k*uy;
+    const cx=hx+HEADOFF*k*ux, cy=hy+HEADOFF*k*uy, hs=HEAD*k;
+    el.torso.setAttribute('points',`${hx},${hy} ${sx},${sy}`);
+    el.head.setAttribute('x',cx-hs/2); el.head.setAttribute('y',cy-hs/2); el.head.setAttribute('width',hs); el.head.setAttribute('height',hs);
+    el.head.setAttribute('transform',`rotate(${-(90-thetaDeg)*0.45} ${cx} ${cy})`);
+    el.legF.setAttribute('points',leg(hx,hy,p,LUNGE.legF,lw,k)); el.legB.setAttribute('points',leg(hx,hy,p+0.5,LUNGE.legB,lw,k));
+    el.armF.setAttribute('points',arm(sx,sy,p+0.5,LUNGE.armF,lw,k)); el.armB.setAttribute('points',arm(sx,sy,p,LUNGE.armB,lw,k));
   }
-  const X0=-1150, V=(HIP_AT_BREAK-X0)/(T_BREAK-T_START);
+  function elems(g){const pl=g.querySelectorAll('polyline');return {legB:pl[0],armB:pl[1],torso:pl[2],legF:pl[3],armF:pl[4],head:g.querySelector('rect')};}
+  const MAIN=elems(runner);
+  // ghosts: other lanes, behind, drawn behind the main runner
+  const GHOSTS=[{back:230,ground:772,k:0.92,op:0.30,ph:0.37,vk:0.93},{back:430,ground:790,k:0.85,op:0.18,ph:0.71,vk:0.87}].map(cfg=>{
+    const g=runner.cloneNode(true); g.removeAttribute('id'); g.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+    g.querySelectorAll('polyline,rect').forEach(e=>{ if(e.getAttribute('stroke')==='#A9A69E') e.setAttribute('stroke','#8A867E'); });
+    runner.parentNode.insertBefore(g,runner); return Object.assign({g,el:elems(g)},cfg);
+  });
+  const X0=-1300, V=(HIP_AT_BREAK-X0)/(T_BREAK-T_START);   // constant speed to the line
   function runnerState(t){
     const frozen=t>=T_BREAK;
     const x=frozen?HIP_AT_BREAK:X0+V*(t-T_START);
     const theta=lerp(THETA_RUN,THETA_DIP,easeInOut(span(t,T_BREAK-0.6,T_BREAK)));
     const lw=easeInOut(span(t,T_BREAK-0.5,T_BREAK-0.05));
-    return {x,theta,lw,frozen,p:(x-X0)/230};
+    return {x,theta,lw,frozen,p:(x-X0)/160};
   }
+
+  const SHOW_BOARD=new URLSearchParams(location.search).get('board')==='1';   // 전광판은 기본 OFF
+  let BASE=[-420,0,1920,1080];
+  function camera(t){
+    const [bx,by,bw,bh]=BASE;
+    const vb0=[bx,by,bw,bh];
+    const s1=SHOW_BOARD?1.35:1.4, ax=SHOW_BOARD?330:LX-120, ay=SHOW_BOARD?320:560;   // 1) 줌인: 바 쪽으로
+    const vb1=[ax-(ax-bx)/s1, ay-(ay-by)/s1, bw/s1, bh/s1];
+    const s2=1.7, cx=LX+10, cy=598;                                  // 2) 심볼로 이동: 바 중심을 프레임 중앙에
+    const vb2=[cx-bw/s2/2, cy-bh/s2/2, bw/s2, bh/s2];
+    const L=(a,b,x)=>a.map((v,i)=>lerp(v,b[i],x));
+    let vb;
+    if(t<7.3) vb=L(vb0,vb1,easeInOut(span(t,5.6,6.6)));
+    else if(t<8.6) vb=L(vb1,vb2,easeInOut(span(t,7.3,8.5)));
+    else vb=L(vb2,vb0,easeInOut(span(t,8.6,11.0)));               // 3) 줌아웃하며 글자로
+    stage.setAttribute('viewBox',vb.map(v=>v.toFixed(2)).join(' '));
+  }
+  const mix=(a,b,x)=>'#'+[0,2,4].map(i=>Math.round(lerp(parseInt(a.slice(1+i,3+i),16),parseInt(b.slice(1+i,3+i),16),x)).toString(16).padStart(2,'0')).join('');
   function render(t){
+    camera(t);
+    // scene 1
     const g0=span(t,0.1,0.6);
-    const T_SPLIT=T_BREAK+0.35;
-    const draw=easeOutCubic(span(t,T_BREAK,T_SPLIT));
+    const T_SPLIT=6.35;                       // 러너가 사라진 뒤에 갈라진다
+    const draw=easeOutCubic(span(t,T_BREAK,T_BREAK+0.35));
     hair.setAttribute('opacity', 0.28*Math.min(span(t,0.4,1.4), 1-span(t,T_BREAK,T_BREAK+0.1)));
-    const barH=496*draw; bar.setAttribute('y',750-barH); bar.setAttribute('height',barH);
-    lbl.setAttribute('opacity', span(t,0.8,1.4)*(1-span(t,10.2,10.8)));
+    const barH=303*draw; bar.setAttribute('y',750-barH); bar.setAttribute('height',barH);
+    lbl.setAttribute('opacity', span(t,0.8,1.4)*(1-span(t,11.2,11.8)));
+
+    // runner: constant speed, dip before the line, freeze when the chest is on it, then blur out
     const rs=runnerState(t);
     const on = t>=T_START && t<T_FADE1;
     const fade=span(t,T_FADE0,T_FADE1);
-    runner.setAttribute('opacity', on ? Math.min(1,span(t,T_START,T_START+0.3))*(1-fade) : 0);
+    const vis = on ? Math.min(1,span(t,T_START,T_START+0.3))*(1-fade) : 0;
+    runner.setAttribute('opacity', vis);
     $('rblurF').setAttribute('stdDeviation', fade*6);
-    if(on) drawRunner(rs.x, rs.p, rs.theta, rs.lw);
+    if(on) drawRunner(MAIN, rs.x, 750, rs.p, rs.theta, rs.lw, 1);
+    GHOSTS.forEach(gh=>{
+      gh.g.setAttribute('opacity', vis*gh.op);
+      const gx = rs.frozen ? HIP_AT_BREAK-gh.back : HIP_AT_BREAK-gh.back - V*gh.vk*(T_BREAK-t);   // 느려서 점점 처진다
+      if(on) drawRunner(gh.el, gx, gh.ground, (gx-X0)/160+gh.ph, THETA_RUN, 0, gh.k);
+    });
+
+    // break
     const broke=t>=T_SPLIT;
     bar.setAttribute('opacity', broke?0:1);
     lowerPoly.setAttribute('opacity', broke?1:0);
     upper.firstElementChild.setAttribute('opacity', broke?1:0);
     const slide=easeOutQuint(span(t,T_SPLIT,T_SPLIT+0.75));
     upper.setAttribute('transform',`translate(${SLIDE.x*slide} ${SLIDE.y*slide})`);
-    const g1=span(t,T_SPLIT,T_SPLIT+0.08), g2=1-span(t,T_SPLIT+0.08,T_SPLIT+0.9);
+    const g1=span(t,T_SPLIT,T_SPLIT+0.06), g2=1-span(t,T_SPLIT+0.3,T_SPLIT+1.6);
     gapGlow.setAttribute('opacity', broke ? g1*g2 : 0);
-    const recIn=span(t,1.0,1.5);
-    const mv=easeInOut(span(t,T_SPLIT+0.05,T_SPLIT+0.85));
-    const rx=lerp(650,664,mv), ry=lerp(712,392,mv);
-    const rfade=1-span(t,8.4,9.1);
-    recOld.setAttribute('x',rx); recOld.setAttribute('y',ry);
-    recNew.setAttribute('x',rx); recNew.setAttribute('y',ry);
-    recOld.setAttribute('opacity', recIn*(1-span(t,T_SPLIT+0.3,T_SPLIT+0.55))*rfade);
-    recNew.setAttribute('opacity', span(t,T_SPLIT+0.35,T_SPLIT+0.6)*rfade);
-    const w=easeInOut(span(t,8.4,10.0));
-    // 축소되며 흰색 → 타탄: 워드마크 안의 I는 타탄 (프로토타입 v3, 2026-10-09 18:28)
-    const mix=(a,b,x)=>'#'+[0,2,4].map(i=>Math.round(lerp(parseInt(a.slice(1+i,3+i),16),parseInt(b.slice(1+i,3+i),16),x)).toString(16).padStart(2,'0')).join('');
-    const col=mix('#F1EFEA','#C24A2E',w);
-    lowerPoly.setAttribute('fill',col); upper.firstElementChild.setAttribute('fill',col);
+    const fl=broke ? Math.min(1,span(t,T_SPLIT,T_SPLIT+0.06)*4)*(1-easeOutCubic(span(t,T_SPLIT+0.12,T_SPLIT+0.6))) : 0;   // 플래시: 빠르게 켜지고 0.6초에 걸쳐 꺼짐
+    flash.setAttribute('opacity', fl*0.9);
+
+    // scoreboard: RECORD 10.01 → strike → 9.99
+    const rfade=1-span(t,8.4,9.2);
+    board.setAttribute('opacity', SHOW_BOARD ? span(t,0.8,1.4)*rfade : 0);
+    const sw=bOld.getComputedTextLength();
+    const sk=easeOutCubic(span(t,T_SPLIT+0.15,T_SPLIT+0.5));
+    bStrike.setAttribute('x1',-131-sw/2); bStrike.setAttribute('x2',-131-sw/2+sw*sk);
+    const bl=span(t,T_SPLIT+0.6,T_SPLIT+0.85);               // 전광판 점등: 깜빡 후 켜짐
+    bNew.setAttribute('opacity', bl<=0?0 : (bl<0.35?1 : bl<0.6?0.15 : 1));
+
+    // into wordmark
+    const w=easeInOut(span(t,8.6,11.0));
+    // 축소되며 → 타탄: 워드마크 안의 I는 타탄
+    const base=mix('#C9C6BE','#F1EFEA',fade);           // 흰 러너와 겹치는 동안 바는 한 톤 어둡게
+    const col=mix(base,'#C24A2E',w);
+    bar.setAttribute('fill',base); lowerPoly.setAttribute('fill',col); upper.firstElementChild.setAttribute('fill',col);
     const k=lerp(1,L.k,w);
     const tx=lerp(0,L.ix-SX*k,w), ty=lerp(0,L.base-SBOT*k,w);
     sym.setAttribute('transform', w>0 ? `translate(${tx} ${ty}) scale(${k})` : '');
-    const wo=span(t,9.1,10.0);
+    const wo=span(t,9.9,11.0);
     wL.setAttribute('opacity',wo); wR.setAttribute('opacity',wo);
     if(L.ready){wL.setAttribute('x',L.wlx); wR.setAttribute('x',L.wrx);}
     const nud=(1-easeOutCubic(wo))*20;
     wL.setAttribute('transform',`translate(${-nud} 0)`); wR.setAttribute('transform',`translate(${nud} 0)`);
-    ground.setAttribute('opacity', Math.min(g0, 1-span(t,8.4,9.2)));
-    const c1=span(t,10.4,11.3);
+    ground.setAttribute('opacity', Math.min(g0, 1-span(t,8.6,9.6)));
+
+    // slogan
+    const c1=span(t,11.4,12.3);
     tag.setAttribute('opacity',c1); tag.setAttribute('transform',`translate(0 ${(1-easeOutCubic(c1))*14})`);
   }
 
-  // player: 자동 재생 · 루프 · 탭이 숨겨지면 멈춤
-  let t0=performance.now(), tCur=0, playing=true;
+  // player: 자동 재생 · 루프 · 탭이 숨겨지면 멈춤 (컨트롤 없음)
+  let playing=true, t0=performance.now(), tCur=0;
   function tick(now){
     if(playing){ tCur=(now-t0)/1000; if(tCur>=DUR){ t0=now; tCur=0; } render(tCur); }
     requestAnimationFrame(tick);
@@ -168,14 +235,15 @@ svg{display:block;width:100%;height:100%}
   document.addEventListener('visibilitychange',()=>{ if(document.hidden){playing=false;} else {playing=true; t0=performance.now()-tCur*1000;} });
   window.seek=function(t){playing=false;tCur=clamp(t,0,DUR);render(tCur);};
   window.setFormat=function(f){
-    if(f==='9:16'){ stage.setAttribute('viewBox','0 -420 1080 1920'); lbl.setAttribute('x',40); lbl.setAttribute('y',1420); }
-    else { stage.setAttribute('viewBox','-420 0 1920 1080'); lbl.setAttribute('x',-360); lbl.setAttribute('y',1000); }
+    if(f==='9:16'){ BASE=[0,-420,1080,1920]; stage.setAttribute('viewBox','0 -420 1080 1920'); lbl.setAttribute('x',40); lbl.setAttribute('y',1420); board.setAttribute("transform","translate(360 60)"); $('bPost').setAttribute('y2',690); $('bPost').nextElementSibling.setAttribute('y2',690); }
+    else { BASE=[-420,0,1920,1080]; stage.setAttribute('viewBox','-420 0 1920 1080'); lbl.setAttribute('x',-360); lbl.setAttribute('y',1000); board.setAttribute("transform","translate(40 140)"); $('bPost').setAttribute('y2',610); $('bPost').nextElementSibling.setAttribute('y2',610); }
   };
+
   (function(){const g=$('ticks');for(let x=-1400;x<=2400;x+=120){const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',x);l.setAttribute('x2',x);l.setAttribute('y1',750);l.setAttribute('y2',814);g.appendChild(l);}})();
   const q=new URLSearchParams(location.search);
   if(q.get('f')==='916') setFormat('9:16');
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const start=()=>{ measure(); render(0); if(q.has('t')) seek(parseFloat(q.get('t'))); else if(reduce) seek(11.5); else t0=performance.now(); requestAnimationFrame(tick); };
+  const start=()=>{ measure(); render(0); if(q.has('t')) seek(parseFloat(q.get('t'))); else if(reduce) seek(13); else t0=performance.now(); requestAnimationFrame(tick); };
   (document.fonts ? document.fonts.ready : Promise.resolve()).then(start);
   window.addEventListener('resize',()=>{ if(L.ready) measure(); });
 })();
