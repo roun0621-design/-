@@ -142,6 +142,10 @@ svg{display:block;width:100%;height:100%}
     recOld.setAttribute('opacity', recIn*(1-span(t,T_SPLIT+0.3,T_SPLIT+0.55))*rfade);
     recNew.setAttribute('opacity', span(t,T_SPLIT+0.35,T_SPLIT+0.6)*rfade);
     const w=easeInOut(span(t,8.4,10.0));
+    // 축소되며 흰색 → 타탄: 워드마크 안의 I는 타탄 (프로토타입 v3, 2026-10-09 18:28)
+    const mix=(a,b,x)=>'#'+[0,2,4].map(i=>Math.round(lerp(parseInt(a.slice(1+i,3+i),16),parseInt(b.slice(1+i,3+i),16),x)).toString(16).padStart(2,'0')).join('');
+    const col=mix('#F1EFEA','#C24A2E',w);
+    lowerPoly.setAttribute('fill',col); upper.firstElementChild.setAttribute('fill',col);
     const k=lerp(1,L.k,w);
     const tx=lerp(0,L.ix-SX*k,w), ty=lerp(0,L.base-SBOT*k,w);
     sym.setAttribute('transform', w>0 ? `translate(${tx} ${ty}) scale(${k})` : '');
