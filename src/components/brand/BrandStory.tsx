@@ -2,8 +2,8 @@
 // ──────────────────────────────────────────
 // Brand Story – /brand
 // 원고: pace-rise-logo/logo-story.html (문구는 i18n brand.*)
-// 구성: 필름(다크) → 심볼 브레이크(스크롤 연동) → 워드마크 → 색(트랙 사진) →
-//       사용 규칙 → 약속 + BEYOND LIMITS(다크) → 파일 다운로드 → 문의
+// 구성: 필름(다크) → 심볼 브레이크(스크롤 연동) → 색(트랙 사진) →
+//       약속 + BEYOND LIMITS(다크) → 파일 다운로드 → 문의
 // 색 규칙: 흑·백·타탄만. 타탄은 심볼·라벨·스와치에만.
 // ──────────────────────────────────────────
 import { useRef } from "react";
@@ -183,49 +183,7 @@ export default function BrandStory() {
         </div>
       </section>
 
-      {/* ── 3. Wordmark – the I in RISE ── */}
-      <section className="bg-pr-paper-2 py-20 md:py-32">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Stagger className="max-w-3xl">
-            <motion.div variants={staggerItem}>
-              <Eyebrow>{t("wordmark_label")}</Eyebrow>
-            </motion.div>
-            <motion.h2 variants={staggerItem} className="text-3xl md:text-4xl font-bold tracking-tight text-pr-ink">
-              {t("wordmark_title")}
-            </motion.h2>
-            <motion.p variants={staggerItem} className="mt-6 text-base md:text-lg text-pr-secondary leading-relaxed font-sans">
-              {t("wordmark_desc")}
-            </motion.p>
-          </Stagger>
-
-          {/* Big wordmark */}
-          <motion.div {...reveal} className="mt-14 md:mt-20 bg-white border border-pr-border rounded-3xl px-8 py-14 md:px-16 md:py-20 flex items-center justify-center">
-            <Wordmark className="w-full max-w-3xl text-pr-ink" />
-          </motion.div>
-
-          {/* Before / after */}
-          <Stagger className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <motion.figure variants={staggerItem} className="bg-white border border-pr-border rounded-3xl p-8 md:p-10">
-              <Wordmark variant="plain" className="w-full text-pr-ink" />
-              <figcaption className="mt-6 font-display text-[10px] tracking-[0.2em] text-pr-tertiary">
-                {t("wordmark_before")}
-              </figcaption>
-            </motion.figure>
-            <motion.figure variants={staggerItem} className="bg-pr-ink border border-pr-ink rounded-3xl p-8 md:p-10">
-              <Wordmark className="w-full text-pr-paper" />
-              <figcaption className="mt-6 font-display text-[10px] tracking-[0.2em] text-pr-tertiary">
-                {t("wordmark_after")}
-              </figcaption>
-            </motion.figure>
-          </Stagger>
-
-          <motion.p {...reveal} className="mt-10 max-w-3xl text-base text-pr-secondary leading-relaxed font-sans">
-            {t("wordmark_note")}
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ── 4. Color – from the track (photo) ── */}
+      {/* ── 3. Color – from the track (photo) ── */}
       <section className="relative bg-pr-ink text-pr-paper py-20 md:py-32 overflow-hidden">
         <Image
           src="/images/services/pacing-light/01-lightlap-night.webp"
@@ -275,30 +233,7 @@ export default function BrandStory() {
         </div>
       </section>
 
-      {/* ── 5. Guidelines ── */}
-      <section className="bg-pr-paper py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Stagger className="mb-12">
-            <motion.div variants={staggerItem}>
-              <Eyebrow>{t("rules_label")}</Eyebrow>
-            </motion.div>
-            <motion.h2 variants={staggerItem} className="text-3xl md:text-4xl font-bold tracking-tight text-pr-ink">
-              {t("rules_title")}
-            </motion.h2>
-          </Stagger>
-          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-            {(["1", "2", "3", "4", "5"] as const).map((n) => (
-              <motion.div key={n} variants={staggerItem} className="border-t border-pr-ink pt-4">
-                <p className="font-display text-[10px] tracking-[0.2em] text-pr-brand mb-2">0{n}</p>
-                <h3 className="text-base font-bold tracking-tight text-pr-ink mb-2">{t(`rule_${n}_k`)}</h3>
-                <p className="text-[13.5px] text-pr-secondary leading-relaxed font-sans">{t(`rule_${n}_v`)}</p>
-              </motion.div>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
-      {/* ── 6. Promise + Slogan (Track Black) ── */}
+      {/* ── 4. Promise + Slogan (Track Black) ── */}
       <section className="bg-pr-ink text-pr-paper py-24 md:py-36">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div {...reveal} className="flex justify-center">
@@ -321,7 +256,7 @@ export default function BrandStory() {
         </div>
       </section>
 
-      {/* ── 7. Downloads ── */}
+      {/* ── 5. Downloads ── */}
       <section className="bg-pr-paper py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Stagger className="max-w-3xl mb-12">
@@ -373,7 +308,7 @@ export default function BrandStory() {
         </div>
       </section>
 
-      {/* ── 8. CTA ── */}
+      {/* ── 6. CTA ── */}
       <section className="bg-pr-paper-2 py-16 md:py-28">
         <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-pr-ink">{t("cta_title")}</h2>
