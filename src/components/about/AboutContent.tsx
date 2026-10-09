@@ -25,6 +25,7 @@ import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
 import { CONTACT_EMAIL, INSTAGRAM_URL } from "@/lib/site";
 import Parallax from "@/components/motion/Parallax";
+import Symbol from "@/components/brand/Symbol";
 import CountUp from "@/components/motion/CountUp";
 import RevealText from "@/components/motion/RevealText";
 
@@ -142,9 +143,9 @@ function MilestoneItem({ m, locale }: { m: Milestone; locale: string }) {
       <motion.div
         className="absolute left-5 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full z-10 border-2"
         animate={{
-          backgroundColor: active ? "#B79F58" : "#FFFFFF",
-          borderColor: active ? "#B79F58" : "#E5E5E5",
-          boxShadow: active ? "0 0 0 3px #FFFFFF, 0 0 0 6px rgba(183,159,88,0.25)" : "0 0 0 3px #FFFFFF, 0 0 0 4px #E5E5E5",
+          backgroundColor: active ? "#C24A2E" : "#FFFFFF",
+          borderColor: active ? "#C24A2E" : "#E5E5E5",
+          boxShadow: active ? "0 0 0 3px #FFFFFF, 0 0 0 6px rgba(194,74,46,0.25)" : "0 0 0 3px #FFFFFF, 0 0 0 4px #E5E5E5",
           scale: active ? 1.15 : 1,
         }}
         transition={{ duration: 0.35 }}
@@ -152,7 +153,7 @@ function MilestoneItem({ m, locale }: { m: Milestone; locale: string }) {
 
       {/* Content card */}
       <div className={`ml-12 md:ml-0 md:w-[46%] ${isLeft ? "md:text-right md:pr-10" : "md:text-left md:pl-10"}`}>
-        <span className="inline-block font-display text-[11px] tracking-[0.15em] text-pr-brand bg-pr-brand-light px-3 py-1 rounded-full mb-2.5">
+        <span className="inline-block font-display text-[11px] tracking-[0.15em] text-pr-brand bg-pr-paper-2 px-3 py-1 rounded-full mb-2.5">
           {m.date}
         </span>
         <p className="text-[15px] font-medium text-pr-primary leading-relaxed font-sans whitespace-pre-line">
@@ -184,7 +185,7 @@ export default function AboutPage() {
   return (
     <div className="pt-16 md:pt-24">
       {/* Hero Banner */}
-      <section className="py-16 md:py-32 bg-white">
+      <section className="py-16 md:py-32 bg-pr-paper">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
@@ -242,7 +243,7 @@ export default function AboutPage() {
             {...reveal}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand">
+              <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink">
                 <Target size={20} strokeWidth={1.5} />
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-pr-primary">
@@ -258,7 +259,7 @@ export default function AboutPage() {
       </section>
 
       {/* Role / Bridge */}
-      <section className="py-14 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-pr-paper">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
@@ -268,10 +269,10 @@ export default function AboutPage() {
             ].map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="p-8 rounded-2xl border border-pr-border hover:border-pr-brand/30 transition-[border-color,box-shadow,background-color,color] duration-300"
+                className="p-8 rounded-2xl border border-pr-border hover:border-pr-ink/30 transition-[border-color,box-shadow,background-color,color] duration-300"
                 variants={staggerItem}
               >
-                <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
+                <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-5">
                   <Icon size={22} strokeWidth={1.5} />
                 </div>
                 <h3 className="font-display text-sm tracking-wider text-pr-primary mb-3">
@@ -300,10 +301,10 @@ export default function AboutPage() {
             {techItems.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-ink/40 transition-[border-color,box-shadow,background-color,color] duration-300"
                 variants={staggerItem}
               >
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-6">
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-6">
                   <Icon size={22} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-xl font-semibold text-pr-primary mb-3">
@@ -321,7 +322,7 @@ export default function AboutPage() {
       {/* ════════════════════════════════════════
           KEY MILESTONES TIMELINE
          ════════════════════════════════════════ */}
-      <section className="py-14 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-pr-paper">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">KEY MILESTONES</p>
@@ -332,7 +333,7 @@ export default function AboutPage() {
             {/* Center line – grey base + gold line drawn by scroll */}
             <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-pr-border -translate-x-px" />
             <motion.div
-              className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-pr-brand -translate-x-px origin-top"
+              className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-pr-tartan -translate-x-px origin-top"
               style={reduce ? undefined : { scaleY: lineScale }}
             />
 
@@ -359,11 +360,11 @@ export default function AboutPage() {
             {footprint.map(({ icon: Icon, value, key }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-7 text-center hover:border-pr-brand/30 transition-[border-color,box-shadow,background-color,color] duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-7 text-center hover:border-pr-ink/30 transition-[border-color,box-shadow,background-color,color] duration-300"
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
                 variants={staggerItem}
               >
-                <div className="w-10 h-10 mx-auto flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-4">
+                <div className="w-10 h-10 mx-auto flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-4">
                   <Icon size={18} strokeWidth={1.5} />
                 </div>
                 <p className="font-display text-2xl md:text-3xl text-pr-brand mb-2"><CountUp value={value} /></p>
@@ -380,9 +381,42 @@ export default function AboutPage() {
       </section>
 
       {/* ════════════════════════════════════════
+          BRAND TEASER → /brand
+         ════════════════════════════════════════ */}
+      <section className="bg-pr-ink text-pr-paper py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+            <motion.div {...reveal} className="md:col-span-3 flex md:justify-center">
+              <Symbol className="h-28 md:h-40 w-auto" />
+            </motion.div>
+            <Stagger className="md:col-span-9">
+              <motion.p variants={staggerItem} className="font-display text-[11px] tracking-[0.3em] text-pr-tartan-light mb-4">
+                {t("brand_teaser_label")}
+              </motion.p>
+              <motion.h2 variants={staggerItem} className="text-2xl md:text-3xl font-bold tracking-tight text-pr-paper">
+                {t("brand_teaser_title")}
+              </motion.h2>
+              <motion.p variants={staggerItem} className="mt-4 text-pr-paper/70 font-sans leading-relaxed max-w-xl">
+                {t("brand_teaser_desc")}
+              </motion.p>
+              <motion.div variants={staggerItem} className="mt-7">
+                <Link
+                  href="/brand"
+                  className="inline-flex items-center gap-2 text-sm font-display tracking-wider text-pr-paper hover:gap-3 transition-all duration-300"
+                >
+                  {t("brand_teaser_cta")}
+                  <ArrowRight size={15} strokeWidth={2} />
+                </Link>
+              </motion.div>
+            </Stagger>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
           COMPANY OVERVIEW + CONTACT CTA
          ════════════════════════════════════════ */}
-      <section className="py-14 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-pr-paper">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-14">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">COMPANY</p>

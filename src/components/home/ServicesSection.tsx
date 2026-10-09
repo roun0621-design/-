@@ -35,7 +35,7 @@ export default function ServicesSection() {
   const t = useTranslations("home");
 
   return (
-    <section className="py-16 md:py-36 bg-white">
+    <section className="py-16 md:py-36 bg-pr-paper">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <Stagger className="text-center mb-12 md:mb-20">
@@ -70,7 +70,7 @@ export default function ServicesSection() {
                 <div className="card-elegant p-6 md:p-8 h-full">
                   {/* Icon + Label */}
                   <div className="flex items-center gap-4 mb-8">
-                    <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand">
+                    <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink">
                       <Icon size={22} strokeWidth={1.5} />
                     </div>
                     <span className="font-display text-[11px] tracking-[0.2em] text-pr-brand uppercase">
@@ -92,7 +92,7 @@ export default function ServicesSection() {
                   <ul className="space-y-3 mb-10">
                     {features.map((fKey) => (
                       <li key={fKey} className="flex items-start gap-3">
-                        <span className="mt-2 w-1 h-1 rounded-full bg-pr-brand shrink-0" />
+                        <span className="mt-2 w-1 h-1 rounded-full bg-pr-ink shrink-0" />
                         <span className="text-sm text-pr-secondary font-sans">
                           {nl2br(t(`service_${key}_${fKey}` as any))}
                         </span>

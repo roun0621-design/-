@@ -44,8 +44,8 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
   return (
     <div className="pt-16 md:pt-24">
       {/* Hero */}
-      <section className="py-12 md:py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[200px]" style={{ background: "rgba(183, 159, 88, 0.04)" }} />
+      <section className="py-12 md:py-24 bg-pr-paper relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[200px]" style={{ background: "rgba(194,74,46,0.04)" }} />
         <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center"
@@ -53,7 +53,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pr-brand/20 bg-pr-brand-light mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pr-border bg-white mb-8">
               <Zap size={14} className="text-pr-brand" strokeWidth={2} />
               <span className="font-display text-[11px] tracking-[0.2em] text-pr-brand">PACING LIGHT</span>
             </div>
@@ -100,7 +100,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
       <div className="section-divider" />
 
       {/* What is Wavelight */}
-      <section className="py-16 md:py-32 bg-white">
+      <section className="py-16 md:py-32 bg-pr-paper">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -158,10 +158,10 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
             {features.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-ink/40 transition-[border-color,box-shadow,background-color,color] duration-300"
                 variants={staggerItem}
               >
-                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
+                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-5">
                   <Icon size={20} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-base font-semibold text-pr-primary mb-2">
@@ -177,7 +177,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
       </section>
 
       {/* Use Cases – compact inline tags */}
-      <section className="py-14 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-pr-paper">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">USE CASES</p>
@@ -191,7 +191,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
               {useCases.map((key) => (
                 <span
                   key={key}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-pr-border text-sm text-pr-primary font-sans hover:border-pr-brand/40 hover:bg-pr-brand-light transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-pr-border text-sm text-pr-primary font-sans hover:border-pr-ink/40 hover:bg-pr-paper-2 transition-all duration-300"
                 >
                   <CheckCircle size={14} className="text-pr-brand shrink-0" strokeWidth={1.5} />
                   {t(`usecase_${key}` as any)}
@@ -221,7 +221,7 @@ export default function PacingLightDetail({ photos = [] }: { photos?: ServicePho
       </section>
 
       {/* CTA Band */}
-      <section className="py-14 md:py-24 bg-white">
+      <section className="py-14 md:py-24 bg-pr-paper">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-pr-primary mb-4">
             {t("cta_title")}

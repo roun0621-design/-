@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
 <style>
-:root{--gold:#B79F58;--gold-b:#D9C27A;--ink:#1E1E22;--paper:#F7F6F2;--white:#F5F5F2;--amber:#FFB300;
+:root{--gold:#C24A2E;--gold-b:#D9573A;--ink:#1E1E22;--paper:#F4F3EF;--white:#F4F3EF;--amber:#FFB300;
 --aud:'Audiowide',monospace;--pre:'Pretendard',sans-serif;}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;background:var(--paper);overflow:hidden}
@@ -22,9 +22,9 @@ body{font-family:var(--pre);cursor:pointer}
 #world svg{width:100%;height:100%;display:block}
 
 #bezel{position:absolute;left:50%;top:50%;width:34vmin;height:68vmin;
-transform:translate(-50%,-50%) scale(3.4);border:.55vmin solid rgba(158,132,62,.9);border-radius:4.6vmin;
+transform:translate(-50%,-50%) scale(3.4);border:.55vmin solid rgba(194,74,46,.9);border-radius:4.6vmin;
 pointer-events:none;z-index:40;opacity:0}
-#bezel .notch{position:absolute;top:1.6vmin;left:50%;transform:translateX(-50%);width:9vmin;height:1.7vmin;border-radius:1vmin;background:rgba(158,132,62,.5)}
+#bezel .notch{position:absolute;top:1.6vmin;left:50%;transform:translateX(-50%);width:9vmin;height:1.7vmin;border-radius:1vmin;background:rgba(194,74,46,.5)}
 
 /* phone inner content (logo state) */
 #phoneui{position:absolute;left:50%;top:50%;width:34vmin;height:68vmin;transform:translate(-50%,-50%);
@@ -66,9 +66,9 @@ opacity:0;transition:opacity .8s}
 #hint.on{opacity:1}
 
 /* ---- world svg internals ---- */
-.lane{stroke:rgba(158,132,62,.65);fill:none}
-.lane2{stroke:rgba(158,132,62,.42);fill:none}
-.lane3{stroke:rgba(158,132,62,.28);fill:none}
+.lane{stroke:rgba(194,74,46,.65);fill:none}
+.lane2{stroke:rgba(194,74,46,.42);fill:none}
+.lane3{stroke:rgba(194,74,46,.28);fill:none}
 .mark{stroke:rgba(245,245,242,.55);stroke-width:2.2}
 .room{fill:none;stroke:rgba(30,30,35,.3);stroke-width:1.4}
 .chk{opacity:0}
@@ -96,7 +96,7 @@ stroke-dasharray:12;stroke-dashoffset:12;opacity:0}
 .starter.wait{animation:stin .6s ease forwards}
 @keyframes stin{to{opacity:1}}
 #starters.gone .starter{transition:opacity .3s;opacity:0!important;animation:none}
-.btxt.cg{fill:#D9C27A}.btxt.cs{fill:#C9C9CF}.btxt.cn{fill:#8FA5D8}
+.btxt.cg{fill:#D9573A}.btxt.cs{fill:#C9C9CF}.btxt.cn{fill:#8FA5D8}
 #scanline{}
 #pfscan.scan #scanline{animation:pfsweep 2.2s cubic-bezier(.6,.05,.4,.95) forwards}
 @keyframes pfsweep{0%{transform:translateX(0)}100%{transform:translateX(32px)}}
@@ -129,9 +129,9 @@ stroke-dasharray:60;stroke-dashoffset:60}
       <svg id="cam" viewBox="0 0 900 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="trailgrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#D9C27A" stop-opacity="0"/>
-            <stop offset="70%" stop-color="#D9C27A" stop-opacity=".85"/>
-            <stop offset="100%" stop-color="#FFF3D6" stop-opacity="1"/>
+            <stop offset="0%" stop-color="#D9573A" stop-opacity="0"/>
+            <stop offset="70%" stop-color="#D9573A" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#F4F3EF" stop-opacity="1"/>
           </linearGradient>
           <linearGradient id="trailgray" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#7A7A84" stop-opacity="0"/>
@@ -162,7 +162,7 @@ stroke-dasharray:60;stroke-dashoffset:60}
             <rect x="136" y="253" width="110" height="54" rx="5" fill="#0B0B08" stroke="#1c1c1e" stroke-width="2"/>
             <g id="boardglow" visibility="hidden">
               <g class="brow" id="br1">
-                <circle cx="170.5" cy="266" r="2.2" fill="#D9C27A"/>
+                <circle cx="170.5" cy="266" r="2.2" fill="#D9573A"/>
                 <text class="btxt cg" x="180.5" y="266" dominant-baseline="central" text-anchor="start" font-size="11">20.34</text>
               </g>
               <g class="brow" id="br2">
@@ -177,7 +177,7 @@ stroke-dasharray:60;stroke-dashoffset:60}
           </g>
           <g id="pfscan" visibility="hidden">
             <rect x="336" y="80" width="44" height="32" rx="3" fill="#0B0B0D"/>
-            <circle cx="348" cy="87"  r="2.6" fill="#D9C27A"/>
+            <circle cx="348" cy="87"  r="2.6" fill="#D9573A"/>
             <circle cx="348" cy="96"  r="2.6" fill="#8A8A94"/>
             <circle cx="348" cy="105" r="2.6" fill="#5A6E9E"/>
             <line id="scanline" x1="340" y1="82" x2="340" y2="110" stroke="#E5484D" stroke-width="1.4"/>
@@ -197,7 +197,7 @@ stroke-dasharray:60;stroke-dashoffset:60}
 
         <!-- call room minimal check dots -->
         <g id="chks">
-          <circle class="chk" cx="455" cy="467" r="3" fill="#D9C27A"/>
+          <circle class="chk" cx="455" cy="467" r="3" fill="#D9573A"/>
           <circle class="chk" cx="469" cy="467" r="3" fill="#8A8A94"/>
           <circle class="chk" cx="483" cy="467" r="3" fill="#5A6E9E"/>
           <g id="chkmarks">
@@ -211,7 +211,7 @@ stroke-dasharray:60;stroke-dashoffset:60}
         <g id="starters">
           <circle class="starter" id="stNavy" cx="645.3" cy="383.7" r="3.6" fill="#5A6E9E"/>
           <circle class="starter" id="stGray" cx="613.8" cy="386.2" r="3.6" fill="#8A8A94"/>
-          <circle class="starter" id="stGold" cx="580"   cy="380.5" r="3.6" fill="#D9C27A"/>
+          <circle class="starter" id="stGold" cx="580"   cy="380.5" r="3.6" fill="#D9573A"/>
         </g>
 
         <!-- race path : start â down â bottom curve â up right straight â finish -->

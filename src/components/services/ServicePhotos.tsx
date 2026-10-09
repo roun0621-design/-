@@ -59,8 +59,8 @@ export default function ServicePhotos({ photos, alt, label, captions, className 
               </Parallax>
               {captions && (
                 <figcaption className="absolute inset-x-0 bottom-0 px-5 pb-4 pt-16 md:px-6 md:pb-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                  <span className="flex items-center gap-2 font-display text-[10px] tracking-[0.22em] text-[#D9C27A]">
-                    <span className="inline-block w-5 h-px bg-[#D9C27A]" />
+                  <span className="flex items-center gap-2 font-display text-[10px] tracking-[0.22em] text-[#D9573A]">
+                    <span className="inline-block w-5 h-px bg-[#D9573A]" />
                     {tag}
                   </span>
                   {title && (

@@ -25,7 +25,7 @@ export default function PressSection() {
   const items = expanded ? sorted : sorted.slice(0, INITIAL_COUNT);
 
   return (
-    <section className="py-14 md:py-28 bg-white">
+    <section className="py-14 md:py-28 bg-pr-paper">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         <Stagger className="text-center mb-10 md:mb-14">
           <motion.div
@@ -59,11 +59,11 @@ export default function PressSection() {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start gap-4 px-5 py-5 md:px-7 md:py-6 bg-white hover:bg-pr-brand-light transition-colors duration-300"
+                className="group flex items-start gap-4 px-5 py-5 md:px-7 md:py-6 bg-white hover:bg-pr-paper-2 transition-colors duration-300"
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2">
-                    <span className="inline-block text-[11px] font-semibold tracking-wide text-pr-brand bg-pr-brand-light rounded-full px-2.5 py-0.5">
+                    <span className="inline-block text-[11px] font-semibold tracking-wide text-pr-brand bg-pr-paper-2 rounded-full px-2.5 py-0.5">
                       {(locale !== "ko" && item.outlet_en) || item.outlet}
                     </span>
                     <time
@@ -77,7 +77,7 @@ export default function PressSection() {
                     {(locale !== "ko" && item.title_en) || item.title}
                   </p>
                 </div>
-                <span className="mt-1 shrink-0 w-9 h-9 flex items-center justify-center rounded-full border border-pr-border text-pr-tertiary group-hover:border-pr-brand group-hover:text-pr-brand group-hover:bg-white transition-all duration-300">
+                <span className="mt-1 shrink-0 w-9 h-9 flex items-center justify-center rounded-full border border-pr-border text-pr-tertiary group-hover:border-pr-ink group-hover:text-pr-brand group-hover:bg-white transition-all duration-300">
                   <ArrowUpRight size={16} strokeWidth={1.75} />
                   <span className="sr-only">{t("press_read")}</span>
                 </span>
@@ -91,7 +91,7 @@ export default function PressSection() {
             <button
               type="button"
               onClick={() => setExpanded(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light hover:border-pr-brand transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-ink border border-pr-border rounded-full hover:bg-pr-paper-2 hover:border-pr-ink transition-all duration-300"
             >
               {t("press_more")}
             </button>

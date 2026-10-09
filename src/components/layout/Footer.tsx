@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { Mail, ExternalLink, Camera } from "lucide-react";
 import { nl2br } from "@/utils/nl2br";
 import { CONTACT_EMAIL, INSTAGRAM_URL } from "@/lib/site";
+import Wordmark from "@/components/brand/Wordmark";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -14,22 +15,12 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-pr-border">
+    <footer className="bg-pr-paper border-t border-pr-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-4">
-            <div className="flex items-center gap-3">
-              <img
-                src="/logo-character-gold.png"
-                alt="PACE RISE"
-                className="w-10 h-auto"
-                loading="lazy"
-              />
-              <span className="font-display text-3xl tracking-wider text-pr-primary">
-                PACE RISE
-              </span>
-            </div>
+            <Wordmark className="h-7 md:h-8 w-auto text-pr-ink" />
             <p className="mt-4 text-pr-secondary text-sm leading-relaxed max-w-sm">
               {nl2br(t("description"))}
             </p>
@@ -41,7 +32,7 @@ export default function Footer() {
               {t("quick_links")}
             </h4>
             <ul className="space-y-3">
-              {(["home", "about", "news", "contact"] as const).map((key) => (
+              {(["home", "about", "brand", "news", "contact"] as const).map((key) => (
                 <li key={key}>
                   <Link
                     href={key === "home" ? "/" : `/${key}`}

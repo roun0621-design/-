@@ -24,7 +24,7 @@ interface Props {
   photos?: ServicePhoto[];
 }
 
-const GOLD = "#D9C27A";
+const GOLD = "#D9573A";
 
 /* 오른쪽 항목 – 화면 가운데 10% 띠에 들어오면 부모에 알림 */
 function FeatureRow({
@@ -62,7 +62,7 @@ function FeatureRow({
           <span className="font-display text-sm tracking-[0.2em] text-pr-brand">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <span className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand">
+          <span className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink">
             <Icon size={18} strokeWidth={1.5} />
           </span>
         </div>
@@ -109,7 +109,7 @@ export default function OperatorShowcase({ features, photos = [] }: Props) {
           ))}
           {/* Fallback gradient when there are no photos */}
           {photos.length === 0 && (
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(183,159,88,0.35),transparent_60%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(194,74,46,0.35),transparent_60%)]" />
           )}
           {/* Dim overlay so the text reads */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/15" />

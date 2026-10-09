@@ -11,7 +11,7 @@ export default function ScrollProgress() {
   return (
     <motion.div
       aria-hidden
-      className="absolute top-0 left-0 right-0 h-[2px] origin-left bg-pr-brand"
+      className="absolute top-0 left-0 right-0 h-[2px] origin-left bg-pr-tartan"
       style={{ scaleX }}
     />
   );

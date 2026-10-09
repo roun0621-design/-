@@ -6,6 +6,7 @@ import HeroSection from "@/components/home/HeroSection";
 import IntroSection from "@/components/home/IntroSection";
 import TrustSection from "@/components/home/TrustSection";
 import ServicesSection from "@/components/home/ServicesSection";
+import BrandTeaser from "@/components/home/BrandTeaser";
 import VisionSection from "@/components/home/VisionSection";
 import InstagramFeed from "@/components/home/InstagramFeed";
 import NodeWelcomeModal from "@/components/layout/NodeWelcomeModal";
@@ -25,6 +26,7 @@ export default function HomePage({
       <div className="section-divider" />
       <TrustSection />
       <ServicesSection />
+      <BrandTeaser />
       <VisionSection />
       <div className="section-divider" />
       <InstagramFeed />

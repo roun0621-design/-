@@ -47,11 +47,11 @@ export default function VisionSection() {
           {goals.map(({ key, icon: Icon }, i) => (
             <motion.div
               key={key}
-              className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 text-center hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
+              className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 text-center hover:border-pr-ink/40 transition-[border-color,box-shadow,background-color,color] duration-300"
               style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
               variants={staggerItem}
             >
-              <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
+              <div className="w-12 h-12 mx-auto flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-5">
                 <Icon size={22} strokeWidth={1.5} />
               </div>
               <h3 className="font-display text-sm tracking-wider text-pr-primary mb-3">

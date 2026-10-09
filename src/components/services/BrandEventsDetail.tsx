@@ -57,10 +57,10 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
   return (
     <div className="pt-16 md:pt-24">
       {/* Hero */}
-      <section className="py-16 md:py-28 bg-white">
+      <section className="py-16 md:py-28 bg-pr-paper">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pr-brand/20 bg-pr-brand-light mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pr-border bg-white mb-8"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -130,7 +130,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
                 variants={staggerItem}
               >
-                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
+                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-5">
                   <Icon size={20} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-bold tracking-tight text-pr-primary mb-2">
@@ -146,7 +146,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
       </section>
 
       {/* How it works */}
-      <section className="py-16 md:py-28 bg-white">
+      <section className="py-16 md:py-28 bg-pr-paper">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">
@@ -163,7 +163,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
                 className="relative"
                 variants={staggerItem}
               >
-                <span className="font-display text-3xl text-pr-brand/30">0{n}</span>
+                <span className="font-display text-3xl text-pr-ink/20">0{n}</span>
                 <h3 className="mt-3 text-lg font-bold tracking-tight text-pr-primary">
                   {t(`process_${n}_title` as any)}
                 </h3>
@@ -195,7 +195,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
                 variants={staggerItem}
               >
-                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
+                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-5">
                   <Icon size={20} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-lg font-bold tracking-tight text-pr-primary mb-2">
@@ -211,7 +211,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
       </section>
 
       {/* Track record — brand projects */}
-      <section className="py-16 md:py-28 bg-white">
+      <section className="py-16 md:py-28 bg-pr-paper">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">
@@ -228,7 +228,7 @@ export default function BrandEventsDetail({ photos = [] }: { photos?: ServicePho
                 className="card-elegant p-6 md:p-8 h-full"
                 variants={staggerItem}
               >
-                <span className="inline-block font-display text-[10px] tracking-[0.18em] text-pr-brand bg-pr-brand-light rounded-full px-3 py-1 mb-5">
+                <span className="inline-block font-display text-[10px] tracking-[0.18em] text-pr-brand bg-pr-paper-2 rounded-full px-3 py-1 mb-5">
                   {t(`case_${key}_role` as any)}
                 </span>
                 <h3 className="text-xl font-bold tracking-tight text-pr-primary mb-3">

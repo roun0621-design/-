@@ -31,7 +31,7 @@ export function buildSeoMeta(path: string, locale: string): Pick<Metadata, "alte
       type: "website",
       images: [
         {
-          url: `${BASE_URL}/og-image-v2.png`,
+          url: `${BASE_URL}/og-image-v3.png`,
           width: 1200,
           height: 630,
           alt: "PACE RISE – Sports Technology for Track & Field",

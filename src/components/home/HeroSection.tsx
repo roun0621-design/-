@@ -9,6 +9,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { nl2br } from "@/utils/nl2br";
+import Wordmark from "@/components/brand/Wordmark";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
@@ -22,7 +23,7 @@ export default function HeroSection() {
   const imgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
-    <section className="relative min-h-[88vh] md:min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-[72px] md:pt-[96px] pb-12 md:pb-20">
+    <section className="relative min-h-[88vh] md:min-h-screen flex flex-col justify-center overflow-hidden bg-pr-paper pt-[72px] md:pt-[96px] pb-12 md:pb-20">
       {/* Subtle background grid pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div
@@ -35,28 +36,18 @@ export default function HeroSection() {
       </div>
 
       {/* Subtle brand accent glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[150px]" style={{ background: "rgba(183, 159, 88, 0.06)" }} />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[150px]" style={{ background: "rgba(194,74,46,0.06)" }} />
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center w-full">
-        {/* Brand Logo – Icon + PACE RISE wordmark */}
+        {/* Wordmark – RISE의 I가 심볼 */}
         <motion.div
-          className="mb-8 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-4"
-          initial={{ opacity: 0, scale: 0.9 }}
+          className="mb-8 flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
         >
-          <img
-            src="/logo-character-gold.png"
-            alt="PACE RISE"
-            className="w-12 h-auto md:w-14 lg:w-[67px] shrink-0"
-            loading="eager"
-          />
-          <span className="font-display text-4xl md:text-5xl lg:text-[50px] tracking-[0.15em] text-pr-primary">
-            PACE RISE
-          </span>
-          {/* phantom spacer mirrors the icon so the wordmark stays page-centered on desktop */}
-          <span aria-hidden className="hidden md:block md:w-14 lg:w-[67px] shrink-0" />
+          <Wordmark className="h-10 md:h-14 lg:h-16 w-auto text-pr-ink" />
         </motion.div>
 
         {/* Tagline */}
@@ -99,7 +90,7 @@ export default function HeroSection() {
         >
           {["value_rms", "value_tracking", "value_records"].map((key) => (
             <span key={key} className="text-sm text-pr-tertiary font-sans">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-pr-brand mr-2 align-middle" />
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-pr-ink mr-2 align-middle" />
               {t(key as any)}
             </span>
           ))}
@@ -162,7 +153,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.7 }}
         >
           {["audience_youth", "audience_elite", "audience_masters"].map((key) => (
-            <div key={key} className="text-center px-4 py-5 rounded-2xl border border-pr-border-light hover:border-pr-brand/30 transition-colors duration-300">
+            <div key={key} className="text-center px-4 py-5 rounded-2xl border border-pr-border-light hover:border-pr-ink/30 transition-colors duration-300">
               <p className="text-xs text-pr-brand font-display tracking-wider mb-1">
                 {t(`${key}_label` as any)}
               </p>

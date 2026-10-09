@@ -21,7 +21,7 @@ export default function IntroSection() {
   const t = useTranslations("home");
 
   return (
-    <section className="py-16 md:py-28 bg-white">
+    <section className="py-16 md:py-28 bg-pr-paper">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <Stagger className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* One-sentence company definition */}
@@ -55,9 +55,9 @@ export default function IntroSection() {
                 >
                   <Link
                     href={href}
-                    className="group flex items-center gap-4 p-5 rounded-2xl border border-pr-border bg-white hover:border-pr-brand hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300"
+                    className="group flex items-center gap-4 p-5 rounded-2xl border border-pr-border bg-white hover:border-pr-ink hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-all duration-300"
                   >
-                    <span className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand shrink-0">
+                    <span className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink shrink-0">
                       <Icon size={20} strokeWidth={1.5} />
                     </span>
                     <span className="flex-1 min-w-0">

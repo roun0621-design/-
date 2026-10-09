@@ -77,12 +77,12 @@ export default function NodeWelcomeModal() {
             {/* Brand accent glow */}
             <div
               className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-32 rounded-full blur-[80px] pointer-events-none"
-              style={{ background: "rgba(183,159,88,0.18)" }}
+              style={{ background: "rgba(194,74,46,0.18)" }}
             />
 
             <div className="relative px-5 sm:px-6 pt-9 pb-7 text-center">
               {/* Icon */}
-              <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-2xl bg-pr-brand-light text-pr-brand mb-5">
+              <div className="mx-auto w-14 h-14 flex items-center justify-center rounded-2xl bg-pr-paper-2 text-pr-ink mb-5">
                 <Monitor size={26} strokeWidth={1.5} />
               </div>
 
@@ -113,7 +113,7 @@ export default function NodeWelcomeModal() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={close}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-pr-brand text-white font-display text-sm tracking-wider hover:bg-[#A48D4A] hover:shadow-[0_4px_20px_rgba(183,159,88,0.3)] transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-pr-ink text-white font-display text-sm tracking-wider hover:bg-pr-cinder hover:shadow-[0_4px_20px_rgba(194,74,46,0.3)] transition-all duration-300"
                 >
                   {t("cta_go")}
                   <ExternalLink size={15} strokeWidth={2} />

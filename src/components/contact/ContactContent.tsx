@@ -101,7 +101,7 @@ function ContactForm() {
   return (
     <div className="pt-16 md:pt-24">
       {/* Header */}
-      <section className="py-14 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-pr-paper">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
@@ -149,7 +149,7 @@ function ContactForm() {
                   <p className="text-pr-secondary font-sans">{nl2br(t("success_message"))}</p>
                   <button
                     onClick={() => setStatus("idle")}
-                    className="mt-6 px-6 py-2.5 text-sm border border-pr-border rounded-full hover:border-pr-brand text-pr-secondary hover:text-pr-brand transition-colors"
+                    className="mt-6 px-6 py-2.5 text-sm border border-pr-border rounded-full hover:border-pr-ink text-pr-secondary hover:text-pr-brand transition-colors"
                   >
                     {t("title")}
                   </button>
@@ -160,10 +160,10 @@ function ContactForm() {
                   className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 md:p-10 space-y-6"
                 >
                   {status === "error" && (
-                    <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl">
+                    <div className="flex items-center gap-3 p-4 bg-pr-brand-light border border-pr-tartan/30 rounded-xl">
                       <AlertCircle size={18} className="text-red-500 shrink-0" strokeWidth={1.5} />
                       <div>
-                        <p className="text-sm font-medium text-red-600">{t("error_title")}</p>
+                        <p className="text-sm font-medium text-pr-brand">{t("error_title")}</p>
                         <p className="text-xs text-red-500">{nl2br(t("error_message"))}</p>
                       </div>
                     </div>
@@ -294,9 +294,9 @@ function ContactForm() {
                 { icon: Camera, label: t("info_instagram"), value: "@pace.rise", href: INSTAGRAM_URL },
                 { icon: Globe, label: t("info_website"), value: "pace-rise.com", href: "https://pace-rise.com" },
               ].map(({ icon: Icon, label, value, href }, i) => (
-                <div key={i} className="bg-white rounded-xl border border-pr-border p-5 hover:border-pr-brand/30 transition-colors duration-300">
+                <div key={i} className="bg-white rounded-xl border border-pr-border p-5 hover:border-pr-ink/30 transition-colors duration-300">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-pr-brand-light text-pr-brand">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-pr-paper-2 text-pr-ink">
                       <Icon size={17} strokeWidth={1.5} />
                     </div>
                     <div>
@@ -316,7 +316,7 @@ function ContactForm() {
 
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="block text-center px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light transition-all duration-300"
+                className="block text-center px-6 py-3 text-sm font-display tracking-wider text-pr-ink border border-pr-border rounded-full hover:bg-pr-paper-2 transition-all duration-300"
               >
                 {t("direct_email")}
               </a>

@@ -61,11 +61,11 @@ export default function TrustSection() {
           {stats.map(({ icon: Icon, key }, i) => (
             <motion.div
               key={key}
-              className="bg-white rounded-2xl border border-pr-border p-6 md:p-7 text-center hover:border-pr-brand/30 transition-[border-color,box-shadow,background-color,color] duration-300"
+              className="bg-white rounded-2xl border border-pr-border p-6 md:p-7 text-center hover:border-pr-ink/30 transition-[border-color,box-shadow,background-color,color] duration-300"
               style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
               variants={staggerItem}
             >
-              <div className="w-10 h-10 mx-auto flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-4">
+              <div className="w-10 h-10 mx-auto flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-4">
                 <Icon size={18} strokeWidth={1.5} />
               </div>
               <p className="font-display text-2xl md:text-3xl text-pr-brand mb-2">

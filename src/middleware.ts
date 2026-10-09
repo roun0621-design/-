@@ -11,6 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
 const validRoutes = new Set([
   "/",
   "/about",
+  "/brand",
   "/news",
   "/contact",
   "/services/cos",

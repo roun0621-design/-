@@ -111,6 +111,13 @@ NEXT_PUBLIC_RECORDS_URL=         # https://records.pace-rise.com
   `BrandEventsDetail.tsx`의 `photoCaptionKeys` + 번역 키(`brand_events.photo_*`)에 등록
 - 권장: 가로형 4:3, 긴 변 1600px 이하, 장당 500KB 이하 (`sips -Z 1600 01.jpg` 로 리사이즈)
 
+### 브랜드 (2026-10 리브랜딩)
+- 로고 컴포넌트: `src/components/brand/` — `Wordmark`(메인, RISE의 I=심볼) · `Symbol`(단독) · `BreakSymbol`(깨지는 모션) · `colors.ts`
+- 색: `tailwind.config.js` 의 `pr-ink`(Track Black) / `pr-paper`(Line White) / `pr-tartan` / `pr-brand`(=Tartan Text) — **구 골드 #B79F58 사용 금지**
+- 브랜드 스토리 `/brand` (`BrandStory.tsx`), 홈 티저 `BrandTeaser.tsx`, 필름 `public/brand-film.html`
+- 다운로드 파일 `public/brand/` (명함·연락처 제외), 파비콘·OG는 `public/` 루트 (`og-image-v3.png`)
+- 원본 세트: 데스크톱 `pace-rise-logo/` (README·가이드 포함)
+
 ### 회사 이메일 등 공용 정보
 - `src/lib/site.ts` (`CONTACT_EMAIL`) 한 곳만 수정
 - 문의 폼 수신 주소는 코드가 아니라 **EmailJS 대시보드**(템플릿 `template_1b38kxr`의 To Email)에서 변경

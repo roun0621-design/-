@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     alternateLocale: "en_US",
     images: [
       {
-        url: "/og-image-v2.png",
+        url: "/og-image-v3.png",
         width: 1200,
         height: 630,
         alt: "PACE RISE – Sports Technology for Track & Field",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image-v2.png"],
+    images: ["/og-image-v3.png"],
   },
   robots: {
     index: true,
@@ -78,7 +78,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
     ],
@@ -96,7 +97,7 @@ const jsonLd = {
   name: "PACE RISE",
   alternateName: "페이스라이즈",
   url: "https://pace-rise.com",
-  logo: "https://pace-rise.com/logo-character-gold.png",
+  logo: "https://pace-rise.com/logo-wordmark.png",
   email: CONTACT_EMAIL,
   sameAs: ["https://www.instagram.com/pace.rise"],
   description:

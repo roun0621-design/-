@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PACE RISE 브랜드 필름</title>
+<!--
+  PACE RISE Brand Film · "The Break" (홈페이지 임베드용, 컨트롤 없음)
+  원본: pace-rise-logo/PACE RISE 브랜드 필름.html (프로토타입 v3) 의 스테이지만 추출.
+  15초 루프 · 무음 · SVG 시간 기반 렌더. ?f=916 → 세로형, ?t=초 → 정지 프레임.
+  prefers-reduced-motion: 마지막 장면(BEYOND LIMITS)에서 정지.
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap">
+<style>
+html,body{margin:0;height:100%;background:#0E0E10;overflow:hidden}
+svg{display:block;width:100%;height:100%}
+</style>
+</head>
+<body>
+<svg id="stage" viewBox="-420 0 1920 1080" preserveAspectRatio="xMidYMid meet" aria-label="PACE RISE 브랜드 필름">
+  <rect x="-2000" y="-2000" width="5000" height="5000" fill="#0E0E10"/>
+  <g id="track" opacity="0">
+    <line x1="-1400" y1="750" x2="2400" y2="750" stroke="#45444B" stroke-width="3"/>
+    <line x1="-1400" y1="772" x2="2400" y2="772" stroke="#3A393F" stroke-width="2.4"/>
+    <line x1="-1400" y1="790" x2="2400" y2="790" stroke="#312F36" stroke-width="2"/>
+    <line x1="-1400" y1="804" x2="2400" y2="804" stroke="#29282D" stroke-width="1.6"/>
+    <line x1="-1400" y1="814" x2="2400" y2="814" stroke="#222126" stroke-width="1.3"/>
+    <g id="ticks" stroke="#2E2D33" stroke-width="2"></g>
+    <rect x="536" y="750" width="8" height="64" fill="#F1EFEA" opacity=".8"/>
+  </g>
+  <line id="hair" x1="540" y1="254" x2="540" y2="750" stroke="#F1EFEA" stroke-width="1.5" opacity="0"/>
+  <g id="sym">
+    <polygon id="gapGlow" points="510,544.8 570,459.2 570,439.2 510,524.8" fill="#C24A2E" opacity="0"/>
+    <g id="lower"><rect id="bar" x="510" y="254" width="60" height="496" fill="#F1EFEA"/><polygon id="lowerPoly" points="510,750 570,750 570,459.2 510,544.8" fill="#F1EFEA" opacity="0"/></g>
+    <g id="upper"><polygon points="510,524.8 570,439.2 570,254 510,254" fill="#F1EFEA" opacity="0"/></g>
+  </g>
+  <defs><filter id="rblur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur id="rblurF" stdDeviation="0"/></filter></defs>
+  <g id="runner" opacity="0" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#rblur)">
+    <polyline id="legB" stroke="#8F3621" stroke-width="20"/>
+    <polyline id="armB" stroke="#8F3621" stroke-width="18"/>
+    <polyline id="torso" stroke="#C24A2E" stroke-width="22"/>
+    <rect id="head" width="30" height="30" fill="#C24A2E" stroke="none"/>
+    <polyline id="legF" stroke="#C24A2E" stroke-width="20"/>
+    <polyline id="armF" stroke="#C24A2E" stroke-width="18"/>
+  </g>
+  <text id="recOld" x="650" y="712" font-family="Audiowide, Arial, sans-serif" font-size="46" fill="#8A867E" opacity="0">10.01</text>
+  <text id="recNew" x="650" y="712" font-family="Audiowide, Arial, sans-serif" font-size="46" fill="#C24A2E" opacity="0">9.99</text>
+  <text id="wL" x="0" y="600" font-family="Audiowide, Arial, sans-serif" font-size="150" letter-spacing="6" fill="#F1EFEA" opacity="0" text-anchor="end">PACE R</text>
+  <text id="wR" x="0" y="600" font-family="Audiowide, Arial, sans-serif" font-size="150" letter-spacing="6" fill="#F1EFEA" opacity="0">SE</text>
+  <text id="tag" x="540" y="700" text-anchor="middle" font-family="Audiowide, Arial, sans-serif" font-size="40" letter-spacing="12" fill="#F1EFEA" opacity="0">BEYOND LIMITS</text>
+  <text id="lbl" x="-360" y="1000" font-family="Audiowide, Arial, sans-serif" font-size="22" letter-spacing="6" fill="#8A867E" opacity="0">PACE RISE</text>
+</svg>
+
+<script>
+(function(){
+  const DUR = 15;
+  const $ = id => document.getElementById(id);
+  const stage=$('stage'), ground=$('track'), hair=$('hair'), sym=$('sym'), bar=$('bar'), lowerPoly=$('lowerPoly'), upper=$('upper'), gapGlow=$('gapGlow'),
+        runner=$('runner'), torso=$('torso'), head=$('head'), legF=$('legF'), legB=$('legB'), armF=$('armF'), armB=$('armB'),
+        recOld=$('recOld'), recNew=$('recNew'), wL=$('wL'), wR=$('wR'), tag=$('tag'), lbl=$('lbl');
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  const span=(t,a,b)=>clamp((t-a)/(b-a),0,1);
+  const easeOutCubic=x=>1-Math.pow(1-x,3);
+  const easeInOut=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+  const easeOutQuint=x=>1-Math.pow(1-x,5);
+  const lerp=(a,b,x)=>a+(b-a)*x;
+  const TAU=Math.PI*2;
+
+  const SX=510, SBOT=750, SYMH=519, SLIDE={x:16,y:-23};
+  const D=Math.PI/180;
+  const TORSO=118, HEADOFF=150, CHEST=0.65;
+  const THETA_RUN=72, THETA_DIP=55;
+  const T_START=0.5, T_BREAK=5.0, T_FADE0=6.1, T_FADE1=7.0;
+  const HIP_Y=565;
+  const HIP_AT_BREAK=540 - TORSO*CHEST*Math.cos(THETA_DIP*D);
+  const LUNGE={legF:{a:50,f:8},legB:{a:-44,f:28},armF:{c:-50},armB:{c:55}};
+
+  let L={ready:false,k:0.244,ix:540,base:600,wlx:0,wrx:0};
+  function measure(){
+    const wl=wL.getComputedTextLength(), wr=wR.getComputedTextLength();
+    const capH=108; L.k=capH/SYMH;
+    const symW=76*L.k, gapL=14, gapR=18, total=wl+gapL+symW+gapR+wr, x0=540-total/2;
+    L.wlx=x0+wl; L.ix=x0+wl+gapL; L.wrx=L.ix+symW+gapR; L.ready=true;
+  }
+  function leg(hx,hy,p,tg,lw){
+    let a=50*Math.sin(TAU*p), f=25+85*(0.5+0.5*Math.sin(TAU*p+1.2));
+    a=lerp(a,tg.a,lw)*D; f=lerp(f,tg.f,lw)*D;
+    const kx=hx+95*Math.sin(a), ky=hy+95*Math.cos(a);
+    const fx=kx+90*Math.sin(a-f), fy=ky+90*Math.cos(a-f);
+    return `${hx},${hy} ${kx},${ky} ${fx},${fy}`;
+  }
+  function arm(sx,sy,p,tg,lw){
+    const c=lerp(-55*Math.sin(TAU*p),tg.c,lw)*D;
+    const ex=sx+70*Math.sin(c), ey=sy+70*Math.cos(c);
+    const hx=ex+62*Math.cos(c), hy=ey-62*Math.sin(c);
+    return `${sx},${sy} ${ex},${ey} ${hx},${hy}`;
+  }
+  function drawRunner(hx,p,thetaDeg,lw){
+    const hy=HIP_Y, th=thetaDeg*D, ux=Math.cos(th), uy=-Math.sin(th);
+    const sx=hx+TORSO*ux, sy=hy+TORSO*uy;
+    const cx=hx+HEADOFF*ux, cy=hy+HEADOFF*uy;
+    torso.setAttribute('points',`${hx},${hy} ${sx},${sy}`);
+    head.setAttribute('x',cx-15); head.setAttribute('y',cy-15); head.setAttribute('transform',`rotate(${-(90-thetaDeg)} ${cx} ${cy})`);
+    legF.setAttribute('points',leg(hx,hy,p,LUNGE.legF,lw)); legB.setAttribute('points',leg(hx,hy,p+0.5,LUNGE.legB,lw));
+    armF.setAttribute('points',arm(sx,sy,p+0.5,LUNGE.armF,lw)); armB.setAttribute('points',arm(sx,sy,p,LUNGE.armB,lw));
+  }
+  const X0=-1150, V=(HIP_AT_BREAK-X0)/(T_BREAK-T_START);
+  function runnerState(t){
+    const frozen=t>=T_BREAK;
+    const x=frozen?HIP_AT_BREAK:X0+V*(t-T_START);
+    const theta=lerp(THETA_RUN,THETA_DIP,easeInOut(span(t,T_BREAK-0.6,T_BREAK)));
+    const lw=easeInOut(span(t,T_BREAK-0.5,T_BREAK-0.05));
+    return {x,theta,lw,frozen,p:(x-X0)/230};
+  }
+  function render(t){
+    const g0=span(t,0.1,0.6);
+    const T_SPLIT=T_BREAK+0.35;
+    const draw=easeOutCubic(span(t,T_BREAK,T_SPLIT));
+    hair.setAttribute('opacity', 0.28*Math.min(span(t,0.4,1.4), 1-span(t,T_BREAK,T_BREAK+0.1)));
+    const barH=496*draw; bar.setAttribute('y',750-barH); bar.setAttribute('height',barH);
+    lbl.setAttribute('opacity', span(t,0.8,1.4)*(1-span(t,10.2,10.8)));
+    const rs=runnerState(t);
+    const on = t>=T_START && t<T_FADE1;
+    const fade=span(t,T_FADE0,T_FADE1);
+    runner.setAttribute('opacity', on ? Math.min(1,span(t,T_START,T_START+0.3))*(1-fade) : 0);
+    $('rblurF').setAttribute('stdDeviation', fade*6);
+    if(on) drawRunner(rs.x, rs.p, rs.theta, rs.lw);
+    const broke=t>=T_SPLIT;
+    bar.setAttribute('opacity', broke?0:1);
+    lowerPoly.setAttribute('opacity', broke?1:0);
+    upper.firstElementChild.setAttribute('opacity', broke?1:0);
+    const slide=easeOutQuint(span(t,T_SPLIT,T_SPLIT+0.75));
+    upper.setAttribute('transform',`translate(${SLIDE.x*slide} ${SLIDE.y*slide})`);
+    const g1=span(t,T_SPLIT,T_SPLIT+0.08), g2=1-span(t,T_SPLIT+0.08,T_SPLIT+0.9);
+    gapGlow.setAttribute('opacity', broke ? g1*g2 : 0);
+    const recIn=span(t,1.0,1.5);
+    const mv=easeInOut(span(t,T_SPLIT+0.05,T_SPLIT+0.85));
+    const rx=lerp(650,664,mv), ry=lerp(712,392,mv);
+    const rfade=1-span(t,8.4,9.1);
+    recOld.setAttribute('x',rx); recOld.setAttribute('y',ry);
+    recNew.setAttribute('x',rx); recNew.setAttribute('y',ry);
+    recOld.setAttribute('opacity', recIn*(1-span(t,T_SPLIT+0.3,T_SPLIT+0.55))*rfade);
+    recNew.setAttribute('opacity', span(t,T_SPLIT+0.35,T_SPLIT+0.6)*rfade);
+    const w=easeInOut(span(t,8.4,10.0));
+    const k=lerp(1,L.k,w);
+    const tx=lerp(0,L.ix-SX*k,w), ty=lerp(0,L.base-SBOT*k,w);
+    sym.setAttribute('transform', w>0 ? `translate(${tx} ${ty}) scale(${k})` : '');
+    const wo=span(t,9.1,10.0);
+    wL.setAttribute('opacity',wo); wR.setAttribute('opacity',wo);
+    if(L.ready){wL.setAttribute('x',L.wlx); wR.setAttribute('x',L.wrx);}
+    const nud=(1-easeOutCubic(wo))*20;
+    wL.setAttribute('transform',`translate(${-nud} 0)`); wR.setAttribute('transform',`translate(${nud} 0)`);
+    ground.setAttribute('opacity', Math.min(g0, 1-span(t,8.4,9.2)));
+    const c1=span(t,10.4,11.3);
+    tag.setAttribute('opacity',c1); tag.setAttribute('transform',`translate(0 ${(1-easeOutCubic(c1))*14})`);
+  }
+
+  // player: 자동 재생 · 루프 · 탭이 숨겨지면 멈춤
+  let t0=performance.now(), tCur=0, playing=true;
+  function tick(now){
+    if(playing){ tCur=(now-t0)/1000; if(tCur>=DUR){ t0=now; tCur=0; } render(tCur); }
+    requestAnimationFrame(tick);
+  }
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden){playing=false;} else {playing=true; t0=performance.now()-tCur*1000;} });
+  window.seek=function(t){playing=false;tCur=clamp(t,0,DUR);render(tCur);};
+  window.setFormat=function(f){
+    if(f==='9:16'){ stage.setAttribute('viewBox','0 -420 1080 1920'); lbl.setAttribute('x',40); lbl.setAttribute('y',1420); }
+    else { stage.setAttribute('viewBox','-420 0 1920 1080'); lbl.setAttribute('x',-360); lbl.setAttribute('y',1000); }
+  };
+  (function(){const g=$('ticks');for(let x=-1400;x<=2400;x+=120){const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',x);l.setAttribute('x2',x);l.setAttribute('y1',750);l.setAttribute('y2',814);g.appendChild(l);}})();
+  const q=new URLSearchParams(location.search);
+  if(q.get('f')==='916') setFormat('9:16');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const start=()=>{ measure(); render(0); if(q.has('t')) seek(parseFloat(q.get('t'))); else if(reduce) seek(11.5); else t0=performance.now(); requestAnimationFrame(tick); };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(start);
+  window.addEventListener('resize',()=>{ if(L.ready) measure(); });
+})();
+</script>
+</body>
+</html>

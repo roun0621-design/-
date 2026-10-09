@@ -9,12 +9,14 @@ import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Menu, X, Globe, ChevronDown, ExternalLink, Zap, Monitor, Sparkles } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import ScrollProgress from "@/components/motion/ScrollProgress";
+import Wordmark from "@/components/brand/Wordmark";
 
 const NODE_URL = "https://pace-rise-node.com";
 
 const navItems = [
   { key: "home", href: "/" },
   { key: "about", href: "/about" },
+  { key: "brand", href: "/brand" },
 ] as const;
 
 const tailNavItems = [
@@ -55,18 +57,17 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-xl shadow-[0_1px_0_0_#E5E5E5]"
-          : "bg-white/70 backdrop-blur-md"
+          ? "bg-pr-paper/90 backdrop-blur-xl shadow-[0_1px_0_0_#E5E5E5]"
+          : "bg-pr-paper/70 backdrop-blur-md"
       }`}
     >
       <ScrollProgress />
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 md:h-[72px]">
           {/* Logo */}
-          <Link href="/" className="group shrink-0 inline-flex items-center">
-            <span className="font-display text-lg sm:text-xl md:text-[22px] tracking-[0.12em] leading-none text-pr-primary group-hover:text-pr-brand transition-colors duration-300">
-              PACE RISE
-            </span>
+          <Link href="/" className="group shrink-0 inline-flex items-center py-2" aria-label="PACE RISE 홈">
+            {/* 워드마크 최소 높이 18px (가이드) — 모바일 20px / 데스크톱 24px */}
+            <Wordmark className="h-5 md:h-6 w-auto text-pr-ink transition-opacity duration-300 group-hover:opacity-70" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -99,9 +100,9 @@ export default function Header() {
                     <Link
                       key={href}
                       href={href}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-pr-brand-light transition-colors duration-200 group/item"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-pr-paper-2 transition-colors duration-200 group/item"
                     >
-                      <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-pr-brand-light text-pr-brand shrink-0">
+                      <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-pr-paper-2 text-pr-ink shrink-0">
                         <Icon size={16} strokeWidth={1.5} />
                       </span>
                       <span className="min-w-0">
@@ -147,7 +148,7 @@ export default function Header() {
               href={NODE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 inline-flex items-center gap-1.5 pl-4 pr-3.5 py-2 rounded-full bg-pr-brand text-white text-[12px] font-display tracking-wider hover:bg-[#A48D4A] hover:shadow-[0_4px_16px_rgba(183,159,88,0.3)] transition-all duration-300"
+              className="ml-2 inline-flex items-center gap-1.5 pl-4 pr-3.5 py-2 rounded-full bg-pr-ink text-white text-[12px] font-display tracking-wider hover:bg-pr-cinder hover:shadow-[0_4px_16px_rgba(14,14,16,0.25)] transition-all duration-300"
             >
               {t("node_cta")}
               <ExternalLink size={13} strokeWidth={2} />
@@ -161,7 +162,7 @@ export default function Header() {
               href={NODE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 pl-3 pr-2.5 py-1.5 rounded-full bg-pr-brand text-white text-[11px] font-display tracking-wider active:scale-95 transition-transform"
+              className="inline-flex items-center gap-1 pl-3 pr-2.5 py-1.5 rounded-full bg-pr-ink text-white text-[11px] font-display tracking-wider active:scale-95 transition-transform"
               aria-label="Open PACE RISE Node"
             >
               Node
@@ -187,7 +188,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-t border-pr-border">
+        <div className="md:hidden bg-pr-paper border-t border-pr-border">
           <nav className="px-5 py-4 space-y-0.5">
             {navItems.map(({ key, href }) => (
               <Link
@@ -195,7 +196,7 @@ export default function Header() {
                 href={href}
                 onClick={() => setMobileOpen(false)}
                 className={`block px-4 py-3 text-[15px] font-medium rounded-xl transition-colors ${
-                  isActive(href) ? "text-pr-brand bg-pr-brand-light" : "text-pr-secondary hover:bg-gray-50"
+                  isActive(href) ? "text-pr-brand bg-pr-paper-2" : "text-pr-secondary hover:bg-pr-paper-2"
                 }`}
               >
                 {t(key)}
@@ -214,10 +215,10 @@ export default function Header() {
                 href={href}
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
-                  isActive(href) ? "bg-pr-brand-light" : "hover:bg-gray-50"
+                  isActive(href) ? "bg-pr-paper-2" : "hover:bg-pr-paper-2"
                 }`}
               >
-                <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-pr-brand-light text-pr-brand shrink-0">
+                <span className="w-8 h-8 flex items-center justify-center rounded-lg bg-pr-paper-2 text-pr-ink shrink-0">
                   <Icon size={16} strokeWidth={1.5} />
                 </span>
                 <span className="min-w-0">
@@ -234,7 +235,7 @@ export default function Header() {
                 href={href}
                 onClick={() => setMobileOpen(false)}
                 className={`block px-4 py-3 text-[15px] font-medium rounded-xl transition-colors ${
-                  isActive(href) ? "text-pr-brand bg-pr-brand-light" : "text-pr-secondary hover:bg-gray-50"
+                  isActive(href) ? "text-pr-brand bg-pr-paper-2" : "text-pr-secondary hover:bg-pr-paper-2"
                 }`}
               >
                 {t(key)}
@@ -247,7 +248,7 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="mt-3 flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-pr-brand text-white text-[14px] font-display tracking-wider"
+              className="mt-3 flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-pr-ink text-white text-[14px] font-display tracking-wider"
             >
               {t("node_cta")}
               <ExternalLink size={14} strokeWidth={2} />

@@ -94,8 +94,8 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
   return (
     <div className="pt-16 md:pt-24">
       {/* Hero */}
-      <section className="py-12 md:py-24 bg-white relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-[600px] h-[500px] rounded-full blur-[200px]" style={{ background: "rgba(183, 159, 88, 0.04)" }} />
+      <section className="py-12 md:py-24 bg-pr-paper relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-[600px] h-[500px] rounded-full blur-[200px]" style={{ background: "rgba(194,74,46,0.04)" }} />
         <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
           <motion.div
             className="text-center"
@@ -103,7 +103,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pr-brand/20 bg-pr-brand-light mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pr-border bg-white mb-8">
               <Monitor size={14} className="text-pr-brand" strokeWidth={2} />
               <span className="font-display text-[11px] tracking-[0.2em] text-pr-brand">COMPETITION OPERATING SYSTEM</span>
             </div>
@@ -146,7 +146,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
       <div className="section-divider" />
 
       {/* Workflow Pipeline Animation */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-pr-paper">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-8">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-3">WORKFLOW</p>
@@ -195,7 +195,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
       <div className="section-divider" />
 
       {/* Operator Features (Admin Side) */}
-      <section id="operator" className="py-16 md:py-32 bg-white">
+      <section id="operator" className="py-16 md:py-32 bg-pr-paper">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">FOR OPERATORS</p>
@@ -214,11 +214,11 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             {operatorFeatures.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-ink/40 transition-[border-color,box-shadow,background-color,color] duration-300"
                 style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}
                 variants={staggerItem}
               >
-                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-5">
+                <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-5">
                   <Icon size={20} strokeWidth={1.5} />
                 </div>
                 <h3 className="text-base font-semibold text-pr-primary mb-2">
@@ -241,12 +241,12 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
           <div className="text-center mb-10 md:mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand">FOR VIEWERS</p>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 border border-red-200">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pr-brand-light border border-pr-tartan/30">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pr-tartan opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-pr-tartan" />
                 </span>
-                <span className="font-display text-[10px] tracking-wider text-red-600">LIVE</span>
+                <span className="font-display text-[10px] tracking-wider text-pr-brand">LIVE</span>
               </span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-pr-primary">
@@ -260,22 +260,22 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             {consumerFeatures.map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300 relative"
+                className="bg-white rounded-2xl border border-pr-border p-6 md:p-8 hover:border-pr-ink/40 transition-[border-color,box-shadow,background-color,color] duration-300 relative"
                 variants={staggerItem}
               >
                 {key === "realtime_sse" && (
                   <div className="absolute top-4 right-4">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-pr-paper-2 border border-pr-border">
                       <span className="relative flex h-1.5 w-1.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pr-ink opacity-75" />
+                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-pr-ink" />
                       </span>
-                      <span className="font-display text-[9px] tracking-wider text-emerald-700">NO REFRESH</span>
+                      <span className="font-display text-[9px] tracking-wider text-pr-ink">NO REFRESH</span>
                     </span>
                   </div>
                 )}
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand shrink-0">
+                  <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink shrink-0">
                     <Icon size={20} strokeWidth={1.5} />
                   </div>
                   <div>
@@ -294,7 +294,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
       </section>
 
       {/* Technical Architecture */}
-      <section className="py-16 md:py-32 bg-white">
+      <section className="py-16 md:py-32 bg-pr-paper">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">ARCHITECTURE</p>
@@ -312,7 +312,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             ].map(({ key, icon: Icon }, i) => (
               <motion.div
                 key={key}
-                className="p-6 rounded-xl border border-pr-border hover:border-pr-brand/30 transition-[border-color,box-shadow,background-color,color] duration-300"
+                className="p-6 rounded-xl border border-pr-border hover:border-pr-ink/30 transition-[border-color,box-shadow,background-color,color] duration-300"
                 variants={staggerItem}
               >
                 <div className="flex items-start gap-4">
@@ -365,10 +365,10 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
             ].map(({ icon: Icon, key }, i) => (
               <motion.div
                 key={key}
-                className="bg-white rounded-2xl border border-pr-border p-7 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300"
+                className="bg-white rounded-2xl border border-pr-border p-7 hover:border-pr-ink/40 transition-[border-color,box-shadow,background-color,color] duration-300"
                 variants={staggerItem}
               >
-                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-brand-light text-pr-brand mb-4">
+                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-pr-paper-2 text-pr-ink mb-4">
                   <Icon size={18} strokeWidth={1.5} />
                 </div>
                 <p className="text-sm text-pr-secondary leading-relaxed font-sans">
@@ -388,7 +388,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
       </section>
 
       {/* Demo Process */}
-      <section className="py-16 md:py-32 bg-white">
+      <section className="py-16 md:py-32 bg-pr-paper">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-9 md:mb-14">
             <p className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4">DEMO</p>
@@ -413,7 +413,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
                 className="relative bg-[var(--pr-bg-secondary)] rounded-2xl border border-pr-border p-6 text-center"
                 variants={staggerItem}
               >
-                <p className="font-display text-2xl text-pr-brand/30 mb-3">{step}</p>
+                <p className="font-display text-2xl text-pr-ink/20 mb-3">{step}</p>
                 <h4 className="text-sm font-semibold text-pr-primary mb-2">
                   {t(key as any)}
                 </h4>
@@ -421,7 +421,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
                   {t(`${key}_desc` as any)}
                 </p>
                 {i < 3 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 text-pr-brand/30">
+                  <div className="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 text-pr-ink/20">
                     <ChevronRight size={20} strokeWidth={2} />
                   </div>
                 )}
@@ -432,7 +432,7 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
           <div className="text-center">
             <Link
               href="/contact?type=demo"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-pr-brand text-white text-sm font-display tracking-wider rounded-full hover:bg-pr-brand/90 transition-all duration-300 shadow-sm"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-pr-ink text-white text-sm font-display tracking-wider rounded-full hover:bg-pr-cinder transition-all duration-300 shadow-sm"
             >
               <Play size={14} strokeWidth={2} />
               {t("cta_demo")}
@@ -456,14 +456,14 @@ export default function COSDetail({ photos = [] }: { photos?: ServicePhoto[] }) 
               href="https://pace-rise-node.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-pr-brand text-white text-sm font-display tracking-wider rounded-full hover:bg-pr-brand/90 transition-all duration-300 shadow-sm"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-pr-ink text-white text-sm font-display tracking-wider rounded-full hover:bg-pr-cinder transition-all duration-300 shadow-sm"
             >
               {t("cta_live")}
               <ExternalLink size={14} strokeWidth={2} />
             </a>
             <Link
               href="/contact?type=demo"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-pr-brand text-pr-brand text-sm font-display tracking-wider rounded-full hover:bg-pr-brand hover:text-white transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-pr-ink text-pr-ink text-sm font-display tracking-wider rounded-full hover:bg-pr-ink hover:text-white transition-all duration-300"
             >
               <Play size={14} strokeWidth={2} />
               {t("cta_demo")}

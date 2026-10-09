@@ -66,7 +66,7 @@ export default function PipelineAnimation() {
                 ? "0%"
                 : `${(activeIndex / (steps.length - 1)) * 100}%`,
             maxWidth: "calc(100% - 48px)",
-            background: "var(--pr-brand)",
+            background: "var(--pr-tartan)",
             transitionDuration: `${LINE_MS}ms`,
           }}
         />
@@ -82,12 +82,12 @@ export default function PipelineAnimation() {
                 className="w-10 h-10 rounded-full flex items-center justify-center text-sm transition-all border-2"
                 style={{
                   transitionDuration: "250ms",
-                  background: isActive ? "var(--pr-brand)" : "white",
-                  borderColor: isActive ? "var(--pr-brand)" : "var(--pr-border)",
+                  background: isActive ? "var(--pr-ink)" : "white",
+                  borderColor: isActive ? "var(--pr-ink)" : "var(--pr-border)",
                   color: isActive ? "white" : "var(--pr-text-tertiary)",
                   transform: isCurrent ? "scale(1.15)" : "scale(1)",
                   boxShadow: isCurrent
-                    ? "0 0 0 4px rgba(183, 159, 88, 0.15)"
+                    ? "0 0 0 4px rgba(194,74,46,0.15)"
                     : "none",
                 }}
               >
@@ -125,7 +125,7 @@ export default function PipelineAnimation() {
                 ? "0%"
                 : `${(activeIndex / (steps.length - 1)) * 100}%`,
             maxHeight: "calc(100% - 40px)",
-            background: "var(--pr-brand)",
+            background: "var(--pr-tartan)",
             transitionDuration: `${LINE_MS}ms`,
           }}
         />
@@ -141,12 +141,12 @@ export default function PipelineAnimation() {
                 className="w-[38px] h-[38px] rounded-full flex items-center justify-center text-sm shrink-0 transition-all border-2"
                 style={{
                   transitionDuration: "250ms",
-                  background: isActive ? "var(--pr-brand)" : "white",
-                  borderColor: isActive ? "var(--pr-brand)" : "var(--pr-border)",
+                  background: isActive ? "var(--pr-ink)" : "white",
+                  borderColor: isActive ? "var(--pr-ink)" : "var(--pr-border)",
                   color: isActive ? "white" : "var(--pr-text-tertiary)",
                   transform: isCurrent ? "scale(1.12)" : "scale(1)",
                   boxShadow: isCurrent
-                    ? "0 0 0 4px rgba(183, 159, 88, 0.15)"
+                    ? "0 0 0 4px rgba(194,74,46,0.15)"
                     : "none",
                 }}
               >

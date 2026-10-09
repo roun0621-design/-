@@ -40,7 +40,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: "/og-image-v2.png",
+          url: "/og-image-v3.png",
           width: 1200,
           height: 630,
           alt: "PACE RISE – Sports Technology for Track & Field",
@@ -51,7 +51,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/og-image-v2.png"],
+      images: ["/og-image-v3.png"],
     },
   };
 }

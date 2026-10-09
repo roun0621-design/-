@@ -3,21 +3,26 @@
 @tailwind utilities;
 
 /* ──────────────────────────────────────────
-   PACE RISE – Apple/Stripe Minimal White Theme
-   Brand Accent: #B79F58
+   PACE RISE – Track Black · Line White · Tartan
+   팔레트의 대부분은 흑백, 타탄(#C24A2E)은 꼭 필요한 곳에만.
+   (2026-10 리브랜딩 — 구 골드 #B79F58 사용 금지)
    ────────────────────────────────────────── */
 
 :root {
   --pr-white: #ffffff;
-  --pr-bg-secondary: #F5F5F7;
-  --pr-text-primary: #1D1D1F;
-  --pr-text-secondary: #86868B;
-  --pr-text-tertiary: #AEAEB2;
-  --pr-border: #E5E5E5;
-  --pr-border-light: #F0F0F0;
-  --pr-brand: #B79F58;
-  --pr-brand-light: rgba(183, 159, 88, 0.10);
-  --pr-brand-medium: rgba(183, 159, 88, 0.15);
+  --pr-paper: #F4F3EF;
+  --pr-bg-secondary: #EAE8E2;
+  --pr-ink: #0E0E10;
+  --pr-cinder: #1B1B1E;
+  --pr-text-primary: #0E0E10;
+  --pr-text-secondary: #4A4843;
+  --pr-text-tertiary: #8A867E;
+  --pr-border: #D6D3CB;
+  --pr-border-light: #E6E4DE;
+  --pr-tartan: #C24A2E;
+  --pr-brand: #B8432A;
+  --pr-brand-light: rgba(194, 74, 46, 0.08);
+  --pr-brand-medium: rgba(194, 74, 46, 0.14);
 }
 
 @layer base {
@@ -26,7 +31,7 @@
   }
 
   body {
-    @apply bg-white text-pr-primary antialiased;
+    @apply bg-pr-paper text-pr-primary antialiased;
     font-family: var(--font-inter), "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -70,7 +75,7 @@
 
   .card-elegant:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    border-color: var(--pr-brand);
+    border-color: var(--pr-ink);
   }
 
   /* Brand accent line on hover */
@@ -81,7 +86,7 @@
   .brand-line-bottom::after {
     content: "";
     @apply absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-500;
-    background: var(--pr-brand);
+    background: var(--pr-tartan);
     transform: scaleX(0);
     transform-origin: center;
   }
@@ -90,15 +95,15 @@
     transform: scaleX(1);
   }
 
-  /* Primary CTA button */
+  /* Primary CTA button – Track Black */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-8 py-4 font-display text-sm tracking-wider text-white rounded-full transition-all duration-300;
-    background: var(--pr-brand);
+    background: var(--pr-ink);
   }
 
   .btn-primary:hover {
-    background: #A48D4A;
-    box-shadow: 0 4px 20px rgba(183, 159, 88, 0.25);
+    background: var(--pr-cinder);
+    box-shadow: 0 6px 24px rgba(14, 14, 16, 0.22);
   }
 
   /* Secondary CTA button */
@@ -109,8 +114,8 @@
   }
 
   .btn-secondary:hover {
-    border-color: var(--pr-brand);
-    color: var(--pr-brand);
+    border-color: var(--pr-ink);
+    color: var(--pr-ink);
   }
 
   /* Section divider – thin 1px line */
@@ -136,21 +141,21 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--pr-white);
+  background: var(--pr-paper);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D1D1D6;
+  background: #C9C6BE;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--pr-brand);
+  background: var(--pr-ink);
 }
 
 /* Selection */
 ::selection {
-  background: rgba(183, 159, 88, 0.2);
+  background: rgba(194, 74, 46, 0.22);
   color: var(--pr-text-primary);
 }
 

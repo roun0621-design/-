@@ -13,12 +13,12 @@ import type { InstagramPost } from "@/types";
 
 /* placeholder patterns for when API is unavailable */
 const placeholderPatterns = [
-  "linear-gradient(135deg, rgba(183,159,88,0.08) 0%, rgba(183,159,88,0.02) 100%)",
-  "linear-gradient(45deg, rgba(183,159,88,0.04) 0%, rgba(183,159,88,0.10) 100%)",
-  "linear-gradient(180deg, rgba(183,159,88,0.06) 0%, rgba(183,159,88,0.03) 100%)",
-  "linear-gradient(225deg, rgba(183,159,88,0.02) 0%, rgba(183,159,88,0.08) 100%)",
-  "linear-gradient(90deg, rgba(183,159,88,0.05) 0%, rgba(183,159,88,0.09) 100%)",
-  "linear-gradient(315deg, rgba(183,159,88,0.10) 0%, rgba(183,159,88,0.04) 100%)",
+  "linear-gradient(135deg, rgba(14,14,16,0.08) 0%, rgba(14,14,16,0.02) 100%)",
+  "linear-gradient(45deg, rgba(14,14,16,0.04) 0%, rgba(14,14,16,0.10) 100%)",
+  "linear-gradient(180deg, rgba(14,14,16,0.06) 0%, rgba(14,14,16,0.03) 100%)",
+  "linear-gradient(225deg, rgba(14,14,16,0.02) 0%, rgba(14,14,16,0.08) 100%)",
+  "linear-gradient(90deg, rgba(14,14,16,0.05) 0%, rgba(14,14,16,0.09) 100%)",
+  "linear-gradient(315deg, rgba(14,14,16,0.10) 0%, rgba(14,14,16,0.04) 100%)",
 ];
 
 export default function InstagramFeed() {
@@ -52,7 +52,7 @@ export default function InstagramFeed() {
   };
 
   return (
-    <section className="py-16 md:py-36 bg-white">
+    <section className="py-16 md:py-36 bg-pr-paper">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <Stagger className="text-center mb-9 md:mb-14">
@@ -133,13 +133,13 @@ export default function InstagramFeed() {
                   href="https://www.instagram.com/pace.rise"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group aspect-square rounded-xl border border-pr-border flex flex-col items-center justify-center gap-2 hover:border-pr-brand/40 transition-[border-color,box-shadow,background-color,color] duration-300 cursor-pointer"
+                  className="group aspect-square rounded-xl border border-pr-border flex flex-col items-center justify-center gap-2 hover:border-pr-ink/40 transition-[border-color,box-shadow,background-color,color] duration-300 cursor-pointer"
                   style={{ background: placeholderPatterns[i] }}
                   variants={staggerItem}
                 >
                   <Camera
                     size={i === 0 || i === 3 ? 28 : 20}
-                    className="text-pr-brand/30 group-hover:text-pr-brand/60 transition-colors duration-300"
+                    className="text-pr-ink/20 group-hover:text-pr-brand/60 transition-colors duration-300"
                     strokeWidth={1}
                   />
                   {(i === 0 || i === 5) && (
@@ -160,7 +160,7 @@ export default function InstagramFeed() {
             href="https://www.instagram.com/pace.rise"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light hover:border-pr-brand transition-all duration-300 group"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-ink border border-pr-border rounded-full hover:bg-pr-paper-2 hover:border-pr-ink transition-all duration-300 group"
           >
             <Camera size={15} strokeWidth={1.5} />
             @pace.rise

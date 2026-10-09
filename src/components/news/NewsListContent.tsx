@@ -23,12 +23,12 @@ import { INSTAGRAM_URL } from "@/lib/site";
 
 /* placeholder patterns */
 const placeholderPatterns = [
-  "linear-gradient(135deg, rgba(183,159,88,0.08) 0%, rgba(183,159,88,0.02) 100%)",
-  "linear-gradient(45deg, rgba(183,159,88,0.04) 0%, rgba(183,159,88,0.10) 100%)",
-  "linear-gradient(180deg, rgba(183,159,88,0.06) 0%, rgba(183,159,88,0.03) 100%)",
-  "linear-gradient(225deg, rgba(183,159,88,0.02) 0%, rgba(183,159,88,0.08) 100%)",
-  "linear-gradient(90deg, rgba(183,159,88,0.05) 0%, rgba(183,159,88,0.09) 100%)",
-  "linear-gradient(315deg, rgba(183,159,88,0.10) 0%, rgba(183,159,88,0.04) 100%)",
+  "linear-gradient(135deg, rgba(14,14,16,0.08) 0%, rgba(14,14,16,0.02) 100%)",
+  "linear-gradient(45deg, rgba(14,14,16,0.04) 0%, rgba(14,14,16,0.10) 100%)",
+  "linear-gradient(180deg, rgba(14,14,16,0.06) 0%, rgba(14,14,16,0.03) 100%)",
+  "linear-gradient(225deg, rgba(14,14,16,0.02) 0%, rgba(14,14,16,0.08) 100%)",
+  "linear-gradient(90deg, rgba(14,14,16,0.05) 0%, rgba(14,14,16,0.09) 100%)",
+  "linear-gradient(315deg, rgba(14,14,16,0.10) 0%, rgba(14,14,16,0.04) 100%)",
 ];
 
 /** 미디어 타입 아이콘 */
@@ -84,7 +84,7 @@ export default function NewsListContent() {
   return (
     <div className="pt-16 md:pt-24">
       {/* Header */}
-      <section className="py-14 md:py-28 bg-white">
+      <section className="py-14 md:py-28 bg-pr-paper">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.p
             className="font-display text-[11px] tracking-[0.3em] text-pr-brand mb-4"
@@ -160,7 +160,7 @@ export default function NewsListContent() {
                     href={post.permalink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block bg-white rounded-2xl border border-pr-border overflow-hidden hover:border-pr-brand/40 hover:shadow-lg transition-all duration-300"
+                    className="group block bg-white rounded-2xl border border-pr-border overflow-hidden hover:border-pr-ink/40 hover:shadow-lg transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.06 }}
@@ -232,7 +232,7 @@ export default function NewsListContent() {
                   href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-brand border border-pr-brand/30 rounded-full hover:bg-pr-brand-light hover:border-pr-brand transition-all duration-300 group"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-display tracking-wider text-pr-ink border border-pr-border rounded-full hover:bg-pr-paper-2 hover:border-pr-ink transition-all duration-300 group"
                 >
                   <Camera size={15} strokeWidth={1.5} />
                   {locale === "ko"
